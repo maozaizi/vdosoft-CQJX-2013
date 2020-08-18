@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="material">
+		<!-- 列表查询 -->
+		<method name="getList" realclass="com.u2a.business.MaterialInfoService" dbName="brickDao" trans="" limit=""	methodname="getList" source="aa" dest="jsp/business/materialinfo/materialinfo_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="materialInfo" type="LOGIC"
+					classname="com.MaterialInfo" source="param">
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+					<inparam name="isFormal"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到添加页面 -->
+		<method name="toAddMaterial"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/materialinfo/materialinfo_add.jsp"
+			type="1">
+		</method>
+		<!-- 添加提交 -->
+		<method name="addMaterialInfo"
+			realclass="com.u2a.business.MaterialInfoService"
+			dbName="brickDao" trans="" limit="" methodname="addMaterialInfo"
+			source="" dest=""
+			type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="materialInfo" type="LOGIC"
+						classname="com.MaterialInfo" source="param">
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+					<inparam name="materialType"  type="String" check="0" source="param" />
+					<inparam name="unitPrice" type="String" check="0" source="param" />
+					<inparam name="unity"  type="String" check="0" source="param" />
+					<inparam name="otherName"  type="String" check="0" source="param" />
+					<inparam name="isFormal"  type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+		</method>
+		
+		<!-- 跳转到添加页面 -->
+		<method name="toUpdateMaterial"
+			realclass="com.u2a.business.MaterialInfoService"
+			dbName="brickDao" trans="" limit="" methodname="toUpdateMaterialInfo"
+			source="" dest="jsp/business/materialinfo/materialinfo_update.jsp"
+			type="1">
+			<inparams>
+				<inparam name="materialInfo" type="LOGIC"
+						classname="com.MaterialInfo" source="param">
+					<inparam name="id"  type="String" check="0" source="param"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="materialInfo" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到添加页面 -->
+		<method name="delMaterialInfo"
+			realclass="com.u2a.business.MaterialInfoService"
+			dbName="brickDao" trans="" limit="" methodname="deleteMaterialInfo"
+			source="" dest="jsp/business/materialinfo/materialinfo_list.jsp"
+			type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="materialInfo" type="LOGIC"
+						classname="com.MaterialInfo" source="param">
+					<inparam name="id"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0" source="param" />				
+			</inparams>
+		</method>
+		<!-- 修改提交 -->
+		<method name="saveMaterialInfo"
+			realclass="com.u2a.business.MaterialInfoService"
+			dbName="brickDao" trans="" limit="" methodname="saveMaterialInfo"
+			source="" dest=""
+			type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="materialInfo" type="LOGIC"
+						classname="com.MaterialInfo" source="param">
+					<inparam name="id"  type="String" check="0" source="param" />	
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialType"  type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+					<inparam name="unitPrice" type="String" check="0" source="param" />
+					<inparam name="unity"  type="String" check="0" source="param" />
+					<inparam name="otherName"  type="String" check="0" source="param" />
+					<inparam name="isFormal"  type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+		</method>
+		<!-- 导入材料页面-->
+		<method name="saveMaterialInfoImport"
+			realclass="com.u2a.business.MaterialInfoService"
+			dbName="brickDao" trans="" limit="" methodname="saveMaterialInfoImport"
+			source="" dest=""
+			type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+				<inparam name="fileUrl" real="fileUrl" type="String" check="0" source="param" />
+				<inparam name="attachmentInfo" type="LOGIC"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="fileUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="message" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转导入材料信息页面-->
+		<method name="toImportMaterialInfo"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/materialinfo/materialinfo_import.jsp"
+			type="2">
+			<inparams>
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+				<inparam name="fileUrl" real="fileUrl" type="String" check="0" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="message" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+	</package>
+</root>

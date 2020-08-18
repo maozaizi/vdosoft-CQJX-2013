@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.AuthGroup" table="auth_group">
+        <id name="authGroupId" type="java.lang.String">
+            <column name="auth_group_id" length="40" />
+            <generator class="notnative" />
+        </id>
+        <property name="authGroupName" type="java.lang.String">
+            <column name="auth_group_name" length="50" not-null="true">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+        <property name="authGroupRemark" type="java.lang.String">
+            <column name="auth_group_remark" length="150">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+         <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="50" />
+        </property>
+        <property name="createDate" type="java.lang.String">
+            <column name="create_date" length="30" />
+        </property>
+        <property name="modifyDate" type="java.lang.String">
+            <column name="modify_date" length="30" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="20" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

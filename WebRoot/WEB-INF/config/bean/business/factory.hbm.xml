@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.Factory" table="factory">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+       <property name="busId" type="java.lang.String">
+            <column name="bus_id" length="40"/>
+        </property>
+        <property name="busName" type="java.lang.String">
+            <column name="bus_name" length="40"/>
+        </property>
+        <property name="orgId" type="java.lang.String">
+            <column name="org_id" length="40" />
+        </property>
+        <property name="orgName" type="java.lang.String">
+            <column name="org_name" length="40" />
+        </property>
+		<property name="workCard" type="java.lang.String">
+            <column name="work_card" length="40" />
+        </property>
+        <property name="equipmentName" type="java.lang.String">
+            <column name="equipment_name" length="40"/>
+        </property>
+         <property name="factoryDate" type="java.sql.Date">
+            <column name="factory_date" length="19"/>
+        </property>
+        <property name="factoryAddr" type="java.lang.String">
+            <column name="factory_addr"/>
+        </property>
+        <property name="equipmentCode" type="java.lang.String">
+            <column name="equipment_code"/>
+        </property>
+         <property name="repairType" type="java.lang.String">
+            <column name="repair_type"/>
+        </property>
+        <property name="equipmentNum" type="java.lang.String">
+            <column name="equipment_num"/>
+        </property>
+        <property name="starttime" type="java.sql.Date">
+            <column name="start_time" length="19"/>
+        </property>
+        <property name="endtime" type="java.sql.Date">
+            <column name="end_time" length="19"/>
+        </property>
+         <property name="deptfrom" type="java.lang.String">
+            <column name="dept_from"/>
+        </property>
+         <property name="dept" type="java.lang.String">
+            <column name="dept"/>
+        </property>
+        <property name="proDept" type="java.lang.String">
+            <column name="pro_dept"/>
+        </property>
+        <property name="factorystate" type="java.lang.String">
+            <column name="factory_state"/>
+        </property>
+        <property name="createDate" type="java.sql.Date">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40" />
+        </property>
+        <property name="modifyDate" type="java.sql.Date">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40" />
+        </property>
+         <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="4" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+﻿/* CSS Document */
+html,body { font-family: Arial,Tahoma,Verdada,Helvetica,sans-serif; font-size: 12px; line-height: 1.7em; font-weight: normal; color: #555354; text-decoration: none; text-align:left; margin: 0px; padding: 0px;background-color:#FFF;}
+a:link,a:visited{color:#555354; text-decoration: none;}
+a:hover,a:active{color:#FF0000;text-decoration: underline;}
+* { margin: 0px; padding: 0px;}
+img{ border:0;}
+ul,li{ list-style:none; margin:0px; padding:0px; text-align: left;}
+h1 {font-size: 18px}h2 {font-size: 16px}h3 {font-size: 14px}h1 {	font-weight: bold}h2 {font-weight: bold}h3 {font-weight: bold}h4 {	font-weight: bold}h5 {font-weight: bold}h6 {font-weight: bold}
+textarea {	font-family: inherit}select {	font-family: inherit}input {font-size: 100%}button {font-size: 100%}textarea {font-size: 100%}select {font-size: 100%}legend {color: #000}
+input,select,button{font:12px Verdana,Arial,Tahoma;vertical-align:middle;}
+/* 登录box for Time:2010.01.18
+-------------------------------------------------------------------*/
+#login {width:414px;height:293px;margin-left:auto;margin-right:auto;margin-top:130px;border:solid 1px #AAAAAA;background-color:#F3F2E7;}
+.logintitle {height:31px;line-height:31px;background: url("../images/logintitle_bg.jpg") center center repeat-x;padding-left:25px;font-weight:bold;border-bottom:solid 1px #AAAAAA;}
+#login .theme {clear: both;padding: 10px;width: 78%;margin-top: 20px;margin-left:auto;margin-right:auto;padding-top:20px;}
+#login .theme li {margin-bottom: 15px;line-height: 35px;height: 23px;}
+#login .theme span {color: #000000;width: 20%;display: block;float: left;text-align: right;line-height: 25px;height: 25px;}
+input {color:#000;font-size:12px;font-family:Tahoma, SimSun, Arial;}
+input[type="text"],input[type="password"] {*margin:-1px 5px 0 5px;width:219px;height:20px;border:1px solid #a7a6aa;background:#FFF;margin-top: 0;margin-right: 5px;margin-bottom: 0;margin-left: 5px;padding: 2px;}
+* html input.text {width:223px;/*height:12px;*/border:1px solid #a7a6aa;background:#FFF;margin-top: -1px;margin-right: 5px;margin-bottom: 0;margin-left: 2px;padding: 3px;line-height: 15px;}
+input[type="radio"] {*margin:-1px 0 0 1px;}
+* html input.radio {margin:-1px 0 0 -2px;}
+.btn_login {background:url(../images/btn_bg.jpg);width:79px;height:24px;border:0px;cursor:pointer;font-size:12px;border:solid 1px #AAAAAA;}
+.version {width:auto;line-height:22px;color:#CCCCCC;text-align:center;clear:both;}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="org_select">
+		<method name="toMain" realclass="com.u2a.framework.service.base.organizationDetali.OrgSelectService" methodname="toMain" dbName="brickDao" trans="" limit="" source="a" dest="jsp/base/org_detali/orgselect/main.jsp" error="">
+			<inparams>
+			    <!-- <inparam name="fhwUserMap" real="user" type="LOGIC" check="1" source="session"/> -->
+				<inparam name="auth"  type="String" check="0" source="param" remark="权限"/>
+				<inparam name="PRU"  type="String" check="0" source="param" remark="PRU"/>
+				<inparam name="selectedType"  type="String" check="0" source="param" remark="选择类型"/>
+				<inparam name="inData"  type="String" check="0" source="param" remark="输入参数"/>
+			</inparams>
+			<outparams>
+				<outparam name="treeType"  type="String" source="param"/>
+				<outparam name="auth"  type="String" source="param"/>
+				<outparam name="PRU"  type="String" source="param"/>
+				<outparam name="selectedType"  type="String" source="param"/>
+				<outparam name="inData"  type="String" source="param"/>
+			</outparams>
+		</method>
+		<!-- 获取tree列表 -->
+		<method name="getTree" methodname="getTree" dest="jsp/base/org_detali/orgselect/tree.jsp" realclass="com.u2a.framework.service.base.organizationDetali.OrgSelectService" dbName="brickDao" trans="" limit="" error="" source="aa">
+			<inparams>
+			    <!-- <inparam name="fhwUserMap" real="user" type="LOGIC" check="1" source="session"/> -->
+				<inparam name="PRU"  type="String" check="0" source="param" remark="PRU"/>
+				<inparam name="selectedType"  type="String" check="0" source="param" remark="选择类型"/>
+				<inparam name="closeAble"  type="String" check="0" source="param" remark=""/>
+				<inparam name="fn"  type="String" check="0" source="param" remark=""/>
+				<inparam name="userMap"  type="ENTITY" check="0" source="session" />
+			</inparams>
+			<outparams>
+				<outparam name="organizationDetaliList" type="LOGIC" source="attr" />
+				<outparam name="cb" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 获取节点详细信息 -->
+		<method name="getInfo" methodname="getInfo" realclass="com.u2a.framework.service.base.organizationDetali.OrgSelectService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa"  dest="jsp/base/org_detali/orgselect/info.jsp">
+			<inparams>
+				<inparam name="organization" type="LOGIC" classname="com.baseorganization" source="param">
+					<inparam name="id"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="PRU"  type="String" check="0" source="param" remark="PRU"/>
+				<inparam name="selectedType"  type="String" check="0" source="param" remark="选择类型"/>
+				<inparam name="treeType"  type="String" check="0" source="param" remark="树类型"/>
+			</inparams> 
+			<outparams>
+				<outparam name="organizationDetali" type="LOGIC" source="attr" />
+				<outparam name="userInfoList" type="LOGIC" source="attr" />
+				<outparam name="postInfoList" type="LOGIC" source="attr" />
+				<outparam name="selectedType" type="String" source="attr" />
+				<outparam name="PRU" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 已经选择记录页面 -->
+		<method name="selectedPage" methodname="toPage" realclass="com.u2a.framework.service.SysService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa"  dest="jsp/base/org_detali/orgselect/selected.jsp">
+			<inparams>
+				<inparam name="inData"  type="String" check="0" source="param" remark="输入参数"/>
+			</inparams>
+			<outparams>
+				<outparam name="inData"  type="String" source="param"/>
+			</outparams>
+		</method>
+	</package>
+</root>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<select id="getDrillingCrewList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from drilling_crew where is_valid = '1'
+		<isNotEmpty prepend="and" property="teamName">
+			team_name like '%$teamName$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="teamCode">
+			team_code like '%$teamCode$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="projectDept">
+			project_dept like '%$projectDept$%'
+		</isNotEmpty>
+	</select>
+</sqlMap>

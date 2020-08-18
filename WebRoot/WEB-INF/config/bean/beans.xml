@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<beans>
+	<!-- 系统bean 开始 -->
+		<!-- 权限组 -->
+		<bean location="/WEB-INF/config/bean/sys/authgroup.hbm.xml" />
+		<!-- 权限组与权限的对应关系 -->
+		<bean location="/WEB-INF/config/bean/sys/authgroupmember.hbm.xml" />
+		<!-- 菜单信息(权限信息)-->
+		<bean location="/WEB-INF/config/bean/sys/authinfo.hbm.xml" />
+		<!-- 用户信息表-->
+		<bean location="/WEB-INF/config/bean/sys/userinfo.hbm.xml" />
+		<!--工作台快捷键-->
+		<bean location="/WEB-INF/config/bean/sys/custom/custom.hbm.xml" />
+		<!--记录日志-->
+		<bean location="/WEB-INF/config/bean/sys/logrecords.hbm.xml" />
+	<!-- 系统bean 结束  -->	
+	<!-- 基础bean 开始  -->
+		<!-- 基础组织结构 -->
+		<bean location="/WEB-INF/config/bean/base/baseorganization/baseorganization.hbm.xml" />
+		<!-- 数据字典	-->
+		<bean location="/WEB-INF/config/bean/base/dictionary/dataitembaseinfo.hbm.xml" />
+		<!-- 岗位信息 -->
+		<bean location="/WEB-INF/config/bean/base/organizationdetali/bs_post_info.hbm.xml" />
+		<!-- 岗位人员 -->
+		<bean location="/WEB-INF/config/bean/base/organizationdetali/bs_post_user.hbm.xml" />
+		<!-- 短消息 -->
+		<bean location="/WEB-INF/config/bean/base/mailmanage/mailmanage.hbm.xml"/>
+	<!-- 基础bean 结束  -->	
+	
+	<!-- 工作流 开始-->
+		<bean location="/WEB-INF/config/bean/workflow/WfProcessDef.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/workflow/OSWorkFlowDefs.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/workflow/WfProcessStepAuth.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/workflow/WfProcessStep.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/workflow/WfBizInstance.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/workflow/WfBizStep.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/workflow/WfBizStepUser.hbm.xml" />
+	<!-- 工作流 结束-->
+	
+	<!-- 导入excel 开始 -->
+		<bean location="/WEB-INF/config/bean/business/materialinfo.hbm.xml" />
+	<!-- 导入excel 结束 -->
+	<!-- business 开始 -->
+		<bean location="/WEB-INF/config/bean/business/equipmentinfo.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/busmechanic.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/busworkcard.hbm.xml" />
+	<!-- 工具劳保流程bean -->
+		<bean location="/WEB-INF/config/bean/business/bustoolswf.hbm.xml" />
+	<!-- business 结束 -->
+		<bean location="/WEB-INF/config/bean/business/attachmentinfo.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/busmaterialplan.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/bustestrecord.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/chargeoffdetail.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/storedetail.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/outstoreinfo.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/outstoredetail.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/businrepairinfo.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/buselectrical.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/busplaninfo.hbm.xml" />
+	    <bean location="/WEB-INF/config/bean/business/busdrilling.hbm.xml" />
+	    <bean location="/WEB-INF/config/bean/business/busrivetweld.hbm.xml" />    
+	    <bean location="/WEB-INF/config/bean/business/mechtreatment.hbm.xml" />
+	    <bean location="/WEB-INF/config/bean/business/busplaninfowf.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/busmaterialplanwf.hbm.xml" />    
+	    <bean location="/WEB-INF/config/bean/business/machiningmessage.hbm.xml" />    
+	    <bean location="/WEB-INF/config/bean/business/worktypeinfo.hbm.xml" />   
+	    <bean location="/WEB-INF/config/bean/business/factory.hbm.xml" />   
+	    <bean location="/WEB-INF/config/bean/business/expatsinfo.hbm.xml" />    
+	    <bean location="/WEB-INF/config/bean/business/expatsdetail.hbm.xml" />    
+	    <bean location="/WEB-INF/config/bean/business/busrepairsettlement.hbm.xml" />    
+	    <bean location="/WEB-INF/config/bean/business/busrepairerhours.hbm.xml" />    
+	    <bean location="/WEB-INF/config/bean/business/otheroutstore.hbm.xml" />    
+	    <bean location="/WEB-INF/config/bean/business/mechdept.hbm.xml" />
+	<!-- business 结束 -->
+		<bean location="/WEB-INF/config/bean/business/drillingcrew.hbm.xml" />  
+		<bean location="/WEB-INF/config/bean/business/busworknote.hbm.xml" />  
+		<bean location="/WEB-INF/config/bean/business/produceplan.hbm.xml" />	
+	<!-- 加工件库存 -->		
+		<bean location="/WEB-INF/config/bean/business/treatinstore.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/treatoutstore.hbm.xml" />
+		<bean location="/WEB-INF/config/bean/business/treatstore.hbm.xml" />				
+</beans>

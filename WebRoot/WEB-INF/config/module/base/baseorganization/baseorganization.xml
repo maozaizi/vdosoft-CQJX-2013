@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="baseorganization">
+		<!-- 基本组织结构维护  查询tree结构 -->
+		<method name="list" realclass="com.u2a.framework.service.base.baseOrganization.BaseOrganizationService" dbName="brickDao" trans="" limit=""	methodname="getAllBaseOrganizationList" source="aa" dest="jsp/base/base_organization/list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="expandId"  type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+				<outparam name="baseOrganizationList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 基本组织结构维护  添加tree节点转向 -->
+		<method name="toSave" realclass="com.u2a.framework.service.SysService" methodname="toPage" dbName="brickDao" trans="" limit=""   source="aa" dest="jsp/base/base_organization/add.jsp" error="" type="1">
+			<inparams>
+				<inparam name="parentId"  type="String" check="0" source="param"/>
+				<inparam name="parentCode"  type="String" check="0" source="param"/>
+				<inparam name="id"  type="String" check="0" source="param"/>
+			</inparams>
+			<outparams>
+				<outparam name="parentId" type="String" check="0" source="param"/>
+				<outparam name="parentCode" type="String" check="0" source="param"/>
+				<outparam name="id" type="String" check="0" source="param"/>
+			</outparams>
+		</method>
+		<!-- 基本组织结构维护  添加tree -->
+		<method name="save" realclass="com.u2a.framework.service.base.baseOrganization.BaseOrganizationService" dbName="brickDao" trans="" limit=""	methodname="addBaseOrganization" source="aa" error="" type="2">
+			<inparams>
+				<inparam name="baseOrganization" type="LOGIC" classname="com.baseorganization" source="param">
+					<inparam name="orgName"  type="String" check="1" source="param" remark="组织名称"/>
+					<inparam name="memo"  type="String" check="0" source="param" remark="组织描述"/>
+					<inparam name="parentId"  type="String" check="1" source="param" remark="父节点"/>
+				</inparam>
+				<inparam name="orgCode"  type="String" check="1" source="param" remark="编码"/>
+				<inparam name="parentCode"  type="String" check="0" source="param" remark="上级编码"/>
+				<inparam name="tempUrl" type="String" check="0" source="param" remark="重定向路径"/>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<!-- 基本组织结构维护  修改tree节点转向 -->
+		<method name="toModify" realclass="com.u2a.framework.service.base.baseOrganization.BaseOrganizationService" dbName="brickDao" trans="" limit=""	methodname="toModifyBaseOrganization" source="aa" dest="jsp/base/base_organization/modify.jsp" error="" type="1">
+			<inparams>
+				<inparam name="baseOrganization" type="LOGIC" classname="com.baseorganization" source="param">
+					<inparam name="id"  type="String" check="0" source="param" remark="当前节点ID"/>
+				</inparam>
+				<inparam name="parentCode"  type="String" check="0" source="param"/>
+			</inparams>
+			<outparams>
+				<outparam name="baseOrganizations" type="LOGIC" source="attr" />
+				<outparam name="baseOrganizationIdShow" type="String" source="attr" />
+				<outparam name="parentCode" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 基本组织结构维护  修改 -->
+		<method name="modify" methodname="updateBaseOrganization" realclass="com.u2a.framework.service.base.baseOrganization.BaseOrganizationService" dbName="brickDao" trans="" limit=""	source="aa" error="" type="1">
+			<inparams>
+				<inparam name="baseOrganization" type="LOGIC" classname="com.baseorganization" source="param">
+					<inparam name="id"  type="String" check="0" source="param" remark="当前节点ID"/>
+					<inparam name="orgName"  type="String" check="1" source="param" remark="组织名称"/>
+					<inparam name="memo"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="tempUrl"  type="String" check="1" source="param" remark="跳转参数"/>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<method name="toDelete" realclass="com.u2a.framework.service.base.baseOrganization.BaseOrganizationService" methodname="toDelete" dbName="brickDao" trans="" limit="" source="a" dest="jsp/base/base_organization/reason.jsp" error="">
+			<inparams>
+				<inparam name="baseOrganization" type="LOGIC" classname="com.baseorganization" source="param">
+					<inparam name="id"  type="String" check="0" source="param"/>
+					<inparam name="parentId"  type="String" check="0" source="param"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="id"  type="String" check="0" source="param"/>
+				<outparam name="parentId"  type="String" check="0" source="param"/>
+			</outparams>
+		</method>
+		<method name="delete" methodname="deleteBaseOrganization" realclass="com.u2a.framework.service.base.baseOrganization.BaseOrganizationService" dbName="brickDao" trans="" limit=""	source="aa" error="" type="1">
+			<inparams>
+				<inparam name="baseOrganization" type="LOGIC" classname="com.baseorganization" source="param">
+					<inparam name="id"  type="String" check="0" source="param"/>
+					<inparam name="parentId"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="reason"  type="String" check="1" source="param" remark="原因"/>
+				<inparam name="tempUrl"  type="String" check="1" source="param" remark="跳转参数"/>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		
+		
+		
+				<!-- 基本组织结构维护  查询tree结构（组织结构选择窗口） -->
+		<method name="listWin" realclass="com.u2a.framework.service.base.baseOrganization.BaseOrganizationService" dbName="brickDao" trans="" limit=""	methodname="getAllBaseOrganizationList" source="aa" dest="jsp/orgtreewin.jsp" error="" type="2">
+			<inparams>
+				<inparam name="expandId"  type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+				<outparam name="baseOrganizationList" type="LOGIC" source="attr" />
+				<outparam name="cb" type="LOGIC" source="attr" />
+				<outparam name="expandId"  type="String"  source="attr"/>
+			</outparams>
+		</method>
+		
+	
+		
+	
+	</package>
+</root>

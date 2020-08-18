@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<select id="BusInrepairInfoSql" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select a.equipment_model as equipmentModel,
+			   b.id  as busId,
+			   a.equipment_name as equipmentName,
+			   a.id  as inrepairId,
+			   a.repair_type as repairType,
+			   a.repair_properties as repairProperties,
+			   a.in_date as inDate,
+			   a.problem as problem,
+			   b.create_date as createDate,
+			   b.work_card as workCard,
+			   b.org_id as orgId,
+			   b.dept_name as DeptName
+		 from bus_inrepair_info a,$tableNames$ b where b.IS_VALID='1'and a.IS_VALID='1' and b.inrepair_id=a.id
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="equipmentName">
+				a.equipment_name like '%$equipmentName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="repairStep">
+				a.repair_step = '$repairStep$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="equipmentModel">
+				a.equipment_model like '%$equipmentModel$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="repairCategory">
+				a.repair_category = '$repairCategory$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="repairProperties">
+				a.repair_properties = '$repairProperties$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="repairType">
+				a.repair_type = '$repairType$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				b.org_id like '%$orgId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="beginInDate">
+			<![CDATA[a.in_date>='$beginInDate$']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endInDate">
+			<![CDATA[a.in_date<='$endInDate$']]>
+			</isNotEmpty>
+			<isEqual compareValue="1" property="state">
+				and (b.start_date &lt;= getDate() and b.start_date is not null ) and (getDate() &lt;b.complete_date or b.complete_date is null)
+			</isEqual>
+			<isEqual compareValue="2" property="state">
+				and getDate()&lt;b.start_date or b.start_date is null
+			</isEqual>
+			<isEqual compareValue="3" property="state">
+				and getDate()&gt;=b.complete_date
+			</isEqual>
+		</dynamic>
+	</select>
+	
+	<select id="getworknotelist" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select a.* from bus_work_note a where a.IS_VALID='1'  
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="busId">
+				a.bus_id = '$busId$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="busName">
+				a.bus_name = '$busName$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="noteDate">
+				a.note_date ='$noteDate$'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="queryBusInrepairInfoList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select a.* from bus_inrepair_info a where a.IS_VALID='1'  
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="equipmentName">
+				a.equipment_name like '%$equipmentName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="repairStep">
+				a.repair_step = '$repairStep$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="equipmentModel">
+				a.equipment_model like '%$equipmentModel$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="repairCategory">
+				a.repair_category = '$repairCategory$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="repairProperties">
+				a.repair_properties = '$repairProperties$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="repairType">
+				a.repair_type = '$repairType$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				a.org_id like '%$orgId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="beginInDate">
+			<![CDATA[a.in_date>='$beginInDate$']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endInDate">
+			<![CDATA[a.in_date<='$endInDate$']]>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<select id="queryMachiningList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select a.* from machining_message a where a.IS_VALID='1'  
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="equipmentName">
+				a.equipment_name like '%$equipmentName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="repairStep">
+				a.repair_step in ($repairStep$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="makeSort">
+				a.make_sort = '$makeSort$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="equipmentModel">
+				a.equipment_model like '%$equipmentModel$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="userName">
+				a.user_name = '$userName$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				a.org_id like '%$orgId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="beginInDate">
+			<![CDATA[a.in_date>='$beginInDate$']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endInDate">
+			<![CDATA[a.in_date<='$endInDate$']]>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="getAllFileList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select a.* from attachment_info a where IS_VALID='1'
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="busIdOne">
+				a.bus_id ='$busIdOne$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="busNameOne">
+				a.bus_name ='$busNameOne$'
+			</isNotEmpty>
+		</dynamic>
+		<dynamic prepend="or">
+			<isNotEmpty prepend="and" property="busIdTow">
+				a.bus_id = '$busIdTow$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="busNameTow">
+				a.bus_name = '$busNameTow$'
+			</isNotEmpty>
+		</dynamic>
+		order by a.create_date desc
+	</select>
+	<select id="getFactoryList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select a.* from bus_inrepair_info a where a.IS_VALID='1' 
+			<isNotEmpty prepend="and" property="orgId">
+				a.org_id like '%$orgId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="repairStep">
+				a.repair_step = '$repairStep$'
+			</isNotEmpty>
+	</select>
+	<select id="getLogRecordsList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select a.* from log_records a where 1=1
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="busIdOne">
+				a.bus_id ='$busIdOne$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="busNameOne">
+				a.bus_name ='$busNameOne$'
+			</isNotEmpty>
+		</dynamic>
+		<dynamic prepend="or">
+			<isNotEmpty prepend="and" property="busIdTow">
+				a.bus_id = '$busIdTow$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="busNameTow">
+				a.bus_name = '$busNameTow$'
+			</isNotEmpty>
+		</dynamic>
+		order by a.operation_date desc
+	</select>
+	<select id="getorgdeptList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select t.id,t.org_code,t.org_name,t1.org_name as parent_name, t.serialnum from bs_base_organization t,bs_base_organization t1 where t.org_code like '$orgCode$%' and t.iLevel=4
+		 and t.parent_id= t1.id and t.org_name not like '%机加车间%'
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="deptIds">
+				t.org_code not in ($deptIds$)
+			</isNotEmpty>
+		</dynamic>	
+	</select>
+	<select id="getselforgdeptList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select t.id,t.org_code,t.org_name,t1.org_name as parent_name, t.serialnum from bs_base_organization t,bs_base_organization t1 where t.org_code like '$orgCode$%' and t.iLevel=4
+		 and t.parent_id= t1.id 
+		<isNotEmpty prepend="and" property="deptcode">
+			t.org_code != #deptcode#
+		</isNotEmpty>
+	</select>
+	
+	<select id="getMachiningList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from bs_base_organization  where org_code like '$orgCode$%' and iLevel=4
+		 and org_name like '%机加车间%'
+	</select>
+	<select id="getBusPlanInfoList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select id ,plan_code,create_date from bus_plan_info where (is_valid=1 or audit_state=1)
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="busId">
+				bus_id='$busId$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="busName">
+				bus_name='$busName$'
+			</isNotEmpty>
+		</dynamic>	
+		order by create_date 
+	</select>
+	
+	<select id="getBusMaterialPlanListByWorkCard" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select m.material_detail,m.unity,m.material_code,m.material_class,m.material_group,m.estimate_price from bus_work_card w,bus_plan_info p,bus_material_plan m where p.bus_id=w.bus_id and p.bus_name=w.bus_name and p.id=m.plan_id
+		and (p.audit_state =1 or p.is_valid=1)
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="workCard">
+				w.work_card='$workCard$'
+			</isNotEmpty>
+		</dynamic>	
+		order by m.create_date
+	</select>
+	<!-- 获取计划下 需要发起机加流程的信息 -->
+	<select id="getMachiningPlanList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select *  from bus_material_plan where type != 1 and type !=4
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="planId">
+				plan_id='$planId$'
+			</isNotEmpty>
+		</dynamic>	
+		order by create_date
+	</select>
+	<!-- 获取维修完成的 施工卡主卡修理信息表 -->
+	<select id="getInrepairMainCardList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from(
+			select t.id,t1.id as bus_id,'com.BusMechanic' as tableName,t1.org_id,t1.main_card, t1.equipment_name ,t.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_work_card t,bus_mechanic t1 where t.main_card=t.assist_card and t.work_card=t1.work_card and (t1.repair_state=3 or t1.repair_state=4)
+			union
+			select t.id,t1.id as bus_id,'com.BusDrilling' as tableName,t1.org_id,t1.main_card, t1.equipment_name ,t.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_work_card t,bus_drilling t1 where t.main_card=t.assist_card and t.work_card=t1.work_card and (t1.repair_state=3 or t1.repair_state=4)
+			union
+			select t.id,t1.id as bus_id,'com.BusElectrical' as tableName,t1.org_id,t1.main_card, t1.equipment_name ,t.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_work_card t,bus_electrical t1 where t.main_card=t.assist_card and t.work_card=t1.work_card and (t1.repair_state=3 or t1.repair_state=4)
+			union
+			select t.id,t1.id as bus_id,'com.BusRivetweld' as tableName,t1.org_id,t1.main_card, t1.equipment_name ,t.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_work_card t,bus_rivetweld t1 where t.main_card=t.assist_card and t.work_card=t1.work_card and (t1.repair_state=3 or t1.repair_state=4)
+			union
+			select t.id,t1.id as bus_id,'com.MechTreatment' as tableName,t1.org_id,t1.main_card, t1.equipment_name ,t.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_work_card t,mech_treatment t1 where t.main_card=t.assist_card and t.work_card=t1.work_card and (t1.repair_state=3 or t1.repair_state=4)
+		) t WHERE 1=1 
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="equipmentName">
+				t.equipment_name like '%$equipmentName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="workCard">
+				t.work_card like '%$workCard$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id like '$orgId$%'
+			</isNotEmpty>
+		</dynamic>	
+	</select>
+	<select id="getRepairSettlementList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from(
+			select t2.id,t1.org_id,t2.settlement_money,t2.department_money,t2.company_money,t2.group_money,t1.main_card, t1.equipment_name ,t1.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_mechanic t1,bus_repair_settlement t2 where  t2.work_card=t1.work_card
+			union
+			select t2.id,t1.org_id,t2.settlement_money,t2.department_money,t2.company_money,t2.group_money,t1.main_card, t1.equipment_name ,t1.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_drilling t1,bus_repair_settlement t2 where  t2.work_card=t1.work_card
+			union
+			select t2.id,t1.org_id,t2.settlement_money,t2.department_money,t2.company_money,t2.group_money,t1.main_card, t1.equipment_name ,t1.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_electrical t1 ,bus_repair_settlement t2 where t2.work_card=t1.work_card
+			union
+			select t2.id,t1.org_id,t2.settlement_money,t2.department_money,t2.company_money,t2.group_money,t1.main_card, t1.equipment_name ,t1.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_rivetweld t1 ,bus_repair_settlement t2 where  t2.work_card=t1.work_card
+			union
+			select t2.id,t1.org_id,t2.settlement_money,t2.department_money,t2.company_money,t2.group_money,t1.main_card, t1.equipment_name ,t1.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from mech_treatment t1 ,bus_repair_settlement t2 where  t2.work_card=t1.work_card
+		) t WHERE 1=1 
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="mainCard">
+				t.main_card = '$mainCard$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id like '$orgId$%'
+			</isNotEmpty>
+		</dynamic>	
+	</select>
+	<select id="getBusInrepairInfoById" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select 
+			a.* ,
+			d.team_name as teamname
+		from bus_inrepair_info a
+		left join drilling_crew d on a.dept_from = team_code and d.is_valid='1'
+		where a.IS_VALID='1' and a.id = #id#
+	</select>	
+	<!-- 获取维修完成的 施工卡主卡修理信息表 -->
+	<select id="getInrepairListByState" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from(
+			select t.id,t1.repair_state,t1.id as bus_id,'com.BusMechanic' as tableName,t1.org_id,t1.main_card, t1.equipment_name ,t.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_work_card t,bus_mechanic t1 where t.main_card=t.assist_card and t.work_card=t1.work_card 
+			union
+			select t.id,t1.repair_state,t1.id as bus_id,'com.BusDrilling' as tableName,t1.org_id,t1.main_card, t1.equipment_name ,t.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_work_card t,bus_drilling t1 where t.main_card=t.assist_card and t.work_card=t1.work_card 
+			union
+			select t.id,t1.repair_state,t1.id as bus_id,'com.BusElectrical' as tableName,t1.org_id,t1.main_card, t1.equipment_name ,t.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_work_card t,bus_electrical t1 where t.main_card=t.assist_card and t.work_card=t1.work_card 
+			union
+			select t.id,t1.repair_state,t1.id as bus_id,'com.BusRivetweld' as tableName,t1.org_id,t1.main_card, t1.equipment_name ,t.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_work_card t,bus_rivetweld t1 where t.main_card=t.assist_card and t.work_card=t1.work_card 
+			union
+			select t.id,t1.repair_state,t1.id as bus_id,'com.MechTreatment' as tableName,t1.org_id,t1.main_card, t1.equipment_name ,t.work_card,t1.repair_type,t1.quota_hour,t1.unity,t1.repair_value ,t1.create_date from bus_work_card t,mech_treatment t1 where t.main_card=t.assist_card and t.work_card=t1.work_card 
+		) t WHERE 1=1 
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="equipmentName">
+				t.equipment_name like '%$equipmentName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="workCard">
+				t.work_card like '%$workCard$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id like '$orgId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="repairState">
+				t.repair_state ='$repairState$'
+			</isNotEmpty>
+		</dynamic>	
+	</select>
+	<!-- 获取材料列表-->
+	<select id="getInrepairMaterialList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select t.material_detail,t.unity,t.material_num,t.real_num,t.ratify_num,t.estimate_price,t.type,t.remark,
+		 t.material_class,t.material_group,t.material_code,t.total_price from bus_material_plan t where 1=1
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="tableName">
+				t.plan_id in (select id from bus_plan_info where bus_id='$id$' and bus_name='$tableName$' and is_valid=1 and audit_state=1 )
+			</isNotEmpty>
+		</dynamic>	
+	</select>
+	<!-- 获取车间材料列表-->
+	<select id="getOrgMaterialList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select t.org_id,max(t.id) as id,t.org_name ,t.material_code,t.material_detail,t.unity,t.estimate_price,sum(t.ratify_num) as ratify_num ,sum(t.total_price) as total_price from(
+			select t1.org_id,t3.org_name ,t2.material_code,t2.material_detail,t2.unity,t2.ratify_num,t2.estimate_price,t2.total_price,t2.id from(
+				select t1.id as bus_id,'com.BusMechanic' as tableName from bus_mechanic t1 where t1.repair_state=1
+				union
+				select t1.id as bus_id,'com.BusDrilling' as tableName from bus_drilling t1 where t1.repair_state=1
+				union
+				select t1.id as bus_id,'com.BusElectrical'as tableName from bus_electrical t1 where t1.repair_state=1
+				union
+				select t1.id as bus_id,'com.BusRivetweld' as tableName from bus_rivetweld t1 where t1.repair_state=1
+				union
+				select t1.id as bus_id,'com.MechTreatment' as tableName from  mech_treatment t1 where t1.repair_state=1
+			) t ,bus_plan_info t1 ,bus_material_plan t2,bs_base_organization t3 where t1.bus_name=t.tableName and 
+				t1.bus_id=t.bus_id and t1.is_valid=1 and t2.plan_id=t1.id and t3.org_code=t1.org_id
+				<dynamic prepend="and">
+					<isNotEmpty prepend="and" property="startDate">
+						<![CDATA[t1.create_date>='$startDate$']]>
+					</isNotEmpty>
+					<isNotEmpty prepend="and" property="endDate">
+						<![CDATA[t1.create_date<='$endDate$']]>
+					</isNotEmpty>
+				</dynamic>	
+		) t where 1=1
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id like '$orgId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgName">
+				t.org_name like '%$orgName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialDetail">
+				t.material_detail like '%$materialDetail$%'
+			</isNotEmpty>
+		</dynamic>	
+		group by t.org_id,t.org_name,t.material_code,t.material_detail,t.unity,t.estimate_price
+	</select>
+	<!-- 获取车间材料列表-->
+	<select id="getOrgList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+			select org_name,org_code from bs_base_organization where ilevel=4 and is_valid=1
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id like '$orgId$%'
+			</isNotEmpty>
+	</select>
+	
+	<!-- 获取机加车间加工件库存列表-->
+	<select id="getTreatStoreList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+			select * from treat_store  where 1=1
+			<isNotEmpty prepend="and" property="orgCode">
+				org_id like '$orgCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="name">
+				name like '$name$%'
+			</isNotEmpty>
+	</select>
+	<!-- 获取机加车间加工件库存出库记录-->
+	<select id="getTreatoutStoreList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+			select * from treat_outstore t
+	</select>
+	
+	
+	<!-- 获取加工件列表-->
+	<select id="getmechdeptlist" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+			select * from mech_dept  where is_valid=1
+			<isNotEmpty prepend="and" property="orgid">
+				dept_from like '$orgid$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="isappoint">
+				is_appoint = #isappoint#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="busid">
+				bus_id = #busid#
+			</isNotEmpty>
+	</select>
+	
+	
+	
+	
+</sqlMap>

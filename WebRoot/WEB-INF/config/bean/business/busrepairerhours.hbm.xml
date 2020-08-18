@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.BusRepairerHours" table="bus_repairer_hours">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="repairer" type="java.lang.String">
+            <column name="repairer" length="50" />
+        </property>
+        <property name="workCard" type="java.lang.String">
+            <column name="work_card" length="50" />
+        </property>
+        <property name="hours" type="java.lang.Double">
+            <column name="hours" />
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="4" />
+        </property>
+        <property name="createDate" type="java.sql.Date">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40" />
+        </property>
+        <property name="modifyDate" type="java.sql.Date">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40" />
+        </property>
+    </class>
+</hibernate-mapping>

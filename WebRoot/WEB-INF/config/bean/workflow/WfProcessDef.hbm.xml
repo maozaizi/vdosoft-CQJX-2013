@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.WfProcessDef" table="WF_PROCESS_DEF" >
+        <id name="processId" type="java.lang.String">
+            <column name="PROCESS_ID" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="parentId" type="java.lang.String">
+            <column name="PARENT_ID" length="40" />
+        </property>
+        <property name="strname" type="java.lang.String">
+            <column name="STRNAME" length="80" />
+        </property>
+        <property name="flag" type="java.lang.String">
+            <column name="FLAG" length="1" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="CREATE_USER" length="80" />
+        </property>
+        <property name="createDate" type="java.util.Date">
+            <column name="CREATE_DATE" length="7" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="MODIFY_USER" length="80" />
+        </property>
+        <property name="modifyDate" type="java.util.Date">
+            <column name="MODIFY_DATE" length="7" />
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="IS_VALID" length="1" />
+        </property>
+        <property name="isAuthorizedBt" type="java.lang.Long">
+            <column name="IS_AUTHORIZED_BT" precision="1" scale="0" />
+        </property>
+        <property name="isAuthorizedSb" type="java.lang.Long">
+            <column name="IS_AUTHORIZED_SB" precision="1" scale="0" />
+        </property>
+        <property name="isAuthorizedKq" type="java.lang.Long">
+            <column name="IS_AUTHORIZED_KQ" precision="1" scale="0" />
+        </property>
+        <property name="isAuthorizedTc" type="java.lang.Long">
+            <column name="IS_AUTHORIZED_TC" precision="1" scale="0" />
+        </property>
+        <property name="isAuthorizedQt" type="java.lang.Long">
+            <column name="IS_AUTHORIZED_QT" precision="1" scale="0" />
+        </property>
+        <property name="isOrganization" type="java.lang.Long">
+            <column name="IS_ORGANIZATION" precision="1" scale="0" />
+        </property>
+        <property name="processCode" type="java.lang.String">
+            <column name="PROCESS_CODE" length="40" />
+        </property>
+        <property name="processContentUrl" type="java.lang.String">
+            <column name="PROCESS_CONTENT_URL" length="500" />
+        </property>
+        <property name="processPicturesUrl" type="java.lang.String">
+            <column name="PROCESS_PICTURES_URL" length="500" />
+        </property>
+        <property name="processPageUrl" type="java.lang.String">
+            <column name="PROCESS_PAGE_URL" length="500" />
+        </property>
+        <property name="sort" type="java.lang.Long">
+            <column name="sort" precision="1" scale="0" />
+        </property>
+          <property name="childList" type="java.util.List">
+            <column name="childList" />
+        </property>
+    </class>
+</hibernate-mapping>

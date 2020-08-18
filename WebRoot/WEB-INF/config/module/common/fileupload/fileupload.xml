@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="fileUpload">	
+		<!-- 上传文件 -->
+		<method name="UploadFile" realclass="com.u2a.framework.commons.FileUpload" methodname="saveFileUpload" dbName="brickDao" trans="" limit="" source="a" dest="" error="">
+			<inparams>
+				<inparam name="folderName"  type="String" check="0" default="file" source="value"/>
+				<!--  <inparam name="fileExt"  type="String" check="0" default="xls,doc" source="value"/>-->
+				<inparam name="fileSize"  type="Integer" check="0" default="20" source="value"/>
+				<inparam name="Year"  type="boolean" check="0" default="true" source="value"/>
+				<inparam name="Month"  type="boolean" check="0" default="true" source="value"/>
+				<inparam name="Day"  type="boolean" check="0" default="true" source="value"/>
+				<inparam name="NotRename"  type="boolean" check="0" default="true" source="value"/>
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+				<inparam name="serlvetContext" real="serlvetContext" type="Context" check="0" source="App.Context"/>
+				<inparam name="session" real="session" type="Context" check="0" source="App.Session"/> 
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		
+		
+		<!-- uploadIfy上传文件 -->
+		<method name="upload" realclass="com.u2a.framework.commons.FileUpload" methodname="uploadIfy" dbName="brickDao" trans="" limit="" source="a" dest="" error="">
+			<inparams>
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!-- 删除文件 -->
+		<method name="deleteFile" realclass="com.u2a.framework.commons.FileUpload" methodname="uploadIfy" dbName="brickDao" trans="" limit="" source="a" dest="" error="">
+			<inparams>
+				<inparam name="filepath"  type="String" check="0" source="value"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!--下载 -->
+		<method name="downLoad" realclass="com.u2a.framework.commons.FileUpload" methodname="downLoad" dbName="brickDao" trans="" limit="" source="a" dest="" error="">
+		<inparams>
+			<inparam name="request" type="Context" check="0" source="App.Request" />
+			<inparam name="response" type="Context" check="0" source="App.Response"/>
+			<inparam name="serlvetContext" real="serlvetContext" type="Context" check="0" source="App.Context"/>
+			<inparam name="session" real="session" type="Context" check="0" source="App.Session"/> 
+			<inparam name="file"  type="String" check="0" source="param"/>
+		</inparams>
+		</method>
+	
+		
+	</package>
+</root>

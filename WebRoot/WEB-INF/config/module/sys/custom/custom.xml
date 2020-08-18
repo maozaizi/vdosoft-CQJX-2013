@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="custom">
+		<!-- 获取自定义快捷方式-->
+		<method name="getList" realclass="com.u2a.framework.service.sys.custom.CustomService" methodname="getList" dbName="brickDao" source=""	dest="jsp/sys/custom/list.jsp">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY"
+					check="0" source="session" />
+			</inparams>
+			<outparams>
+				<outparam name="customList" type="LOGIC" source="attr" />
+				<outparam name="flag" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 保存修改后的自定义快捷方式 -->
+		<method name="saveCustom" realclass="com.u2a.framework.service.sys.custom.CustomService" methodname="saveCustom" dbName="brickDao" source=""	dest="jsp/sys/custom/list.jsp">
+			<inparams>
+				<inparam name="authid"  type="Array" check="0" source="param"/>
+				<inparam name="userMap" real="userMap" type="ENTITY"
+					check="0" source="session" />
+			</inparams>
+			<outparams>
+				<outparam name="flag" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 获取我的自定义快捷方式-->
+		<method name="getMyCustom" realclass="com.u2a.framework.service.sys.custom.CustomService" methodname="getMyCustom" dbName="brickDao" source=""	dest="jsp/sys/custom/list.jsp">
+			<inparams>
+				<inparam name="userId"  type="String" source="param" remark="userId"/>
+			</inparams>
+			<outparams>
+				<outparam name="list" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+	</package>	
+</root>

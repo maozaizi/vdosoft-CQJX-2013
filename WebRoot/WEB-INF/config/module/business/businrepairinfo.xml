@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="businrepairinfo">
+	    <!--导向登记进修单页面-->
+	    <method name="toAddBusInrepairInfo"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/businrepairinfo/businrepairinfo_add.jsp"
+			type="1">
+		</method>
+		<!--导向修改进修单页面-->
+	    <method name="toUpdateBusInrepairInfo"
+			realclass="com.u2a.business.BusInrepairInfoService"
+			dbName="brickDao" trans="" limit="" methodname="toUpdateBusInrepairInfo"
+			source="" dest="jsp/business/businrepairinfo/businrepairinfo_update.jsp"
+			type="1">
+			<inparams>
+			   <inparam name="id" real="id" type="String" check="0" source="param" />
+			</inparams>
+			<outparams>
+			  <outparam name="busInrepairInfoMap" type="ENTITY" source="attr" />
+			  <outparam name="eqInfoMap" type="ENTITY" source="attr" />
+			  <outparam name="eqInfoMap1" type="ENTITY" source="attr" />
+			  <outparam name="fileList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--修改进修单-->
+		<method name="updateBusInrepairInfo"
+			realclass="com.u2a.business.BusInrepairInfoService"
+			dbName="brickDao" trans="" limit="" methodname="updateBusInrepairInfo"
+			source="" dest="jsp/business/businrepairinfo/businrepairinfo_list.jsp"
+			type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="attachmentInfo" type="LIST"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="docUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="busInrepairInfo" type="LOGIC" classname="com.BusInrepairInfo" source="param">
+				    <inparam name="id" real="id" type="String" check="0" source="param" />
+					<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+					<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+					<inparam name="quotaHour" real="quotaHour" type="String" check="0" source="param" />
+					<inparam name="unity" real="unity" type="String" check="0" source="param" />
+					<inparam name="value" real="equipmentValue" type="String" check="0" source="param" />
+					<inparam name="equipmentId" real="equipmentId" type="String" check="0" source="param" />
+					<inparam name="bodyCode" real="bodyCode" type="String" check="0" source="param" />
+					<inparam name="selfCode" real="selfCode" type="String" check="0" source="param" />
+					<inparam name="deptFrom" real="deptFrom" type="String" check="0" source="param" />
+					<inparam name="projectDept" real="proDept" type="String" check="0" source="param" />
+					<inparam name="workHour" real="workHour" type="Double" check="0" source="param" />
+					<inparam name="repairCategory" real="repairCategory" type="String" check="0" source="param" />
+					<inparam name="repairType" real="repairType" type="String" check="0" source="param" />
+					<inparam name="repairProperties" real="repairProperties" type="String" check="0" source="param" />
+					<inparam name="inDate" real="inDate" type="String" check="0" source="param" /> 
+					<inparam name="problem" real="problem" type="String" check="0" source="param" />
+					<inparam name="opinionDeptFrom" real="opinionDeptFrom" type="String" check="0" source="param" />
+					<inparam name="wholeSituation" real="wholeSituation" type="String" check="0" source="param" />
+					<inparam name="distributeRemark" real="distributeRemark" type="String" check="0" source="param" />					
+					<inparam name="quotaHour" real="quotaHour" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams>
+		</method>
+		<!--删除进修单上传文件-->
+		<method name="deleteFile"
+			realclass="com.u2a.business.BusInrepairInfoService"
+			dbName="brickDao" trans="" limit="" methodname="deleteFile"
+			source="" dest="jsp/business/businrepairinfo/businrepairinfo_update.jsp"
+			type="1">
+			<inparams>
+				<inparam name="attachmentInfoId" real="attachmentInfoId" type="String" check="0" source="param" />
+				<inparam name="attachmentInfoUrl" real="attachmentInfoUrl" type="String" check="0" source="param" />
+			</inparams>
+		</method>
+		<!-- 登记进修单 -->
+		<method name="addBusInrepairInfo"
+			realclass="com.u2a.business.BusInrepairInfoService"
+			dbName="brickDao" trans="" limit="" methodname="addBusInrepairInfo"
+			source="a" dest="jsp/business/mywork/mywork.jsp" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="attachmentInfo" type="LIST"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="docUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="busInrepairInfo" type="LOGIC" classname="com.BusInrepairInfo" source="param">
+					<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+					<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+					<inparam name="standardNum" real="standardNum" type="String" check="0" source="param" />
+					<inparam name="unity" real="unity" type="String" check="0" source="param" />
+					<inparam name="value" real="equipmentValue" type="String" check="0" source="param" />
+					<inparam name="equipmentId" real="equipmentId" type="String" check="0" source="param" />
+					<inparam name="bodyCode" real="bodyCode" type="String" check="0" source="param" />
+					<inparam name="deptFrom" real="deptFrom" type="String" check="0" source="param" />
+					<inparam name="proDept" real="projectDept" type="String" check="0" source="param" />
+					<inparam name="selfCode" real="selfCode" type="String" check="0" source="param" />
+					<inparam name="workHour" real="workHour" type="Double" check="0" source="param" />
+					<inparam name="repairCategory" real="repairCategory" type="String" check="0" source="param" />
+					<inparam name="repairType" real="repairType" type="String" check="0" source="param" />
+					<inparam name="repairProperties" real="repairProperties" type="String" check="0" source="param" />
+					<inparam name="inDate" real="inDate" type="String" check="0" source="param" /> 
+					<inparam name="problem" real="problem" type="String" check="0" source="param" />
+					<inparam name="inCarNo" real="inCarNo" type="String" check="0" source="param" />
+					<inparam name="opinionDeptFrom" real="opinionDeptFrom" type="String" check="0" source="param" />
+					<inparam name="wholeSituation" real="wholeSituation" type="String" check="0" source="param" />
+					<inparam name="distributeRemark" real="distributeRemark" type="String" check="0" source="param" />
+					<inparam name="quotaHour" real="quotaHour" type="String" check="0" source="param" />
+					<inparam name="cost" real="cost" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams>
+		</method>
+		<!--进修单选择设备-->
+		<method name="chooseEquipmentInfo" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="chooseEquipmentInfo" source="a" dest="jsp/business/businrepairinfo/equipmentinfo_choose.jsp" error="" type="2">
+			<inparams>
+				<inparam name="index" real="index" type="String" source="param" />
+			</inparams>	
+			<outparams>
+				<outparam name="equipmentList" type="LOGIC" source="attr" />
+				<outparam name="index" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!--进修单选择设备-->
+		<method name="chooseEquipmentInfoBytype" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="chooseEquipmentInfoBytype" source="a" dest="jsp/business/businrepairinfo/equipmentinfotype_choose.jsp" error="" type="2">
+			<inparams>
+				<inparam name="index" real="index" type="String" source="param" />
+			</inparams>	
+			<outparams>
+				<outparam name="equipmentList" type="LOGIC" source="attr" />
+				<outparam name="index" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 登记进修单列表 -->
+		<method name="getBusInrepairInfoList" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getBusInrepairInfoList" source="a" dest="jsp/business/businrepairinfo/businrepairinfo_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+				<inparam name="repairProperties" real="repairProperties" type="String" check="0" source="param" />
+				<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+				<inparam name="repairType" real="repairType" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endInDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+				<outparam name="flag" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 设备进厂检验列表 -->
+		<method name="getTestBusInrepairInfoList" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getTestBusInrepairInfoList" source="a" dest="jsp/business/businrepairinfo/businrepairinfotest_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+				<inparam name="repairProperties" real="repairProperties" type="String" check="0" source="param" />
+				<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+				<inparam name="repairType" real="repairType" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endInDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--导向设备进厂检验页面-->
+		<method name="toCheckBusInrepairInfo" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getBusInrepairInfoDetails" source="a" dest="jsp/business/businrepairinfo/businrepairinfo_check.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busInrepairInfoMap" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 检验 -->
+		<method name="modifyBusInrepairInfoTest"
+			realclass="com.u2a.business.BusInrepairInfoService"
+			dbName="brickDao" trans="" limit="" methodname="modifyBusInrepairInfoTest"
+			source="a" dest="jsp/business/mywork/mywork.jsp" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="attachmentInfo" type="LIST"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="docUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="testRemark" real="testRemark" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="repairStep" real="repairStep" type="String" check="0" source="param" />
+			</inparams>
+		</method>
+		<!-- 维修调派列表 -->
+		<method name="getWorkAssignList" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getWorkAssignList" source="a" dest="jsp/business/businrepairinfo/workassign_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+				<inparam name="repairProperties" real="repairProperties" type="String" check="0" source="param" />
+				<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+				<inparam name="repairType" real="repairType" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endInDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--导向进修单详情信息页面-->
+		<method name="toBusInrepairInfoPage" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="toBusInrepairInfoPage" source="a" dest="jsp/business/businrepairinfo/businrepairinfo_details.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busInrepairInfoMap" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到维修调派页面 -->
+		<method name="toWorkAssign" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="toWorkAssign" source="a" dest="jsp/business/businrepairinfo/work_assign.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" type="String" check="0" source="param" />
+				<inparam name="stepId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busInrepairInfoMap" type="ENTITY" source="attr" />
+				<outparam name="equipmentList" type="LOGIC" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到选择车间页面 -->
+		<method name="toChooseDept" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="toChooseDept" source="a" dest="jsp/business/businrepairinfo/dept_choose.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="rowId" real="rowId" type="String" check="0" source="param" />
+				<inparam name="deptIds" real="deptIds" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="deptList" type="ENTITY" source="attr" />
+				<outparam name="rowId" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--添加施工卡卡号-->
+		<method name="saveWorkAssign" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="saveWorkAssign" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="code" type="Array" check="0" source="param" />
+				<inparam name="firstId" type="Array" check="0" source="param" />
+				<inparam name="deptName" type="Array" check="0" source="param" />
+				<inparam name="deptId" type="Array" check="0" source="param" />
+				<inparam name="domainNo" type="Array" check="0" source="param" />
+				<inparam name="orgId" type="Array" check="0" source="param" />
+				<inparam name="equipmentIds" type="Array" check="0" source="param" />
+				<inparam name="distributeRemark" type="String" check="0" source="param" />
+				<inparam name="planEndTime" type="String" check="0" source="param" />
+				<inparam name="url" type="String" check="0" source="param" />
+				<inparam name="inrepairId" type="String" check="0" source="param" />
+				<inparam name="serialnum" type="Array" check="0" source="param" />
+				<inparam name="orgId" type="Array" check="0" source="param" />
+			</inparams> 
+		</method>
+		 <!--导向外部创收调派页面-->
+	    <method name="toExternalRevenueAssign"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/businrepairinfo/external_revenue_assign.jsp"
+			type="1">
+		</method>
+		 <!--外部创收调派-->
+	    <method name="addExternalRevenue"
+			realclass="com.u2a.business.BusInrepairInfoService"
+			dbName="brickDao" trans="" limit="" methodname="addExternalRevenue"
+			source="" dest="jsp/business/mywork/mywork.jsp"
+			type="1">
+			<inparams>
+			    <inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="attachmentInfo" type="LIST"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="docUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="busInrepairInfo" type="LOGIC" classname="com.BusInrepairInfo" source="param">
+					<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+					<inparam name="projectDept" real="proDept" type="String" check="0" source="param" />
+					<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+					<inparam name="quotaHour" real="quotaHour" type="String" check="0" source="param" />
+					<inparam name="unity" real="unity" type="String" check="0" source="param" />
+					<inparam name="value" real="equipmentValue" type="String" check="0" source="param" />
+					<inparam name="equipmentId" real="equipmentId" type="String" check="0" source="param" />
+					<inparam name="bodyCode" real="bodyCode" type="String" check="0" source="param" />
+					<inparam name="deptFrom" real="deptFrom" type="String" check="0" source="param" />
+					<inparam name="selfCode" real="selfCode" type="String" check="0" source="param" />
+					<inparam name="workHour" real="workHour" type="Double" check="0" source="param" />
+					<inparam name="repairCategory" real="repairCategory" type="String" check="0" source="param" />
+					<inparam name="repairType" real="repairType" type="String" check="0" source="param" />
+					<inparam name="repairProperties" real="repairProperties" type="String" check="0" source="param" />
+					<inparam name="inDate" real="inDate" type="String" check="0" source="param" /> 
+					<inparam name="problem" real="problem" type="String" check="0" source="param" />
+					<inparam name="opinionDeptFrom" real="opinionDeptFrom" type="String" check="0" source="param" />
+					<inparam name="wholeSituation" real="wholeSituation" type="String" check="0" source="param" />
+					<inparam name="distributeRemark" real="distributeRemark" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="firstId" type="Array" check="0" source="param" />
+				<inparam name="code" type="Array" check="0" source="param" />
+				<inparam name="deptName" type="Array" check="0" source="param" />
+				<inparam name="deptId" type="Array" check="0" source="param" />
+				<inparam name="domainNo" type="Array" check="0" source="param" />
+				<inparam name="equipmentIds" type="Array" check="0" source="param" />
+				<inparam name="planEndTime" type="String" check="0" source="param" />
+				<inparam name="url" type="String" check="0" source="param" />
+				<inparam name="inrepairId" type="String" check="0" source="param" />
+			</inparams>
+		</method>
+		<!--机加 -->
+		<!--导向登记机加设备页面-->
+	    <method name="toAddMachiningMessage"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/businrepairinfo/machining_add.jsp"
+			type="1">
+		</method>
+		<!-- 添加机加信息 -->
+		<method name="addMachiningMessage"
+			realclass="com.u2a.business.BusInrepairInfoService"
+			dbName="brickDao" trans="" limit="" methodname="addMachiningMessage"
+			source="a" dest="jsp/business/mywork/mywork.jsp" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="attachmentInfo" type="LIST"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="docUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="machiningMessage" type="LOGIC" classname="com.MachiningMessage" source="param">
+					<inparam name="userName" real="userName" type="String" check="0" source="param" />
+					<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+					<inparam name="figureNum" real="figureNum" type="String" check="0" source="param" />
+					<inparam name="proDept" real="proDept" type="String" check="0" source="param" />
+					<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+					<inparam name="planNum" real="planNum" type="String" check="0" source="param" />
+					<inparam name="makeSort" real="makeSort" type="String" check="0" source="param" />
+					<inparam name="problem" real="problem" type="String" check="0" source="param" />
+					<inparam name="opinionDeptFrom" real="opinionDeptFrom" type="String" check="0" source="param" />
+					<inparam name="wholeSituation" real="wholeSituation" type="String" check="0" source="param" />
+					<inparam name="distributeRemark" real="distributeRemark" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams>
+		</method>
+		<!-- 机加调派列表 -->
+		<method name="getMachiningWorkAssignList" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getMachiningWorkAssignList" source="a" dest="jsp/business/businrepairinfo/machining_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+				<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+				<inparam name="userName" real="userName" type="String" check="0" source="param" />
+				<inparam name="makeSort" real="makeSort" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endInDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到机加调派页面 -->
+		<method name="toMachiningAssign" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="toMachiningAssign" source="a" dest="jsp/business/businrepairinfo/machining_assign.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--机加调派添加施工卡卡号-->
+		<method name="addWorkCode" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="addWorkCode" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="firstId" type="String" check="0" source="param" />
+				<inparam name="domainNo" type="String" check="0" source="param" />
+				<inparam name="distributeRemark" type="String" check="0" source="param" />
+				<inparam name="planEndTime" type="String" check="0" source="param" />
+				<inparam name="url" type="String" check="0" source="param" />
+				<inparam name="inrepairId" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向机加详情信息页面-->
+		<method name="toMachiningPage" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="toMachiningPage" source="a" dest="jsp/business/businrepairinfo/machining_details.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--导向机加修改页面-->
+	    <method name="toUpdateExternalMachining"
+			realclass="com.u2a.business.BusInrepairInfoService"
+			dbName="brickDao" trans="" limit="" methodname="toUpdateExternalMachining"
+			source="" dest="jsp/business/businrepairinfo/machining_assign_update.jsp"
+			type="1">
+			<inparams>
+			   <inparam name="id" real="id" type="String" check="0" source="param" />
+			</inparams>
+			<outparams>
+			  <outparam name="machiningMessageMap" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 机加外部创收调派-->
+		<method name="updateExternalMachining"
+			realclass="com.u2a.business.BusInrepairInfoService"
+			dbName="brickDao" trans="" limit="" methodname="updateExternalMachining"
+			source="a" dest="jsp/business/mywork/mywork.jsp" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="attachmentInfo" type="LIST"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="docUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="machiningMessage" type="LOGIC" classname="com.MachiningMessage" source="param">
+					<inparam name="id" real="id" type="String" check="0" source="param" />
+					<inparam name="userName" real="userName" type="String" check="0" source="param" />
+					<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+					<inparam name="figureNum" real="figureNum" type="String" check="0" source="param" />
+					<inparam name="proDept" real="proDept" type="String" check="0" source="param" />
+					<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+					<inparam name="planNum" real="planNum" type="String" check="0" source="param" />
+					<inparam name="makeSort" real="makeSort" type="String" check="0" source="param" />
+					<inparam name="problem" real="problem" type="String" check="0" source="param" />
+					<inparam name="opinionDeptFrom" real="opinionDeptFrom" type="String" check="0" source="param" />
+					<inparam name="wholeSituation" real="wholeSituation" type="String" check="0" source="param" />
+					<inparam name="distributeRemark" real="distributeRemark" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="firstId" type="String" check="0" source="param" />
+				<inparam name="domainNo" type="String" check="0" source="param" />
+				<inparam name="distributeRemark" type="String" check="0" source="param" />
+				<inparam name="planEndTime" type="String" check="0" source="param" />
+				<inparam name="url" type="String" check="0" source="param" />
+			</inparams>
+		</method>
+		<!--导向机加外部创收调派页面-->
+	    <method name="toExternalMachining"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/businrepairinfo/machining_external_assign.jsp"
+			type="1">
+		</method>
+		<!-- 机加外部创收调派-->
+		<method name="addExternalMachining"
+			realclass="com.u2a.business.BusInrepairInfoService"
+			dbName="brickDao" trans="" limit="" methodname="addExternalMachining"
+			source="a" dest="jsp/business/mywork/mywork.jsp" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="attachmentInfo" type="LIST"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="docUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="machiningMessage" type="LOGIC" classname="com.MachiningMessage" source="param">
+					<inparam name="deptFrom" real="deptFrom" type="String" check="0" source="param" />
+					<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+					<inparam name="figureNum" real="figureNum" type="String" check="0" source="param" />
+					<inparam name="proDept" real="proDept" type="String" check="0" source="param" />
+					<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+					<inparam name="planNum" real="planNum" type="String" check="0" source="param" />
+					<inparam name="makeSort" real="makeSort" type="String" check="0" source="param" />
+					<inparam name="problem" real="problem" type="String" check="0" source="param" />
+					<inparam name="opinionDeptFrom" real="opinionDeptFrom" type="String" check="0" source="param" />
+					<inparam name="wholeSituation" real="wholeSituation" type="String" check="0" source="param" />
+					<inparam name="distributeRemark" real="distributeRemark" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="firstId" type="String" check="0" source="param" />
+				<inparam name="code" type="String" check="0" source="param" />
+				<inparam name="domainNo" type="String" check="0" source="param" />
+				<inparam name="distributeRemark" type="String" check="0" source="param" />
+				<inparam name="planEndTime" type="String" check="0" source="param" />
+				<inparam name="url" type="String" check="0" source="param" />
+			</inparams>
+		</method>
+		<!-- 跳转到为各个车间选择设备页面 -->
+		<method name="toChooseEquips" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="toChooseEquips" source="a" dest="jsp/business/businrepairinfo/equipments_choose.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="rowId" real="rowId" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+				<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="equipmentList" type="LOGIC" source="attr" />
+				<outparam name="rowId" type="String" source="attr" />
+			</outparams>
+		</method>
+	<!-- 调度管理列表 -->
+		<method name="getFactoryList" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getFactoryList" source="a" dest="jsp/business/businrepairinfo/scheduling_exworks_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+				<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endInDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--跳转调度管理页面-->
+		<method name="toSchedulingManage" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="toBusInrepairInfoPage" source="a" dest="jsp/business/businrepairinfo/scheduling_manage.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams> 
+			<outparams>
+				<outparam name="busInrepairInfoMap" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 调度管理 -->
+		<method name="doSchedulingManage" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="doSchedulingManage" source="a" dest="jsp/business/businrepairinfo/scheduling_exworks_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="orgCode" real="orgCode" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="factoryWhere" real="factoryWhere" type="String" check="0" source="param" />
+				<inparam name="factoryDate" real="factoryDate" type="String" check="0" source="param" />
+				<inparam name="result" real="result" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+	<!-- 监造管理列表 -->
+		<method name="getEngineerList" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getEngineerList" source="a" dest="jsp/business/businrepairinfo/engineer_exworks_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endInDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<method name="toEngineerManage" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="toBusInrepairInfoPage" source="a" dest="jsp/business/businrepairinfo/engineer_manage.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busInrepairInfoMap" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<method name="doEngineerManage" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="saveEngineerManage" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="engineerManage" type="LOGIC" classname="com.BusInrepairInfo" source="param">
+					<inparam name="id" real="id" type="String" check="0" source="param" />
+					<inparam name="factoryWhere" real="factoryWhere" type="String" check="0" source="param" />
+					<inparam name="factoryDate" real="factoryDate" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!-- 跳转到维修结算页面 -->
+		<method name="getInrepairMainCardList" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getInrepairMainCardList" source="a" dest="jsp/business/settlement/settlement_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+				<inparam name="workCard" real="workCard" type="String" check="0" source="param" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转编辑维修结算费用页面 -->
+		<method name="getRepairSettlementList" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getRepairSettlementList" source="a" dest="jsp/business/settlement/settlement_update.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="mainCard" real="mainCard" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busRepairSettlementList" type="LIST" source="attr" />
+			</outparams>
+		</method>
+		<!-- 费用结算 -->
+		<method name="updateRepairSettlement" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="updateRepairSettlement" source="a" dest="jsp/business/settlement/settlement_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="busRepairSettlement" type="LIST" classname="com.BusRepairSettlement" source="param">
+					<inparam name="id" real="id" type="String" check="0" source="param" />
+					<inparam name="settlementMoney" real="settlementMoney" type="String" check="0" source="param" />
+				</inparam>
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到管理费用分摊页面 -->
+		<method name="toManagerMoneyShare" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getInrepairMainCardList" source="a" dest="jsp/business/settlement/settlementshare_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+				<inparam name="workCard" real="workCard" type="String" check="0" source="param" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转编辑维修结算费用页面 -->
+		<method name="toManagerMoneyShareUpdate" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getRepairSettlementList" source="a" dest="jsp/business/settlement/settlementshare_update.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="mainCard" real="mainCard" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busRepairSettlementList" type="LIST" source="attr" />
+			</outparams>
+		</method>
+		<!-- 费用结算 -->
+		<method name="updateManagerMoneyShare" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="updateRepairSettlement" source="a" dest="jsp/business/settlement/settlementshare_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="busRepairSettlement" type="LIST" classname="com.BusRepairSettlement" source="param">
+					<inparam name="id" real="id" type="String" check="0" source="param" />
+					<inparam name="departmentMoney" real="departmentMoney" type="String" check="0" source="param" />
+					<inparam name="companyMoney" real="companyMoney" type="String" check="0" source="param" />
+					<inparam name="groupMoney" real="groupMoney" type="String" check="0" source="param" />
+				</inparam>
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--补充材料列表-->
+		<method name="getResupplyMainCardList" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getInrepairMainCardList" source="a" dest="jsp/business/resupply/resupply_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+				<inparam name="workCard" real="workCard" type="String" check="0" source="param" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--保存补充材料-->
+		<method name="saveResupplyOutStore" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="saveResupplyOutStore" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="busId" type="String" check="0" source="param" />
+				<inparam name="busName" type="String" check="0" source="param" />
+				<inparam name="workCard" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="outStoreInfo" type="LIST" classname="com.outStoreInfo" source="param">
+					<inparam name="materialClass" type="String" check="0" source="param" />
+					<inparam name="materialGroup" type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialDetail" type="String" check="0" source="param" />
+					<inparam name="unity" type="String" check="0" source="param" />
+					<inparam name="materialNum" real="storeNum" type="String" check="0" source="param" />
+					<inparam name="useType" type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+		</method>
+		<!--跳转补充材料选择页面-->
+		<method name="toResupplyEdit" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="toResupplyEdit" source="a" dest="jsp/business/resupply/resupply_edit.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="tableName" real="tableName" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busMap" type="ENTITY" source="attr" />
+				<outparam name="busInrepairInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="LIST" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="tableName" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 选择材料信息IFrame -->
+		<method name="toResupplyMaterialChoose"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/resupply/materialinfo_frame.jsp"
+			type="1">
+		</method>
+		<method name="getInrepairListByState" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="getInrepairListByState" source="a" dest="jsp/business/printmaterial/businrepairinfo_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="materialDetail" type="String" check="0" source="param" />
+				<inparam name="orgName" type="String" check="0" source="param" />
+				<inparam name="startDate" type="String" check="0" source="param" />
+				<inparam name="endDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+				<outparam name="orgList" type="LIST" source="attr" />
+			</outparams>
+		</method>
+		<!--根据状态查找维修设备-->
+		<method name="toPrint" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="toPrint" source="a" dest="jsp/business/printmaterial/print.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="tableName" real="tableName" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busMap" type="ENTITY" source="attr" />
+				<outparam name="busInrepairInfoMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="tableName" type="String" source="attr" />
+				<outparam name="materialList" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- ajax查询车间信息 -->
+		<method name="getWorkshopList"
+			realclass="com.u2a.business.BusInrepairInfoService"
+			methodname="getWorkshopList" source="" dest="">
+			<inparams>
+				<inparam name="cq" type="String" check="1"
+					source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="workshopList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转库存信息页 -->
+		<method name="toStoreInfo"
+			realclass="com.u2a.business.BusInrepairInfoService"
+			dbName="brickDao" trans="" limit="" methodname="toStoreInfo"
+			source="" dest="jsp/business/settlement/store_info.jsp"
+			type="1">
+			<inparams>
+				<inparam name="cj1" type="String" check="1" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="cj1" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 选择库存信息列表 -->
+		<method name="getStoreList" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" 
+			trans="" limit=""	methodname="getStoreList" source="aa" 
+			dest="jsp/business/settlement/store_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="storeDetail" type="LOGIC" classname="com.StoreDetail" source="param">
+					<inparam name="orgId"  type="String" check="0" source="param" />
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+					<inparam name="beginDate"  type="String" check="0" source="param" />
+					<inparam name="endDate"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 保存库存列表 -->
+		<method name="saveOutStoreDetail" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="saveOutStoreDetail" source="a" dest="jsp/business/mywork/mywork.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="cj2"  real="orgId" type="String"  source="param" />
+				<inparam name="inStoreDetailList" type="LIST" classname="com.StoreDetail" source="param">
+					<inparam name="referencePrice"  type="String" check="0" source="param" />
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="unitPrice" type="String" check="0" source="param" />
+					<inparam name="materialNum"  real="num" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="storeDetailList" type="LIST" classname="com.StoreDetail" source="param">
+					<inparam name="id"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="storeList" type="LIST" classname="com.outStoreDetail" source="param">
+					<inparam name="materialCode"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="unitPrice"  type="String" check="0" source="param" />
+					<inparam name="materialNum"  real="materialNum" type="String" check="0" source="param" />
+					<inparam name="unity"  type="String" check="0" source="param" />
+					<inparam name="deptName"  type="String" check="0" source="param" />
+					<inparam name="remark"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		
+		<method name="tolistjg" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="tolistjg" source="a" dest="jsp/business/businrepairinfo/mechdept_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechlist" type="LOGIC" source="attr" />
+				<outparam name="deptlist" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		
+		<method name="addeverywf" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="addeverywf" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="chooseid"  type="Array" check="0" source="param" />
+				<inparam name="workcard"  type="String" check="0" source="param" />
+				<inparam name="dept"  type="String" check="0" source="param" />
+				<inparam name="url"  type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		
+	</package>	
+	
+</root>

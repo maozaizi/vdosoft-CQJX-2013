@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+	<package name="workflow">
+
+		<!-- 流程管理 查询tree结构 -->
+		<method name="getProcessManageList" methodname="getProcessManageList" dest="jsp/workflow/process_manage_list.jsp" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit="" error="" type="1" source="aa">
+			<inparams>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams> 
+			<outparams>
+				<outparam name="processList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 添加节点 -->
+		<method name="toAddProcessDirectory" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="toAddProcessDirectory" source="aa" dest="jsp/workflow/add.jsp" error="" type="1">
+			<inparams>
+				<inparam name="parentId"  type="String" check="0" source="param" />
+				<inparam name="flag"  type="String" check="0" source="param"/>
+			</inparams>
+			<outparams>
+				<outparam name="parentId" type="String" source="attr" />
+				<outparam name="flag"  type="String" source="attr"/>
+			</outparams>
+		</method>
+		<!-- 保存 -->
+		<method name="addProcessDirectory" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="addProcessDirectory" source="aa" dest="" error="" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap"   type="LOGIC" check="1" source="session" />
+				<inparam name="url"  type="String" check="0" source="param"/>				
+				<inparam name="flowManager" type="LOGIC" classname="com.WfProcessDef" source="param">
+					<inparam name="strname"  type="String" check="1" source="param" remark="名称"/>
+					<inparam name="flag"  type="String" check="0" source="param" />
+					<inparam name="parentId"  type="String" check="0" source="param"/>					
+					<!-- <inparam name="isAuthorizedBt"  type="String" check="0" source="param"/>
+					<inparam name="isAuthorizedSb"  type="String" check="0" source="param"/>
+					<inparam name="isAuthorizedKq"  type="String" check="0" source="param"/>
+					<inparam name="isAuthorizedTc"  type="String" check="0" source="param"/>
+					<inparam name="isAuthorizedQt"  type="String" check="0" source="param"/>
+					<inparam name="isOrganization"  type="String" check="0" source="param"/> -->
+					<inparam name="processCode"  type="String" check="0" source="param"/>
+					<inparam name="processContentUrl"  type="String" check="0" source="param"/>
+					<inparam name="processPicturesUrl"  type="String" check="0" source="param"/>
+					<inparam name="processPageUrl"  type="String" check="0" source="param"/>
+					<inparam name="sort"  type="String" check="0" source="param"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="tempPat" type="String" source="attr" />
+			</outparams>
+		</method>
+			<!-- 获取节点信息 -->
+		<method name="getProcessInfo" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="getProcessInfo" source="aa" dest="jsp/workflow/show.jsp" error="" type="1">
+			<inparams>
+				<inparam name="processId"  type="String" check="0" source="param" />
+				<inparam name="parentId"  type="String" check="0" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="flowManagerBean" type="LOGIC" source="attr" />
+				<outparam name="processList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 修改流程信息跳转-->
+		<method name="toUpdateProcess" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="getProcessInfo" source="aa" dest="jsp/workflow/update.jsp" error="" type="1">
+			<inparams>
+				<inparam name="processId"  type="String" check="0" source="param" />
+				<inparam name="isUpProCon"  type="String" check="0" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="flowManagerBean" type="LOGIC" source="attr" />
+				<outparam name="isUpProCon" type="String" source="attr" />
+			</outparams>
+		</method>
+
+	
+	<!-- 流程信息修改 -->
+		<method name="updateProcess" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="updateProcess" source="aa" dest="" error="" type="1">
+			<inparams>
+			<inparam name="userMap" real="userMap"   type="LOGIC" check="1" source="session" />
+				<inparam name="url"  type="String" check="0" source="param"/>
+				<inparam name="isUpProCon"  type="String" check="0" source="param"/>
+				<inparam name="contentUrl"  type="String" check="0" source="param"/>
+				<inparam name="flowManager" type="LOGIC" classname="com.WfProcessDef" source="param">
+					<inparam name="processId" type="String" check="1" source="param" />
+					<inparam name="flag"  type="String" check="0" source="param" />
+					<inparam name="strname"  type="String" check="0" source="param" />
+					<inparam name="parentId"  type="String" check="0" source="param"/>					
+					<!-- <inparam name="isAuthorizedBt"  type="String" check="0" source="param"/>
+					<inparam name="isAuthorizedSb"  type="String" check="0" source="param"/>
+					<inparam name="isAuthorizedKq"  type="String" check="0" source="param"/>
+					<inparam name="isAuthorizedTc"  type="String" check="0" source="param"/>
+					<inparam name="isAuthorizedQt"  type="String" check="0" source="param"/>
+					<inparam name="isOrganization"  type="String" check="0" source="param"/> -->
+					<inparam name="processCode"  type="String" check="0" source="param"/>
+					<inparam name="processContentUrl"  type="String" check="0" source="param"/>
+					<inparam name="processPicturesUrl"  type="String" check="0" source="param"/>
+					<inparam name="processPageUrl"  type="String" check="0" source="param"/>
+					<inparam name="sort"  type="String" check="0" source="param"/>
+				</inparam>
+			</inparams>
+		</method>
+	<!-- 流程信息删除 -->
+		<method name="deleteProcess" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="deleteProcess" source="aa" dest="" error="" type="1">
+			<inparams>
+					<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+					<inparam name="url"  type="String" check="1" source="param" remark="跳转参数"/>
+					<inparam name="processId" type="String" check="0" source="param" />
+					<inparam name="goParentId" type="String" check="0" source="param" />
+			</inparams>
+		</method>
+		
+		<!-- 跳转授权主页面 -->
+			<method name="goAuthorizedIndex" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="goAuthorizedIndex" source="aa" dest="jsp/workflow/authorized_index.jsp" error="" type="1">
+			<inparams>
+				<inparam name="processId"  type="String" check="0" source="param" />
+				<inparam name="sort"  type="String" check="0" source="param" />
+				<inparam name="processStepId"  type="String" check="0" source="param" />
+				<inparam name="authorizedType"  type="String" check="0" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="sort" type="String" source="attr" />
+				<outparam name="processStepId" type="String" source="attr" />
+				<outparam name="authorizedType" type="String" source="attr" />
+				<outparam name="processId" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 获取tree列表 -->
+		<method name="getAuthorizedList" methodname="getAuthorizedList" dest="jsp/workflow/authorized_list.jsp" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa">
+			<inparams>
+			<inparam name="processId"  type="String" check="0" source="param" />
+			<inparam name="processStepId"  type="String" check="0" source="param"/>
+			<inparam name="authorizedType"  type="String" check="0" source="param"/>
+				<inparam name="expandId"  type="String" check="0" source="param"/>
+				<inparam name="sort"  type="String" check="0" source="param"/>
+				<inparam name="type"  type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+				<outparam name="organizationDetaliList" type="LOGIC" source="attr" />
+				<outparam name="expandId"  type="String" source="attr"/>
+				<outparam name="sort" type="String" source="attr" />
+				<outparam name="type"  type="String" source="attr"/>
+				<outparam name="cb"  type="ENTITY" source="attr"/>
+			</outparams>
+		</method>
+		<!-- 获取节点详细信息 -->
+		<method name="getPostAndUserInfo" methodname="getPostAndUserInfo" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa"  dest="jsp/workflow/authorized_right.jsp">
+			<inparams>
+			<inparam name="processStepId"  type="String" check="0" source="param"/>
+			<inparam name="processId"  type="String" check="0" source="param"/>
+			<inparam name="authorizedType"  type="String" check="0" source="param"/>
+				<inparam name="organizationDetali" type="LOGIC" classname="com.organizationdetali" source="param">
+					<inparam name="organizationDetailId"  type="String" check="0" source="param"/>
+					<inparam name="sort"  type="String" check="0" source="param"/>
+				</inparam>
+			</inparams> 
+			<outparams>
+				<outparam name="organizationDetali" type="LOGIC" source="attr" />
+				<outparam name="userInfoList" type="LOGIC" source="attr" />
+				<outparam name="postInfoList" type="LOGIC" source="attr" />
+				<outparam name="processStepId" type="String" source="attr" />
+				<outparam name="authorizedType" type="String" source="attr" />
+				<outparam name="processId" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 加入岗位、人员 -->
+		<method name="addPostAndUserInfo" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="addPostAndUserInfo" source="aa" dest="" error="" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="url"  type="String" check="0" source="param"/>	
+				<inparam name="userId" type="Array" check="0" source="param" />	
+				<inparam name="postId" type="Array" check="0" source="param" />	
+				<inparam name="processId" type="String" check="0" source="param" />		
+				<inparam name="authorizedRelation" type="LOGIC" classname="com.WfProcessStepAuth" source="param">
+					<inparam name="processStepId" type="String" check="0" source="param" />
+					<inparam name="authorizedType" type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="processStepId" type="String" source="attr" />
+				<outparam name="authorizedType" type="String" source="attr" />
+				<outparam name="processId" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 查询已授权信息-->
+		<method name="getauthorizedStep" methodname="getauthorizedStep" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa"  dest="jsp/workflow/authorized_step_list.jsp">
+			<inparams>
+			<inparam name="processId"  type="String" check="0" source="param"/>
+			<inparam name="processStepId"  type="String" check="0" source="param"/>
+			<inparam name="authorizedType"  type="String" check="0" source="param"/>
+			<inparam name="sort"  type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+				<outparam name="authorizedRelationList" type="LOGIC" source="attr" />
+				<outparam name="sort" type="String" source="attr" />
+				<outparam name="authorizedType" type="String" source="attr" />
+				<outparam name="processStepId" type="String" source="attr" />
+				<outparam name="processId" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 删除已授权信息 -->
+		<method name="delAuthorizedStep" methodname="delAuthorizedStep" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa"  dest="">
+			<inparams>
+			<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			<inparam name="processId"  type="String" check="0" source="param"/>
+			<inparam name="processStepId"  type="String" check="0" source="param"/>
+			<inparam name="authorizedType"  type="String" check="0" source="param"/>
+			<inparam name="id"  type="String" check="0" source="param"/>
+			<inparam name="sort"  type="String" check="0" source="param"/>
+			<inparam name="url"  type="String" check="0" source="param"/>
+			</inparams> 
+		</method>
+		<!-- 获取岗位信息列表-->
+		<method name="getPost" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" methodname="getPost" dbName="brickDao" trans="" limit="" source="a" dest="jsp/workflow/post_list.jsp" error=""  type="1">
+			<inparams>
+				<inparam name="processId"  type="String" check="0" source="param"/>
+				<inparam name="processStepId"  type="String" check="0" source="param"/>
+				<inparam name="authorizedType"  type="String" check="0" source="param"/>
+				<inparam name="sort"  type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+				<outparam name="postList" type="LOGIC" source="attr" />
+				<outparam name="processStepId" type="String" source="attr" />
+				<outparam name="authorizedType" type="String" source="attr" />
+				<outparam name="sort" type="String" source="attr" />
+				<outparam name="processId" type="String" source="attr" />
+			</outparams>
+		</method>
+		
+		<!-- 获取已经授权的岗位信息列表
+		<method name="getSelectedPost" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" methodname="getSelectedPost" dbName="brickDao" trans="" limit="" source="a" dest="jsp/workflow/selected_post_list.jsp" error=""  type="1">
+			<inparams>
+			</inparams> 
+			<outparams>
+				<outparam name="list" type="LOGIC" source="attr" />
+			</outparams>
+		</method>-->
+		
+		
+		<!-- 添加岗位授权 -->
+		<method name="addPost" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="addPost" source="aa" dest="" error="" type="1">
+			<inparams>
+			<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="url"  type="String" check="0" source="param"/>	
+				<inparam name="sort" type="String" check="0" source="param" />
+				<inparam name="processId" type="String" check="0" source="param" />
+				<inparam name="authorizedRelation" type="LOGIC" classname="com.WfProcessStepAuth" source="param">
+					<inparam name="processStepId" type="String" check="0" source="param" />
+					<inparam name="autId" type="Array" check="1" source="param" />
+					<inparam name="authorizedType" type="String" check="0" source="param" />
+				</inparam>		
+			</inparams>
+		</method>
+		
+		<!-- 删除岗位授权 -->
+		<method name="deletePost" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="deletePost" source="aa" dest="" error="" type="1">
+			<inparams>
+				<inparam name="url"  type="String" check="0" source="param"/>	
+				<inparam name="authorizedRelation" type="LOGIC" classname="com.WfProcessStepAuth" source="param">
+					<inparam name="id"  type="String" check="0" source="param"/>
+				</inparam>
+			</inparams>
+		</method>
+		<!-- 跳转授权岗位主页面 
+		<method name="goPostIndex" realclass="com.u2a.framework.service.SysService" methodname="toPage" dbName="brickDao" trans="" limit="" source="a" dest="jsp/workflow/post_index.jsp" error="">
+			<inparams>
+				<inparam name="processStepId"  type="String" check="0" source="param"/>
+				<inparam name="authorizedType"  type="String" check="0" source="param"/>
+				<inparam name="sort"  type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+				<outparam name="processStepId" type="String" source="attr" />
+				<outparam name="authorizedType" type="String" source="attr" />
+			</outparams>
+		</method>-->
+		<!-- 跳转查看流程图主页面 -->
+		<method name="goPreviewPricess" realclass="com.u2a.framework.service.SysService" methodname="toPage" dbName="brickDao" trans="" limit="" source="a" dest="jsp/workflow/preview_pricess.jsp" error="">
+			<inparams>
+				<inparam name="processPicturesUrl"  type="String" check="0" source="param"/>
+				<inparam name="processId"  type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+			<!-- 根据主键获取步骤-->
+		<method name="getProcessStep" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" methodname="getProcessStep" dbName="brickDao" trans="" limit="" source="a" dest="jsp/workflow/step_set.jsp" error=""  type="1">
+			<inparams>
+				<inparam name="processStepId"  type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+				<outparam name="processStepMap" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+			<!-- 修改步骤信息-->
+		<method name="updateProcessStep" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" methodname="updateProcessStep" dbName="brickDao" trans="" limit="" source="a" dest="" error=""  type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="processStepId"  type="String" check="0" source="param"/>
+				<inparam name="applicationScope"  type="String" check="0" source="param"/>
+				<inparam name="stepType"  type="String" check="0" source="param"/>
+				<inparam name="url"  type="String" check="0" source="param"/>
+				<inparam name="editUrl"  type="String" check="1" source="param" remark="编辑路径"/>
+				<inparam name="viewUrl"  type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!-- 流程跟踪-->
+		<method name="processTracking" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" methodname="processTracking" dbName="brickDao" trans="" limit="" source="a" dest="jsp/workflow/process_tracking.jsp" error=""  type="1">
+			<inparams>
+				<inparam name="processInstanceId"  type="String" check="0" source="param"/>
+				<inparam name="processPageUrl"  type="String" check="0" source="param"/>
+				<inparam name="userMap" real="userMap"   type="LOGIC" check="1" source="session" />
+			</inparams> 
+			<outparams>
+				<outparam name="stepList" type="LOGIC" source="attr" />
+				<outparam name="processPageUrl" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 获取流程实例信息 -->
+		<method name="getBizInstanceList" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="getBizInstanceList" source="aa" dest="jsp/workflow/process_list.jsp" error="" type="1">
+			<inparams>
+			<inparam name="url"  type="String" check="0" source="param"/>
+			<inparam name="state"  type="String" check="0" source="param"/>
+			<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+			<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+			<inparam name="processCode"  type="String" check="0" source="param"/>
+			<inparam name="strname"  type="String" check="0" source="param"/>
+			<inparam name="contTitle"  type="String" check="0" source="param"/>
+			<inparam name="insid"  type="String" check="0" source="param"/>
+			<inparam name="objId"  type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+				<outparam name="state" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--修改流程实例状态 -->
+		<method name="updateBizInstanceState" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="updateBizInstanceState" source="aa" dest="" error="" type="1">
+			<inparams>
+			<inparam name="url"  type="String" check="0" source="param"/>
+			<inparam name="state"  type="String" check="0" source="param"/>
+			<inparam name="updstate"  type="String" check="0" source="param"/>
+			<inparam name="id"  type="String" check="0" source="param"/>
+			<inparam name="processCode"  type="String" check="0" source="param"/>
+			<inparam name="strname"  type="String" check="0" source="param"/>
+			<inparam name="contTitle"  type="String" check="0" source="param"/>
+			<inparam name="insid"  type="String" check="0" source="param"/>
+			<inparam name="objId"  type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!--查看流程跟踪图 -->
+		<method name="getProcessTracking" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="getProcessTracking" source="aa" dest="jsp/workflow/process_tracking.jsp" error="" type="1">
+			<inparams>
+			<inparam name="path"  type="String" check="0" source="param"/>
+			<inparam name="imgurl"  type="String" check="0" source="param"/>
+			<inparam name="insid"  type="String" check="0" source="param"/>
+			<inparam name="userMap" real="userMap"   type="LOGIC" check="1" source="session" />
+			</inparams> 
+			<outparams>
+			<outparam name="path" type="String" source="attr" />
+			<outparam name="imgurl" type="String" source="attr" />
+			<outparam name="steps" type="String" source="attr" />
+			</outparams>
+		</method>
+			<!-- 测试 -->
+		<method name="processStart" realclass="com.u2a.framework.service.workflow.srevice.WorkFlowService" dbName="brickDao" trans="" limit=""	methodname="addprocessStart" source="aa" dest="" error="" type="1">
+			<inparams>
+			<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			<inparam name="strurl"  type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		
+	</package>	
+</root>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.EquipmentInfo" table="equipment_info">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="equipmentName" type="java.lang.String">
+            <column name="equipment_name" length="80"/>
+        </property>
+       	<property name="equipmentModel" type="java.lang.String">
+            <column name="equipment_model" length="80"/>
+        </property>
+       	<property name="equipmentCode" type="java.lang.String">
+            <column name="equipment_code" length="80" />
+        </property>
+        <property name="parentId" type="java.lang.String">
+            <column name="parent_id" length="80" />
+        </property>
+       	<property name="machineCode" type="java.lang.String">
+            <column name="machine_code" length="80" />
+        </property>
+       	<property name="unity" type="java.lang.String">
+            <column name="unity" length="20"/>
+        </property>
+       <property name="standardNum" type="java.lang.Double">
+            <column name="standard_num"/>
+        </property>
+        <property name="personNum" type="java.lang.Integer">
+            <column name="person_num"/>
+        </property>
+       	<property name="quotaHour" type="java.lang.Integer">
+            <column name="quota_hour"/>
+        </property>
+        <property name="checkCost" type="java.lang.Integer">
+            <column name="check_cost"/>
+        </property>
+        <property name="mediumCost" type="java.lang.Integer">
+            <column name="medium_cost"/>
+        </property>
+        <property name="majorCost" type="java.lang.Integer">
+            <column name="major_cost"/>
+        </property>
+        <property name="checkHour" type="java.lang.Integer">
+            <column name="check_hour"/>
+        </property>
+        <property name="mediumHour" type="java.lang.Integer">
+            <column name="medium_hour"/>
+        </property>
+       	<property name="polesNum" type="java.lang.Integer">
+            <column name="poles_num"/>
+        </property>
+       	<property name="value" type="java.lang.Integer">
+            <column name="value"/>
+        </property>
+        <property name="equipmentType" type="java.lang.String">
+            <column name="equipment_type">
+            </column>	            
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="4">
+            	<comment>0有效 1无效</comment>
+            </column>	            
+        </property>
+        <property name="createDate" type="java.util.Date">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40" />
+        </property>
+        <property name="modifyDate" type="java.util.Date">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40" />
+        </property>
+        <property name="wholename" type="java.lang.String" fieldtype="view">
+            <column name="wholename"/>
+        </property>
+    </class>
+</hibernate-mapping>

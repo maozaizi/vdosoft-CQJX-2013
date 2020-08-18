@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<!-- 获取数据项基本信息-->
+	<select id="dataItemBaseInfoList1" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select t.data_item_id,t.parent_id,t.data_item_name,t.data_item_value,t.data_item_code,t.type from bs_data_item_info t where t.is_valid='1' order by t.orderby 
+	</select>
+	<select id="dataItemBaseInfoList" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from bs_data_item_info where is_valid = '1' and parent_id = #dataItemId# order by orderby asc
+	</select>
+	
+	<!-- 获取数据项基本信息-->
+	<select id="getDataDictionary" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from bs_data_item_info where is_valid = '1' 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="dataItemCode">
+				data_item_code = #dataItemCode# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="type">
+				type = #type# 
+			</isNotEmpty>
+		</dynamic>
+		order by orderby asc
+	</select>
+	
+	<!-- 根据编号获取id-->
+	<select id="getIdByCode" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from bs_data_item_info t where t.is_valid='1' and data_item_code = #dataItemCode#  order by t.orderby 
+	</select>
+	
+	<!-- 根据id获取所有子数据-->
+	<select id="getChildsById" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from bs_data_item_info t where t.is_valid='1' and parent_id = #dataItemId#  order by t.orderby 
+	</select>
+		<!-- 获取数据项基本信息-->
+	<select id="politicalAreaList" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select t.data_item_id,t.parent_id,t.data_item_name,t.data_item_value,t.type from bs_data_item_info t start with t.data_item_code = #dataItemCode# and t.is_valid = '1' connect by prior t.data_item_id = t.parent_id order by t.orderby
+	</select>
+</sqlMap>

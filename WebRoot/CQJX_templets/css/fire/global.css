@@ -1,0 +1,21 @@
+body{*behavior:url(csshover3.htc);font:14px/1.5 arial,helvetica,clean,sans-serif;color:#383838;background-color:#e0eaf6}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,p,blockquote,th,td{margin:0;padding:0}
+table{*border-collapse:collapse;border-spacing:0;width:100%}
+fieldset,img{border:0}
+li{list-style:none outside none}
+caption,th{text-align:left}
+textarea{resize:vertical;height:90px;border:1px solid #a0a0a0;vertical-align:top}
+.inputtext,textarea{background-attachment:scroll;background-color:transparent;background-image:url("images/bg_input_text.png");background-repeat:no-repeat}
+select{border:1px solid #b5b8c8}
+input.ipt_text{height:20px}
+input.rnc{height:15px;vertical-align:middle;margin-bottom:0}
+.clear{clear:both}
+.must_answer{color:#f00}
+input.prompt_text{background-color:#fff666;background-image:none}
+select.select_null{background-color:#ff8080;background-image:none}
+input.input_null{background-color:#ff8080;background-image:none}
+textarea.textarea_null{background-color:#ff8080;background-image:none}
+.input-time{width:75px} /* ʱ������� */
+.input-long-title{width:420px} /* �������� */
+.upload_name{width:200px}  /* �ϴ���������� */
+.inputtext{border:1px solid #a0a0a0;color:#404040;height:14px;line-height:14px;padding:4px 3px} /* input type=text �Ļ���ʽ */

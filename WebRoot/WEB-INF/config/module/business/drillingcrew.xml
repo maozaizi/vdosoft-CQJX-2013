@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="drillingcrew">
+		<!-- 查询 井队信息列表 -->
+		<method name="getDrillingCrewList" realclass="com.u2a.business.DrillingCrewService" dbName="brickDao" trans="" limit=""	methodname="getDrillingCrewList" source="a" dest="jsp/business/drillingcrew/drillingcrew_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+				<inparam name="teamName"  type="String" check="0" source="param" />
+				<inparam name="teamCode"  type="String" check="0" source="param" />
+				<inparam name="projectDept"  type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<method name="toAddcrew"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/drillingcrew/drillingcrew_add.jsp"
+			type="1">
+		</method>
+		
+		<!-- 添加井队记录 -->
+		<method name="addCrew" realclass="com.u2a.business.DrillingCrewService" dbName="brickDao" trans="" limit=""	methodname="addCrew" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="drillingCrew" type="LOGIC"
+					classname="com.DrillingCrew" source="param">
+					<inparam name="teamName"  type="String" check="0" source="param" />
+					<inparam name="teamCode"  type="String" check="0" source="param" />
+					<inparam name="projectDept"  type="String" check="0" source="param" />
+					<inparam name="remark"  type="String" check="0" source="param" />
+				</inparam>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<method name="toUpdateCrew"
+			realclass="com.u2a.business.DrillingCrewService"
+			dbName="brickDao" trans="" limit="" methodname="toUpdateCrew"
+			source="a" dest="jsp/business/drillingcrew/drillingcrew_update.jsp"
+			type="1">
+			<inparams>
+				<inparam name="id" real="id" type="String"
+					check="1" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="crewMap" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 修改井队信息 -->
+		<method name="updateCrew" realclass="com.u2a.business.DrillingCrewService" dbName="brickDao" trans="" limit=""	methodname="updateCrew" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="drillingCrew" type="LOGIC"
+					classname="com.DrillingCrew" source="param">
+					<inparam name="id"  type="String" check="0" source="param" />
+					<inparam name="teamName"  type="String" check="0" source="param" />
+					<inparam name="teamCode"  type="String" check="0" source="param" />
+					<inparam name="projectDept"  type="String" check="0" source="param" />
+					<inparam name="remark"  type="String" check="0" source="param" />
+				</inparam>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<method name="delDrillingcrew"
+			realclass="com.u2a.business.DrillingCrewService"
+			dbName="brickDao" trans="" limit="" methodname="deletecrew"
+			source="a" dest="jsp/business/equipmentinfo/equipmentinfo_list.jsp" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="id" real="id" type="String"
+					check="1" source="param" />
+				<inparam name="url" real="url" type="String" check="1"
+					source="param" />
+			</inparams>
+		</method>
+		<method name="getTeamList"
+			realclass="com.u2a.business.DrillingCrewService"
+			methodname="getTeamList" source="" dest="">
+			<inparams>
+				<inparam name="proDept" type="String" check="0"
+					source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="teamlist" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		
+	</package>	
+</root>
+	

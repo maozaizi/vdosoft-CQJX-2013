@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="usergroup">
+	  <!-- 保存用户组 -->
+		<method name="saveUserGroup" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="saveUserGroup" dbName="brickDao" trans="" limit="" source="a" dest=""   error="" type="1">
+			<inparams>
+			<inparam name="url"  real="url"  type="String" check="0"  source="param"/>
+			<inparam name="userGroup"  type="LOGIC" classname="com.userGroup" source="param">
+			    <inparam name="usergroupname"  type="String" check="1" source="param" /> 
+		        <inparam name="usergroupremark"  type="String" check="0" source="param" /> 
+		    </inparam>
+		     <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			 <inparam name="request"   type="Context" check="0" source="App.Request" />
+			</inparams>
+		</method>
+		<!-- 用户组列表 -->
+		<method name="getUserGroupList" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="getUserGroupList" dbName="brickDao" trans="" limit="" source="a" dest="jsp/sys/usergroup/usergroup_list.jsp?1=1" error=""  type="1">
+			<inparams>
+				<inparam name="currentPageNO" type="Integer" source="param" check="0" default="1"/>
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 用户组添加 -->
+		<method name="addUserGroup" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="addUserGroup" dbName="brickDao" trans="" limit="" source="a" dest="jsp/sys/usergroup/usergroup_add.jsp" error=""  type="1">
+			<inparams>
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+		<!-- 用户组列表 -->
+		<method name="allUserGroup" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="getAllUserGroup" dbName="brickDao" trans="" limit="" source="a" dest="jsp/sys/usergroup/usergroup_list.jsp?1=1" error=""  type="1">
+			<inparams>
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+		
+		<!-- 跳转修改用户组 -->
+		<method name="goModifyUserGroup" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="goModifyUserGroup" dbName="brickDao" trans="" limit="" source="a" dest="jsp/sys/usergroup/usergroup_modify.jsp" error=""  type="1">
+			<inparams>
+				<inparam name="userGroupId"  real="userGroupId"  type="String" check="1"  source="param"/>
+			</inparams>	
+			<outparams>
+				<outparam name="userGroup" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 保存修改用户组 -->
+		<method name="modifyUserGroup" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="modifyUserGroup" dbName="brickDao" trans="" limit="" source="a" dest=""   error="" type="1">
+			<inparams>
+			<inparam name="url"  real="url"  type="String" check=""  source="param"/>
+			<inparam name="userGroup"  type="LOGIC" classname="com.userGroup" source="param">
+			    <inparam name="usergroupid"  type="String" check="1" source="param" /> 
+		        <inparam name="usergroupname"  type="String" check="1" source="param" /> 
+		        <inparam name="usergroupremark"  type="String" check="1" source="param" /> 
+		        </inparam>
+			 <inparam name="request"   type="Context" check="0" source="App.Request" />
+			</inparams>
+		</method>
+		<!-- 删除用户组 -->
+		<method name="removeUserGroup" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="removeUserGroup" dbName="brickDao" trans="" limit="" source="a" dest="" error=""  type="1">
+		    <inparams>
+		       <inparam name="url"  real="url"  type="String" check="0"  source="param"/>
+		       <inparam name="usergroupid"  type="String" check="0" source="param" />
+		       <inparam name="request"   type="Context" check="0" source="App.Request" />
+			</inparams>				
+		</method>
+		<!-- 添加用户组成员列表 -->
+		<method name="getAddUserList" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="getAddUserList" dbName="brickDao" trans="" limit="" source="a" dest="jsp/sys/usergroup/user1_list.jsp?1=1" error=""  type="1">
+			<inparams>
+			     <inparam name="url" id="url" type="String" source="param" check="0" />
+			     <inparam name="usergroupid" type="String" source="param" check="0" />
+				 <inparam name="currentPageNO" type="Integer" source="param" check="0" default="1"/>
+				 <inparam name="request" type="Context" check="0" source="App.Request" />
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+				<outparam name="addugurl" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--用户组成员搜索  -->
+		<method name="userMembList" realclass="com.u2a.framework.service.sys.UserGroupService" dbName="brickDao" trans="" limit=""	methodname="userMembList" source="a" dest="jsp/sys/usergroup/user1_list.jsp?1=1" error=""  type="1">
+		    <inparams>
+		         <inparam name="url" id="url" type="String" source="param" check="0" />
+			     <inparam name="usergroupid" type="String" source="param" check="0" />
+				 <inparam name="currentPageNO" type="Integer" source="param" check="0" default="1"/>
+				 <inparam name="request" type="Context" check="0" source="App.Request" />
+				 <inparam name="userName" real="userName" type="String" check="0" source="param" />
+		         <inparam name="email" real="email" type="String" check="0" source="param" />
+		         <inparam name="starttime" real="starttime" type="String" check="0" source="param"/>
+		         <inparam name="endtime" real="endtime" type="String" check="0" source="param"/>
+		    </inparams>
+			<!-- outparams 输出参数 -->
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+				<outparam name="addugurl" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 用户成员列表 -->
+		<method name="getUserList" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="getUserList" dbName="brickDao" trans="" limit="" source="a" dest="jsp/sys/usergroup/user_list.jsp?1=1" error=""  type="1">
+			<inparams>
+			    <inparam name="url" id="url" type="String" source="param" check="0" />
+			    <inparam name="usergroupid" type="String" source="param" check="0" />
+			    <inparam name="currentPageNO" type="Integer" source="param" check="0" default="1"/>
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+				<outparam name="ubackurl" type="String" source="attr" />
+			</outparams>
+		</method>
+     <!-- 删除用户组成员-->
+ 		<method name="removeUserGroupMember" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="removeUserGroupMember" dbName="brickDao" trans="" limit="" source="a" dest="" error=""  type="1">
+		    <inparams>
+		     <inparam name="url"  real="url"  type="String" check="0"  source="param"/>
+		       <inparam name="userGroupMember"  type="LOGIC" classname="com.userGroupMember" source="param">
+			    <inparam name="usergroupid"  type="String" check="1" source="param" /> 
+			    <inparam name="userid"  type="String" check="1" source="param" /> 
+		       </inparam>
+			 <inparam name="request"   type="Context" check="0" source="App.Request" />
+			</inparams>				
+		</method>
+		 <!-- 添加用户组成员 -->
+		 <method name="saveUserGroupMember" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="saveUserGroupMember" dbName="brickDao" trans="" limit="" source="a" dest=""   error="" type="1">
+			<inparams>
+			         <inparam name="burl"  real="burl"  type="String" check="0"  source="param"/>
+			         <inparam name="url"  real="url"  type="String" check="0"  source="param"/>
+				     <inparam name="userGroupMember" real="userGroupMember" type="LOGIC"  check="0"   classname="com.UserGroupMember" source="param">
+					   <inparam name="usergroupid" real="usergroupid" type="String" check="1" source="param" />
+					   <inparam name="userid" real="userid" type="String" check="1" source="param" />
+					 </inparam>
+				     <inparam name="request"   type="Context" check="0" source="App.Request" />
+			</inparams>
+			<outparams>
+				<outparam name="mbackurl" type="String" source="session" />
+			</outparams>
+		</method>
+		<!-- 用户组授权 -->
+		<method name="goUserGroupPower" realclass="com.u2a.framework.service.sys.UserGroupService"   methodname="goUserGroupPower" dbName="brickDao" trans="" limit=""	 source="a" dest="jsp/sys/usergroup/usergroup_power.jsp?1=1" error=""  type="1">				
+			<inparams>
+			 <inparam name="url"  real="url"  type="String" check="0"  source="param"/>
+			 <inparam name="userGroup"  type="LOGIC" classname="com.userGroup" source="param">
+			    <inparam name="usergroupid"  real="usergroupid"  type="String" check="0"  source="param"/>
+			 </inparam>
+			  <inparam name="request"   type="Context" check="0" source="App.Request" />
+			</inparams>
+			<outparams>
+				<outparam name="groupPowerList" real="groupPowerList" type="LOGIC" source="attr" />
+				<outparam name="userGroup" real="userGroup" type="LOGIC" source="attr" />
+				<outparam name="userGroupPowerList" real="userGroupPowerList" type="LOGIC" source="attr" />
+				<outparam name="backurl" type="String" source="attr" />
+			</outparams>
+		</method>
+		
+		 <!-- 添加用户组权限 -->
+		 <method name="saveUserGroupPower" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="saveUserGroupPower" dbName="brickDao" trans="" limit="" source="a" dest=""   error="" type="1">
+			<inparams>
+			        <inparam name="url"  real="url"  type="String" check="0"  source="param"/>
+			        <inparam name="usergroupid"  type="String" check="1" source="param" />
+					<inparam name="authgroupid"  type="array" check="0" source="param" />
+					<inparam name="request"   type="Context" check="0" source="App.Request" />
+			</inparams>
+		</method>
+		
+		<!-- 跳转添加用户快捷方式 -->
+		
+		<method name="goAddUserQuick" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="goAddUserQuick" dbName="brickDao" trans="" limit="" source="a" dest="jsp/sys/fastway/fastway_add.jsp" error=""  type="2">
+			<inparams>
+			  <inparam name="auth" type="LOGIC" classname="com.AuthInfo" source="param"/>
+			  <inparam name="request"   type="Context" check="0" source="App.Request" />
+			  <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			 </inparams>
+			<outparams>
+				<outparam name="userQuickList" type="LOGIC" source="attr" />
+				<outparam name="quickAuthList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		
+		 <!-- 添加用户快捷方式 -->
+		 <method name="saveUserQuick" realclass="com.u2a.framework.service.sys.UserGroupService" methodname="saveUserQuick" dbName="brickDao" trans="" limit="" source="a" dest=""    type="1">
+			<inparams>
+			        <inparam name="url"  real="url"  type="String" check="0"  source="param"/>
+			        <inparam name="userid"  type="String" check="1" source="param" />
+					<inparam name="request"   type="Context" check="0" source="App.Request" />
+					<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<method name="goHead" realclass="com.u2a.framework.service.sys.UserGroupService" dbName="brickDao" trans="" limit=""	methodname="goHead" source="aa" dest="jsp/right.jsp" type="1">
+			<inparams>
+			   <inparam name="userid"  type="String" check="1" source="param" />
+		    </inparams>
+			<outparams>
+			    <outparam name="userQuickList" type="LOGIC" source="session" />
+			</outparams>
+		</method>
+		
+	</package>
+</root>

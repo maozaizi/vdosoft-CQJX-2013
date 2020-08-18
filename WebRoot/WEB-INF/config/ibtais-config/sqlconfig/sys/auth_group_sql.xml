@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<select id="queryAuthGroupList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from auth_group where IS_VALID='1'
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="authGroupName">
+				auth_group_name like '%$authGroupName$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<select id="queryAllAuthGroup" resultClass="java.util.HashMap">
+		select * from auth_group where  IS_VALID='1'
+	</select>
+
+	<select id="queryAuthGroupMemb" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from auth_group_member where is_valid = '1'
+		<isNotEmpty prepend="and" property="authGroupId">
+			auth_group_id =#authGroupId#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="AUTHID">
+			AUTH_ID =#AUTHID#
+		</isNotEmpty>
+	</select>
+
+	<select id="queryUserAuthGroup" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from user_group_auth where auth_group_id=#authGroupId#  and IS_VALID='1'
+	</select>
+
+	<update id="deleteAuthGroupMemb"
+		parameterClass="com.brick.data.IMap">
+		update auth_group_member set IS_VALID='0' where auth_group_id=#authGroupId# and IS_VALID='1'
+	</update>
+    <update id="deleteAuthGroupAuth"
+		parameterClass="com.brick.data.IMap">
+		update auth_group_member set IS_VALID='0' where auth_id=#authId# and IS_VALID='1'
+	</update>
+	<insert id="saveAuthGroupMemb"
+		parameterClass="com.brick.data.IMap">
+		insert into auth_group_member (ID,AUTH_GROUP_ID,AUTH_ID,IS_VALID)  values(#id#,#authGroupId#,#authId#,'1')
+	</insert>
+</sqlMap>

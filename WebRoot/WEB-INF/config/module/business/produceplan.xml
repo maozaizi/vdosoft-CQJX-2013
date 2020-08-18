@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="produceplan">
+		<method name="toSearchPlan"
+			realclass="com.u2a.business.ProducePlanService"
+			dbName="brickDao" trans="" limit="" methodname="toSearchPlan"
+			source="" dest="jsp/business/produceplan/proplan_search.jsp"
+			type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams> 
+			<outparams>
+				<outparam name="year" type="String" source="attr" />
+				<outparam name="month" type="String" source="attr" />
+			</outparams>
+		</method>
+		<method name="toAddplan"
+			realclass="com.u2a.business.ProducePlanService"
+			dbName="brickDao" trans="" limit="" methodname="toAddplan"
+			source="" dest="jsp/business/produceplan/proplan_edit.jsp"
+			type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="produceplan" type="LOGIC"
+						classname="com.produceplan" source="param">
+					<inparam name="year"  type="String" check="0" source="param" />
+					<inparam name="month"  type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="year" type="String" source="attr" />
+				<outparam name="month" type="String" source="attr" />
+				<outparam name="maplist" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<method name="toViewplan"
+			realclass="com.u2a.business.ProducePlanService"
+			dbName="brickDao" trans="" limit="" methodname="toAddplan"
+			source="" dest="jsp/business/produceplan/proplan_view.jsp"
+			type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="produceplan" type="LOGIC"
+						classname="com.produceplan" source="param">
+					<inparam name="year"  type="String" check="0" source="param" />
+					<inparam name="month"  type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="year" type="String" source="attr" />
+				<outparam name="month" type="String" source="attr" />
+				<outparam name="maplist" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		
+		<method name="toChooseplan"
+			realclass="com.u2a.business.ProducePlanService"
+			dbName="brickDao" trans="" limit="" methodname="toChooseplan"
+			source="" dest="jsp/business/produceplan/proplan_choose.jsp"
+			type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="year"  type="String" check="0" source="param" />
+				<inparam name="month"  type="String" check="0" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="repairlist" type="LOGIC" source="attr" />
+				<outparam name="year" type="String" source="attr" />
+				<outparam name="month" type="String" source="attr" />
+				<outparam name="closeFlag" type="String" source="attr" />
+			</outparams>
+		</method>
+		
+		<method name="savePlan"
+			realclass="com.u2a.business.ProducePlanService"
+			dbName="brickDao" trans="" limit="" methodname="savePlan"
+			source="" dest="jsp/business/produceplan/proplan_choose.jsp"
+			type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="year"  type="String" check="0" source="param" />
+				<inparam name="month"  type="String" check="0" source="param" />
+				<inparam name="checkbox"  type="Array" check="0" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="closeFlag" type="String" source="attr" />
+			</outparams>
+		</method>
+		<method name="delPlan"
+			realclass="com.u2a.business.ProducePlanService"
+			dbName="brickDao" trans="" limit="" methodname="deletePlan"
+			source="" dest=""
+			type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="year"  type="String" check="0" source="param" />
+				<inparam name="month"  type="String" check="0" source="param" />
+				<inparam name="delId"  type="String" check="0" source="param" />
+				<inparam name="url"  type="String" check="0" source="param" />
+			</inparams>
+			<outparams>
+				
+			</outparams>
+		</method>
+		
+	</package>
+</root>

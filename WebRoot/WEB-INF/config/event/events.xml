@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<events>
+	<event location="/WEB-INF/config/event/event.xml"></event>
+</events>

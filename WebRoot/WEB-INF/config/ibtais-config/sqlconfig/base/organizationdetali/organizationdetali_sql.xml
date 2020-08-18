@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<!-- 获取数据项基本信息-->
+	<select id="getOrg_app" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from bs_app_organization where is_valid = '1'  and type = '0' order by base_organization_id
+	</select>
+	<!-- 获取节点下的部门 -->
+	<select id="getDepartment" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from bs_app_organization where is_valid = '1' and type = '1' and parent_id = #parentId#  order by orderby asc
+	</select>
+	<!-- 获取车间-->
+	<select id="getWorkshopList" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from bs_base_organization where is_valid = '1' and org_code like '$orgcode$.%'
+	</select>
+	
+	<!-- 局内组织结构数据 -->
+	
+	<!-- 局外组织结构数据 -->
+	<!-- 消防队伍 组织结构 -->
+	<select id="getFireTeamTree" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from bs_app_organization where is_valid = '1' and type in ('0','3') and parent_id = #parentId# order by base_organization_id,orderby
+	</select>
+	<!-- 成员单位 组织结构 -->
+	<select id="getFireMemberTree" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from bs_app_organization where is_valid = '1' and type in ('0','2') and parent_id = #parentId# order by base_organization_id,orderby
+	</select>
+	<!-- 重点单位 组织结构 -->
+	<select id="getFireEmphasisTree" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from bs_app_organization where is_valid = '1' and type in ('0','4') and parent_id = #parentId# order by base_organization_id
+	</select>
+	<!-- 查询成员单位详细信息 -->
+	<select id="getMemberDetail" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select  app.*,mem.member_unit_id  as unitId, mem.address from bs_app_organization app left join mb_member_unit_info mem on app.organization_detail_id = mem.member_unit_id
+		where app.is_valid = '1' and app.organization_detail_id = #organizationDetailId#
+	</select>
+	<!-- 查询消防队伍详细信息 -->
+	<select id="getFireTeamDetail" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select app.*,team.address  from bs_app_organization app left join fb_fire_troops_info team on app.organization_detail_id = team.fire_troops_id
+		where app.is_valid = '1' and app.organization_detail_id = #organizationDetailId#
+	</select>
+	<!-- 查询重点单位详细信息 -->
+	<select id="getEmphasisDetail" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select  app.*, esp.especial_unit_adress as address from bs_app_organization app left join bp_especial_unit_info esp on app.organization_detail_id = esp.especial_unit_id
+		where app.is_valid = '1' and app.organization_detail_id = #organizationDetailId#
+	</select>
+	
+	<!-- 获取一灾一报列表 不包含下级-->
+	<select id="getfireAccidentList" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select b.base_organization_name,b.parent_id,t.* from fire_accident_report t ,bs_base_organization b where t.base_organization_id = b.base_organization_id and t.is_valid = '1' 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="beginDate">
+				t.start_time&gt;#beginDate# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">
+				t.start_time&lt;#endDate# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				<isEqual  compareValue="1" property="isLevel">
+					t.base_organization_id like '$orgId$%'
+				</isEqual>
+				<isNotEqual  compareValue="1" property="isLevel">
+					t.base_organization_id = #orgId# 
+				</isNotEqual>
+			</isNotEmpty>
+		</dynamic>
+		order by t.create_date asc
+	</select>
+	<!-- 根据基础组织结构编号查询所有相关节点 -->
+	<select id="getBaseOrgInfoListByOrgId" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select t.*, t.rowid from bs_app_organization t where t.is_valid = '1' and t.base_organization_id like '$baseOrganizationId$%' order by t.orderby desc
+	</select>
+	<!-- 获取一灾一报列表 不包含下级-->
+	<select id="getExpImpList" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select t.* from exp_imp_table t 
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="startdate">
+				t.startdate&gt;#startdate# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enddate">
+				t.enddate&lt;#enddate# 
+			</isNotEmpty>
+		</dynamic>
+		order by t.create_date desc
+	</select>
+	
+	<!-- 获取一灾一报列表 不包含下级-->
+	<select id="getfireTongJiList" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select a.month as delmonth,
+	       b.base_organization_name as orgname, --组织名称
+	       null as address,
+	       count(a.fire_id) fire_num, --火灾起数
+	       nvl(sum(a.died), 0) died_num, --死人
+	       nvl(sum(a.bruise), 0) bruise, --伤人
+	       nvl(sum(a.lost), 0) lost, --损失
+	       count(decode(a.fire_reason, '110', a.fire_reason, null)) as fanghuo, --防火
+	       count(decode(a.fire_reason, '200', a.fire_reason, null)) as qita, --其他
+	       count(decode(a.fire_reason, '150', a.fire_reason, null)) as xiyan, --吸烟
+	       count(decode(a.fire_reason, '130', a.fire_reason, null)) as weizhang, ---违章操作
+	       count(decode(a.fire_reason, '140', a.fire_reason, null)) as yonghuobushen, --用火不慎
+	       count(decode(a.fire_reason, '120', a.fire_reason, null)) as dianqi, --电器
+	       count(decode(a.fire_reason, '160', a.fire_reason, null)) as wanhuo, --玩火
+	       count(decode(a.fire_reason, '161', a.fire_reason, null)) as ranfangbaozhu, --燃放爆竹
+	       count(decode(a.fire_reason, '170', a.fire_reason, null)) as ziran, --自燃
+	       count(decode(a.fire_reason, '190', a.fire_reason, null)) as yuanyinbuming, --原因不明
+	       count(c.fire_id) fire_num1, --去年同期起数
+	       nvl(sum(c.died), 0) died_num1, --死人
+	       nvl(sum(c.bruise), 0) bruise1, --伤人
+	       nvl(sum(c.lost), 0) lost1 --损失
+	  from fire_accident_report a,
+	       bs_base_organization b,
+	       (select b.base_organization_name,
+	               a.base_organization_id,
+	               a.fire_id,
+	               a.died,
+	               a.bruise,
+	               a.lost,
+	               a.month
+	          from fire_accident_report a, bs_base_organization b
+	         where a.base_organization_id = b.base_organization_id
+	           and b.is_valid = '1'
+	           and a.year = #year# - 1) c
+	 where a.base_organization_id = b.base_organization_id
+	   and c.base_organization_id(+) = a.base_organization_id
+	   and c.month(+) = a.month
+	   and b.is_valid = '1'
+	   and a.year = #year#
+	   and a.base_organization_id = #orgId#
+	 group by a.month, b.base_organization_name
+	
+	union all
+	select null as delmonth,
+	       null as orgname,
+	       a.fire_address as address, --组织名称
+	       count(a.fire_id) fire_num, --火灾起数
+	       nvl(sum(a.died), 0) died_num, --死人
+	       nvl(sum(a.bruise), 0) bruise, --伤人
+	       nvl(sum(a.lost), 0) lost, --损失
+	       count(decode(a.fire_reason, '110', a.fire_reason, null)) as fanghuo, --防火
+	       count(decode(a.fire_reason, '200', a.fire_reason, null)) as qita, --其他
+	       count(decode(a.fire_reason, '150', a.fire_reason, null)) as xiyan, --吸烟
+	       count(decode(a.fire_reason, '130', a.fire_reason, null)) as weizhang, ---违章操作
+	       count(decode(a.fire_reason, '140', a.fire_reason, null)) as yonghuobushen, --用火不慎
+	       count(decode(a.fire_reason, '120', a.fire_reason, null)) as dianqi, --电器
+	       count(decode(a.fire_reason, '160', a.fire_reason, null)) as wanhuo, --玩火
+	       count(decode(a.fire_reason, '161', a.fire_reason, null)) as ranfangbaozhu, --燃放爆竹
+	       count(decode(a.fire_reason, '170', a.fire_reason, null)) as ziran, --自燃
+	       count(decode(a.fire_reason, '190', a.fire_reason, null)) as yuanyinbuming, --原因不明
+	       count(c.fire_id) fire_num1, --去年同期起数
+	       nvl(sum(c.died), 0) died_num1, --死人
+	       nvl(sum(c.bruise), 0) bruise1, --伤人
+	       nvl(sum(c.lost), 0) lost1 --损失*/
+	  from fire_accident_report a,
+	       (select a.fire_address, a.fire_id, a.died, a.bruise, a.lost, a.month
+	          from fire_accident_report a
+	         where a.year = #year# - 1) c
+	 where a.year = #year#
+	   and a.fire_address = c.fire_address(+)
+	 group by a.fire_address
+	 </select>
+</sqlMap>

@@ -1,0 +1,1011 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="mechtreatment">
+	    <method name="toRegister"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/mechtreatment/register.jsp"
+			type="1">
+		</method>
+		<!-- 查询 设备信息列表 -->
+		<method name="getMechTreatmentList" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getMechTreatmentList" source="a" dest="jsp/business/mechtreatment/mechtreatment_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+				<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+				<inparam name="userName" real="userName" type="String" check="0" source="param" />
+				<inparam name="makeSort" real="makeSort" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endInDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 导向领料申请页面 -->
+		<method name="toMaterialPlan" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="toMaterialPlan" source="a" dest="jsp/business/mechtreatment/material_plan.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="nodeId" type="String" check="0" source="param" />
+				<inparam name="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="LIST" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="busMaterialPlanList" type="LIST" source="attr" />
+				<outparam name="num" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 选择材料信息IFrame -->
+		<method name="toChooseMaterialInfo"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/mechtreatment/materialinfo_frame.jsp"
+			type="1">
+		</method>
+		<!-- 选择材料信息列表 -->
+		<method name="chooseMaterialInfo" realclass="com.u2a.business.MaterialInfoService" dbName="brickDao" trans="" limit=""	methodname="getList" source="a" dest="jsp/business/mechtreatment/materialinfo_choose.jsp" error="" type="2">
+			<inparams>
+				<inparam name="materialInfo" type="LOGIC"
+					classname="com.MaterialInfo" source="param">
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="flag"  type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 添加物料计划 -->
+		<method name="saveBusMaterialPlan" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="modifyBusMaterialPlan" source="a" dest="jsp/business/mywork/mywork.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialCode"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="unity"  type="String" check="0" source="param" />
+					<inparam name="materialNum" type="String" check="0" source="param" />
+					<inparam name="estimatePrice"  type="String" check="0" source="param" />
+					<inparam name="totalPrice"  type="String" check="0" source="param" />
+					<inparam name="type"  type="String" check="0" source="param" />
+					<inparam name="remark"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="planCode" real="planCode" type="String" check="0" source="param"/>
+				<inparam name="busId" real="busId"
+					type="String" check="0" source="param"/>
+				<inparam name="planRemark" real="planRemark"
+					type="String" check="0" source="param"/>
+				<inparam name="bigRemark" real="bigRemark"
+					type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!-- 试车记录页面 -->
+		<method name="toBusTestRecord" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getMechTreatmentDetails" source="a" dest="jsp/business/mechtreatment/bustestrecord_add.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 添加试车记录 -->
+		<method name="addBusTestRecord" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="addBusTestRecord" source="a" dest="jsp/business/mywork/mywork.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="busTestRecord" type="LOGIC"
+					classname="com.BusTestRecord" source="param">
+					<inparam name="rotationalSpeed"  type="String" check="0" source="param" />
+					<inparam name="electricity"  type="String" check="0" source="param" />
+					<inparam name="bearingTemp" type="String" check="0" source="param" />
+					<inparam name="oilRate"  type="String" check="0" source="param" />
+					<inparam name="torque"  type="String" check="0" source="param" />
+					<inparam name="displacement"  type="String" check="0" source="param" />
+					<inparam name="noloadTime"  type="String" check="0" source="param" />
+					<inparam name="currentDrain"  type="String" check="0" source="param" />
+					<inparam name="voltage"  type="String" check="0" source="param" />
+					<inparam name="pressure"  type="String" check="0" source="param" />
+					<inparam name="fullloadTime"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="busId" real="busId"
+					type="String" check="0" source="param" default="1" />
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!-- 验收检验页面 -->
+		<method name="toOpinionChecker" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getBusTestRecordDetails" source="a" dest="jsp/business/mechtreatment/mechtreatment_opinion_checker.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="busTestRecordMap" type="ENTITY" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="busWorkMap" type="ENTITY" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 验收检验 -->
+		<method name="modifyMechTreatmentOpinionCheck"
+			realclass="com.u2a.business.MechTreatmentService"
+			dbName="brickDao" trans="" limit="" methodname="modifyMechTreatmentOpinionCheck"
+			source="a" dest="jsp/business/mywork/mywork.jsp" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="busId" real="busId"
+					type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="opinionChecker" real="opinionChecker" type="String" check="0" source="param" />
+				<inparam name="completeDate" real="completeDate" type="String" check="0" source="param" />
+				<inparam name="useManHours" real="useManHours" type="String" check="0" source="param" />
+				<inparam name="result" real="result" type="String" check="0" source="param" />
+				<inparam name="completeNum" real="completeNum" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="busRepairerHours" type="LIST"
+					classname="com.BusRepairerHours" source="param">
+					<inparam name="workCard"  type="String" check="0" source="param" />
+					<inparam name="hours"  type="String" check="0" source="param" />
+					<inparam name="repairer"  type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+		</method>
+		<!-- 出厂页面 -->
+		<method name="toMechTreatmentComplete" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getMechTreatmentDetails" source="a" dest="jsp/business/mechtreatment/mechtreatment_complete.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 出厂-->
+		<method name="modifyMechTreatmentComplete" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="modifyMechTreatmentComplete" source="a" dest="jsp/business/mywork/mywork.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="busId" real="busId" type="String" check="0" source="param" />
+				<inparam name="repairState" real="repairState" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="factoryWhere" real="factoryWhere" type="String" check="0" source="param" />
+				<inparam name="factoryDate" real="factoryDate" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!-- 上报器材库页面 -->
+		<method name="toMechTreatmentReport" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getBusMaterialPlanList" source="a" dest="jsp/business/mechtreatment/mechtreatment_report.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busMaterialPlanList" type="LIST" source="attr" />
+				<outparam name="busId" type="String" source="attr" />
+				<outparam name="orgCode" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>	
+		<!-- 上报器材库 -->
+		<method name="modifyMechTreatmentReport" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="modifyMechTreatmentReport" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="orgCode" real="orgCode" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="id"  type="String" check="0" source="param" />
+					<inparam name="realNum"  type="String" check="0" source="param" />
+				</inparam>
+			</inparams> 
+		</method>	
+		<!--跳转调度确认页面-->
+		<method name="toConfirmMechTreatment" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="toConfirmMechTreatment" source="a" dest="jsp/business/mechtreatment/mechtreatment_confirm.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="orgCode" real="orgCode" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="busWorkCard" type="ENTITY" source="attr" />
+				<outparam name="workTypeList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="busId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 调度确认 -->
+		<method name="saveMechTreatmentConfirm" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="saveMechTreatmentConfirm" source="a" dest="jsp/business/mywork/mywork.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="orgCode" real="orgCode" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="factoryWhere" real="factoryWhere" type="String" check="0" source="param" />
+				<inparam name="factoryDate" real="factoryDate" type="String" check="0" source="param" />
+				<inparam name="result" real="result" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!-- 调度管理列表 -->
+		<method name="getFactoryList" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="toConfirmMechTreatment" source="a" dest="jsp/business/mechtreatment/scheduling_manage.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="orgCode" real="orgCode" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="busWorkCard" type="ENTITY" source="attr" />
+				<outparam name="workTypeList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="busId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 调度管理 -->
+		<method name="doSchedulingManage" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="doSchedulingManage" source="a" dest="jsp/business/businrepairinfo/scheduling_exworks_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="orgCode" real="orgCode" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="factoryWhere" real="factoryWhere" type="String" check="0" source="param" />
+				<inparam name="factoryDate" real="factoryDate" type="String" check="0" source="param" />
+				<inparam name="result" real="result" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向监造管理页面 -->
+		<method name="toEngineerManage" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getMechTreatmentDetails" source="a" dest="jsp/business/mechtreatment/engineer_manage.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--监造管理 -->
+		<method name="doEngineerManage" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="doEngineerManage" source="a" dest="jsp/business/businrepairinfo/engineer_exworks_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="busId" real="busId" type="String" check="0" source="param" />
+				<inparam name="repairState" real="repairState" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="factoryWhere" real="factoryWhere" type="String" check="0" source="param" />
+				<inparam name="factoryDate" real="factoryDate" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!-- 跳转厂材料员确认 -->
+		<method name="toCclMaterialConfirm" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getBusMaterialPlanList" source="a" dest="jsp/business/mechtreatment/mechtreatment_material_confirm.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busMaterialPlanList" type="LIST" source="attr" />
+				<outparam name="busId" type="String" source="attr" />
+				<outparam name="orgCode" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--厂材料员确认 -->
+		<method name="saveMaterialConfirm" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="saveMaterialConfirm" source="a" dest="jsp/business/mywork/mywork.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>		
+		<!-- 查询 设备信息列表 导向车间派工 -->
+		<method name="toShopWork" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getbusWorkAndMechTreatmentDetails" source="a" dest="jsp/business/mechtreatment/busworkcard_bill.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="busWorkCardList" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="outNum" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--添加派工单-->
+		<method name="saveBusWorkCard" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="saveBusWorkCard" source="a" dest="jsp/business/mywork/mywork.jsp" error="" type="2">
+				<inparams>
+				 <inparam name="busId" real="busId" type="String" check="0" source="param" />
+				 <inparam name="dispatchingRemark" real="dispatchingRemark" type="String" check="0" source="param" remark="派工意见" />
+				 <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				 <inparam name="assistCard" real="assistCard" type="String" check="0" source="param" />
+				 <inparam name="mainCard" real="mainCard" type="String" check="0" source="param" />
+				 <inparam name="busworkcard" type="LOGIC"
+					classname="com.BusWorkCard" source="param">
+					<inparam name="id" type="String" check="0" source="param" remark="施工卡Id"/>
+					<inparam name="startDate" type="String" check="1" source="param" remark="开工日期"/>
+					<inparam name="appointDate" type="String" check="1" source="param" remark="派工日期"/>
+				</inparam>
+				 <inparam name="workType" type="LIST"
+					classname="com.WorkTypeInfo" source="param">
+					<inparam name="ranking" type="String" check="0" source="param" />
+					<inparam name="workType" type="String" check="0" source="param" />
+					<inparam name="userCode" type="String" check="0" source="param" />
+					<inparam name="userName" type="String" check="0" source="param" />
+					<inparam name="quotaHour" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="userinfoList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--导向机修详情信息页面-->
+		<method name="toMechTreatmentDetailsPage" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="toMechTreatmentDetailsPage" source="a" dest="jsp/business/mechtreatment/mechtreatment_details.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoList" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="busWorkCard" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="workTypeList" type="ENTITY" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 材料出库选择材料页面 -->
+		<method name="toOutStoreMaterial"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/mechtreatment/outstore_materialinfo.jsp"
+			type="1">
+		</method>
+		<!--导向厂材料员审批页面-->
+		<method name="toCclAuditPage" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getMechTreatmentAndMaterialPlanDetails" source="a" dest="jsp/business/mechtreatment/audit_ccl.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="auditPerson" type="String" default="zr" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="busWorkCardList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--厂材料员审批-->
+		<method name="tocclAudit" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit="" methodname="updateleadershipAudit" source="a" dest="" type="1">
+			<inparams>
+			    <inparam name="type" real="type" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="mechTreatment" type="LOGIC" classname="com.MechTreatment" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="cclResult" real="cclResult" type="String" check="0" source="param" />
+				  <inparam name="cclRemark" real="cclRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向主任审批页面-->
+		<method name="toZrAuditPage" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getMechTreatmentAndMaterialPlanDetails" source="a" dest="jsp/business/mechtreatment/audit_zr.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="auditPerson" type="String" default="zr" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="busWorkCardList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--主任审批-->
+		<method name="toZrAudit" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit="" methodname="updateleadershipAudit" source="a" dest="" type="1">
+			<inparams>
+			    <inparam name="type" real="type" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="mechTreatment" type="LOGIC" classname="com.MechTreatment" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="zrResult" real="zrResult" type="String" check="0" source="param" />
+				  <inparam name="zrRemark" real="zrRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向厂区领导审批页面-->
+		<method name="toCqAuditPage" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getMechTreatmentAndMaterialPlanDetails" source="a" dest="jsp/business/mechtreatment/audit_cq.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="busWorkCardList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="cq" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--厂区领导审批-->
+		<method name="toCqAudit" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="updateleadershipAudit" source="a" dest="" type="1">
+			<inparams>
+			    <inparam name="type" real="type" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="mechTreatment" type="LOGIC" classname="com.MechTreatment" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="cqResult" real="cqResult" type="String" check="0" source="param" />
+				  <inparam name="cqRemark" real="cqRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="cq" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向生产主管审批页面-->
+		<method name="toScAuditPage" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getMechTreatmentAndMaterialPlanDetails" source="a" dest="jsp/business/mechtreatment/audit_sc.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="busWorkCardList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--生产主管审批-->
+		<method name="toScAudit" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="updateleadershipAudit" source="a" dest=""  type="1">
+			<inparams>
+			    <inparam name="type" real="type" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="mechTreatment" type="LOGIC" classname="com.MechTreatment" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="scResult" real="scResult" type="String" check="0" source="param" />
+				  <inparam name="scRemark" real="scRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向经营主管审批页面-->
+		<method name="toJyAuditPage" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getMechTreatmentAndMaterialPlanDetails" source="a" dest="jsp/business/mechtreatment/audit_jy.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="busWorkCardList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--经营主管审批-->
+		<method name="toJyAudit" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="updateleadershipAudit" source="a" dest=""  type="1">
+			<inparams>
+			    <inparam name="type" real="type" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="mechTreatment" type="LOGIC" classname="com.MechTreatment" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="jyResult" real="jyResult" type="String" check="0" source="param" />
+				  <inparam name="jyRemark" real="jyRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向经理审批页面-->
+		<method name="toJlAuditPage" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getMechTreatmentAndMaterialPlanDetails" source="a" dest="jsp/business/mechtreatment/audit_jl.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="busWorkCardList" type="ENTITY" source="attr" />
+				<outparam name="sk" type="String" source="attr"/>
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--经理审批-->
+		<method name="toJlAudit" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="updateleadershipAudit" source="a" dest=""  type="1">
+			<inparams>
+				<inparam name="mechTreatment" type="LOGIC" classname="com.MechTreatment" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="jlResult" real="jlResult" type="String" check="0" source="param" />
+				  <inparam name="jlRemark" real="jlRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="type" real="type" type="String" check="0" source="param" />
+				 <inparam name="attachmentInfo" type="LOGIC"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="docUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="sk" real="sk" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向总公司主管审批页面-->
+		<method name="toZgsAuditPage" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="getMechTreatmentAndMaterialPlanDetails" source="a" dest="jsp/business/mechtreatment/audit_zgs.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="busWorkCardList" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--总公司主管审批-->
+		<method name="toZgsAudit" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="updateleadershipAudit" source="a" dest=""  type="1">
+			<inparams>
+			    <inparam name="type" real="type" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="mechTreatment" type="LOGIC" classname="com.MechTreatment" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="zgsResult" real="zgsResult" type="String" check="0" source="param" />
+				  <inparam name="zgsRemark" real="zgsRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="attachmentInfo" type="LIST"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="docUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!-- 导向材料出库页面 -->
+		<method name="toOutStore" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="toOutStore" source="a" dest="jsp/business/mechtreatment/out_store.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" type="String" check="0" source="param" />
+				<inparam name="stepId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="materialList" type="ENTITY" source="attr" />
+				<outparam name="materialList2" type="ENTITY" source="attr" />
+				<outparam name="materialList3" type="ENTITY" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<method name="saveOutStore" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="saveOutStore" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" type="String" check="0" source="param" />
+				<inparam name="stepId" type="String" check="0" source="param" />
+				<inparam name="outStoreInfo" type="LIST" classname="com.outStoreInfo" source="param">
+					<inparam name="materialClass" type="String" check="0" source="param" />
+					<inparam name="materialGroup" type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialDetail" type="String" check="0" source="param" />
+					<inparam name="unity" type="String" check="0" source="param" />
+					<inparam name="storeNum" type="String" check="0" source="param" />
+					<inparam name="useType" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="busId" type="String" check="0" source="param" />
+				<inparam name="busName" type="String" check="0" source="param" />
+				<inparam name="workCard" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<!--跳转到材料确认页面-->
+		<method name="toMaterialAffirm" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="toMaterialAffirm" source="a" dest="jsp/business/mechtreatment/material_affirm.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" type="String" check="0" source="param" />
+				<inparam name="stepId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="planLength" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--材料确认-->
+		<method name="doMaterialAffirm" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="doMaterialAffirm" source="a" dest="" error="" type="2">
+			   <inparams>
+			    <inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" type="String" check="0" source="param" />
+				<inparam name="stepId" type="String" check="0" source="param" />
+				<inparam name="busId" type="String" check="0" source="param" />
+				<inparam name="busName" type="String" check="0" source="param" />
+				<inparam name="affirmtype" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				</inparams> 
+		</method>
+		<!-- 获取加工件库存列表信息 -->
+		<method name="gettreatstorelist" realclass="com.u2a.business.TreatStoreService" dbName="brickDao" trans="" limit=""	methodname="gettreatstorelist" source="a" dest="jsp/business/mechtreatment/treatstore.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="name"  type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<method name="toOutTreatStore" realclass="com.u2a.business.TreatStoreService" dbName="brickDao" trans="" limit=""	methodname="toOutTreatStore" source="a" dest="jsp/business/mechtreatment/outtreatstore.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			    <inparam name="id" real="id" type="String" check="0" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="deptList" type="LIST" source="attr" />
+				<outparam name="storeInfo" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<method name="saveOutTreatStore" realclass="com.u2a.business.TreatStoreService" dbName="brickDao" trans="" limit=""	methodname="saveOutTreatStore" source="a" dest="" error="" type="2">
+			<inparams>
+			    <inparam name="treatStoreInfo" type="LOGIC" classname="com.treatstore" source="param">
+			    	 <inparam name="id" real="id" type="String" check="0" source="param" />
+			    </inparam>
+			    <inparam name="outTreatStoreInfo" type="LOGIC" classname="com.treatoutstore" source="param">
+			    	 <inparam name="type" real="type" type="String" check="0" source="param" />
+			    	 <inparam name="outnum" real="outnum" type="String" check="0" source="param" />
+			    	 <inparam name="outtime" real="outtime" type="String" check="0" source="param" />
+			    	 <inparam name="orgCode" real="orgCode" type="String" check="0" source="param" />
+			    	 <inparam name="proDept" real="proDept" type="String" check="0" source="param" />
+			    	 <inparam name="deptFrom" real="deptFrom" type="String" check="0" source="param" />
+			    </inparam>
+			    <inparam name="url" real="url" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+		<method name="toViewtreatOutstore" realclass="com.u2a.business.TreatStoreService" dbName="brickDao" trans="" limit=""	methodname="toViewtreatOutstore" source="a" dest="jsp/business/mechtreatment/viewoutstore.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams>
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<method name="toViewtreatinstore" realclass="com.u2a.business.TreatStoreService" dbName="brickDao" trans="" limit=""	methodname="toViewtreatinstore" source="a" dest="jsp/business/mechtreatment/viewinstore.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams>
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 导向材料出库页面 -->
+		<method name="toInStore" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="toOutStore" source="a" dest="jsp/business/mechtreatment/in_store.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" type="String" check="0" source="param" />
+				<inparam name="stepId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="mechTreatmentMap" type="ENTITY" source="attr" />
+				<outparam name="materialList" type="ENTITY" source="attr" />
+				<outparam name="materialList2" type="ENTITY" source="attr" />
+				<outparam name="materialList3" type="ENTITY" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="machiningMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="machiningList" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 加工件确认 -->
+		<method name="inStore" realclass="com.u2a.business.MechTreatmentService" dbName="brickDao" trans="" limit=""	methodname="saveInStore" source="a" dest="jsp/business/mechtreatment/in_store.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" type="String" check="0" source="param" />
+				<inparam name="stepId" type="String" check="0" source="param" />
+				<inparam name="url" type="String" check="0" source="param" />
+				<inparam name="busId" type="String" check="0" source="param" />
+				<inparam name="busName" type="String" check="0" source="param" />
+				<inparam name="workCard" type="String" check="0" source="param" />
+				<inparam name="otherNum" type="String" check="0" source="param" />
+				<inparam name="deptId" type="String" check="0" source="param" />
+				<inparam name="deptName" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+	</package>	
+</root>

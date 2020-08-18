@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<tag>
+		<name>date</name>
+		<tag-class>com.u2a.framework.tag.DateTag</tag-class>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>dateTime</name>
+		<tag-class>com.u2a.framework.tag.DateTimeTag</tag-class>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>tree</name>
+		<tag-class>com.u2a.framework.tag.TreeTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>list</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>usedList</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>input</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>position</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>trade</name>
+		<tag-class>com.u2a.framework.tag.TradeTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>tradeCode</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>auth</name>
+		<tag-class>com.u2a.framework.tag.AuthTag</tag-class>
+		<attribute>
+			<name>code</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>iteratorTree</name>
+		<tag-class>com.u2a.util.tag.IteratorTree</tag-class>
+		<attribute>
+			<name>list</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>initId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>baseOrganizationTree</name>
+		<tag-class>com.u2a.util.tag.BaseOrganizationTree</tag-class>
+		<attribute>
+			<name>list</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>parentId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>organizationDetaliTree</name>
+		<tag-class>com.u2a.util.tag.OrganizationDetaliTree</tag-class>
+		<attribute>
+			<name>list</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>parentId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>processManageTree</name>
+		<tag-class>com.u2a.util.tag.ProcessManageTree</tag-class>
+		<attribute>
+			<name>list</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>parentId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+
+	<tag>
+		<name>gridTree</name>
+		<tag-class>com.u2a.util.tag.GridTree</tag-class>
+		<attribute>
+			<name>list</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>parentId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+
+	<tag>
+		<name>mytree</name>
+		<tag-class>com.u2a.framework.tag.MyTreeTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>list</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		
+		<attribute>
+			<name>input</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		
+	</tag>
+	
+</taglib>

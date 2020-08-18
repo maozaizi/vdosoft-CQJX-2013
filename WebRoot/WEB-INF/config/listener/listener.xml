@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listeners>
+   <!-- id和class必填一个 -->
+   <listener id="" type="servlet" description="springServletListener" class="org.springframework.web.context.ContextLoaderListener" init="contextInitialized" destroyed="contextDestroyed" on-off="on"/>
+   <listener id="" type="servlet" description="brickServletListener" class="com.brick.init.ServletListener" init="contextInitialized" destroyed="contextDestroyed" on-off="on"/>
+   <listener id="" type="servlet" description="frameworkServletListener" class="com.u2a.framework.util.ServletListener" init="contextInitialized" destroyed="contextDestroyed" on-off="on"/>
+   <listener id="" type="session" description="frameworkSessionListener" class="com.u2a.framework.util.SessionListener" init="sessionCreated" destroyed="sessionDestroyed" on-off="on"/>
+   <listener id="" type="servlet" description="timerListener" class="com.timer.TimerListener" init="contextInitialized" destroyed="contextDestroyed" on-off="on"/>
+</listeners>

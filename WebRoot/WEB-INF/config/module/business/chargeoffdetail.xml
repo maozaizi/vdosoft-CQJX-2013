@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="chargeoff">
+		<!-- 查询 出列表 -->
+		<method name="getChargeoffDetailList" realclass="com.u2a.business.ChargeoffDetailService" dbName="brickDao" trans="" limit=""	methodname="getChargeoffDetailInfoList" source="a" dest="jsp/business/chargeoffdetail/chargeoffdetail_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="chargeoffDetail" type="LOGIC"
+						classname="com.ChargeoffDetail" source="param">
+					<inparam name="deptGet" real="deptGet" type="String" check="0" source="param" />
+					<inparam name="receiptCode" real="receiptCode" type="String" check="0" source="param" />
+					<inparam name="applicationNo" real="applicationNo" type="String" check="0" source="param" />
+					<inparam name="materialDetail" real="materialDetail" type="String" check="0" source="param" />
+					<inparam name="materialCode" real="materialCode" type="String" check="0" source="param" />
+					<inparam name="attId" real="attId" type="String" check="0" source="param" />
+				</inparam>	
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 导入材料页面-->
+		<method name="saveChargeoffDetailImport"
+			realclass="com.u2a.business.ChargeoffDetailService"
+			dbName="brickDao" trans="" limit="" methodname="saveChargeoffDetailImport"
+			source="" dest=""
+			type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+				<inparam name="fileUrl" real="fileUrl" type="String" check="0" source="param" />
+				<inparam name="attachmentInfo" type="LOGIC"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="fileUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="message" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转导入材料信息页面-->
+		<method name="toImportChargeoffDetail"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/chargeoffdetail/chargeoffdetail_import.jsp"
+			type="2">
+			<inparams>
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+				<inparam name="fileUrl" real="fileUrl" type="String" check="0" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="message" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转导入材料信息页面-->
+		<method name="getChargeoffDetail"
+			realclass="com.u2a.business.ChargeoffDetailService"
+			dbName="brickDao" trans="" limit="" methodname="getChargeoffDetail"
+			source="" dest="jsp/business/chargeoffdetail/chargeoffdetail_dz.jsp"
+			type="2">
+			<inparams>
+				<inparam name="chargeoffDetail" type="LOGIC"
+						classname="com.ChargeoffDetail" source="param">
+					<inparam name="id" real="id" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="deptId" real="deptId" type="String" check="0" source="param" />
+				<inparam name="deptName" real="deptName" type="String" check="0" source="param" />
+				<inparam name="workCard" real="workCard" type="String" check="0" source="param" />	
+			</inparams>
+			<outparams>
+				<outparam name="chargeoffDetail" type="ENTITY" source="attr" />
+				<outparam name="list" type="LOGIC" source="attr" />
+				<outparam name="deptId" type="LOGIC" source="attr" />
+				<outparam name="workCard" type="LOGIC" source="attr" />
+				<outparam name="deptName" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到选择车间页面 -->
+		<method name="toChooseDept" realclass="com.u2a.business.BusInrepairInfoService" dbName="brickDao" trans="" limit=""	methodname="toChooseDept" source="a" dest="jsp/business/chargeoffdetail/dept_choose.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="rowId" real="rowId" type="String" check="0" source="param" />
+				<inparam name="deptIds" real="deptIds" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="deptList" type="ENTITY" source="attr" />
+				<outparam name="rowId" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到选择车间页面 -->
+		<method name="saveDz" realclass="com.u2a.business.ChargeoffDetailService" dbName="brickDao" trans="" limit=""	methodname="saveDz" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="chargeoffDetail" type="LOGIC"
+						classname="com.ChargeoffDetail" source="param">
+					<inparam name="id" real="id" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="outStoreDetail" type="LOGIC"
+						classname="com.OutStoreDetail" source="param">
+					<inparam name="outId" real="id" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="listUrl" real="listUrl" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+	</package>
+</root>

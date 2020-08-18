@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<!-- 获取用户定制快捷方式信息-->
+	<select id="getUserCustomAuth" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select a.* from auth_info a,bs_user_auth b where a.auth_id = b.auth_id and b.user_id= #userid#
+	</select>
+	<select id="getCustomAuth" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select distinct a.*,'0' ischeck
+		  from auth_info         a,
+		       auth_group_member b,
+		       BS_POST_INFO   c,
+		       BS_POST_USER d
+		 where a.auth_id = b.auth_id
+		   and b.auth_group_id = c.POST_CODE
+		   and c.POST_ID = d.POST_ID
+		   and d.user_id = #userid#
+		   and a.auth_type = '1'
+		   and a.IS_VALID = '1'
+		   and b.IS_VALID = '1'
+		   and b.IS_VALID = '1'
+		   and d.IS_VALID = '1'
+		  order by a.create_date desc
+	</select>
+</sqlMap>

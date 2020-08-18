@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.AttachmentInfo" table="attachment_info">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="docName" type="java.lang.String">
+            <column name="doc_name" length="40"/>
+        </property>
+       	<property name="docType" type="java.lang.String">
+            <column name="doc_type" length="40"/>
+        </property>
+        <property name="docUrl" type="java.lang.String">
+            <column name="doc_url" length="100"/>
+        </property>
+       	<property name="docSize" type="java.lang.Double">
+            <column name="doc_size"/>
+        </property>
+       	<property name="busId" type="java.lang.String">
+            <column name="bus_id" length="40" />
+        </property>
+       	<property name="busName" type="java.lang.String">
+            <column name="bus_name" length="40"/>
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="4" />
+        </property>
+        <property name="busType" type="java.lang.String">
+            <column name="bus_type" length="4" />
+        </property>
+        <property name="createDate" type="java.sql.Date">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40" />
+        </property>
+        <property name="modifyDate" type="java.sql.Date">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40" />
+        </property>
+    </class>
+</hibernate-mapping>

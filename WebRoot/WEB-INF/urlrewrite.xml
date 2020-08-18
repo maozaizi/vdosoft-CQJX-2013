@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 2.6//EN"  "http://tuckey.org/res/dtds/urlrewrite2.6.dtd">
+<!--
+   Configuration file for UrlRewriteFilter
+    http://tuckey.org/urlrewrite/
+
+-->
+<urlrewrite>
+   <!-- 以下规则有优先级别 配在前面的优先适用 -->
+      <!-- 首页面配置 
+     <rule>
+       <note>http://www.xdzinfo.com/index.html</note>
+       <from>^/index(.html)?$</from>
+        <to>/server/ly/index</to>
+     </rule>-->
+      <!-- 楼宇资讯 -->
+     <rule>
+      <from>^/info(.html)?(\?.*)?$</from>
+        <to>/shtml/info.html</to>
+     </rule>
+     <!-- 楼宇政策 -->
+     <rule>
+      <from>^/policy(.html)?(\?.*)?$</from>
+        <to>/server/ly/policy</to>
+     </rule>
+     
+      <!-- 楼宇公告 -->
+     <rule>
+      <from>^/notice(.html)?(\?.*)?$</from>
+        <to>/server/ly/notice</to>
+     </rule>
+       
+     <!-- 房屋求租出租-->
+     <rule>
+      <from>^/rentals(.html)?(\?.*)?$</from>
+        <to>/server/ly/rentals</to>
+     </rule>
+      <!-- 房屋求租出租 列表  -->
+     <rule>
+        <from>^/rentals_(.+)\.html(\?.*)?$</from>
+        <to>/server/ly/rentals?type=$1</to>
+     </rule>
+     <!-- 房屋求租出租单页-->
+     <rule>
+    <from>^/rental/([A-Za-z0-9]+)\.html(\?.*)?$</from>
+        <to>/server/ly/rental?id=$1</to>
+     </rule>
+      <!-- 房屋求售出售单页-->
+     <rule>
+    <from>^/rentalbuy/([A-Za-z0-9]+)\.html(\?.*)?$</from>
+        <to>/server/ly/rentalbuy?id=$1</to>
+     </rule>
+      <!-- 楼盘展示-->
+     <rule>
+      <from>^/fireNets(.html)?(\?.*)?$</from>
+        <to>/shtml/fireNets.html</to>
+     </rule>
+      <!-- 服务项目 -->
+     <rule>
+      <from>^/services(.html)?(\?.*)?$</from>
+        <to>/shtml/services.html</to>
+     </rule>
+      <!-- 楼盘展示列表  -->
+     <rule>
+        <from>^/fireNets_(.+)\.html(\?.*)?$</from>
+        <to>/server/ly/fireNetList?state=$1</to>
+     </rule>
+     <!-- 楼盘展示单页  -->
+     <rule>
+        <from>^/fireNet/([A-Za-z0-9]+)\.html(\?.*)?$</from>
+        <to>/server/ly/fireNetsImg?id=$1</to>
+     </rule>
+      <rule>
+        <from>^/finefireNet/([A-Za-z0-9]+)\.html(\?.*)?$</from>
+        <to>/server/ly/fireNet?id=$1</to>
+     </rule>
+      <!-- 楼宇单页-->
+     <rule>
+     <from>^/content/([A-Za-z0-9]+)\.html(\?.*)?$</from>
+        <to>/server/ly/content?id=$1</to>
+     </rule>
+     <!-- 楼宇列表  -->
+     <rule>
+        <from>^/infolist/(.+)\.html(\?.*)?$</from>
+        <to>/server/ly/infolist?code=$1</to>
+     </rule>
+     <!-- 评论 -->
+     <rule>
+        <from>^/comment/(.+)\.html(\?.*)?$</from>
+        <to>/server/comment/$1</to>
+     </rule>
+      <!-- 楼宇搜索-->
+     <rule>
+     <from>^/search([A-Za-z0-9]+)\.html(\?.*)?$</from>
+        <to>/server/ly/search$1</to>
+     </rule>
+   <!-- html请求为jsp  此规则适用于所有.html结尾的请求
+     <rule>
+        <note>turn style /test/show.jsp to /test/show.html</note>
+        <from>/(.*)\.html</from>
+        <to>/$1.jsp</to>
+     </rule>
+      -->
+      
+</urlrewrite>
+

@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="report">
+		<!-- 8.1查询 上井服务列表 -->
+		<method name="toSearchlabourExDetail"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/labour/labour_search.jsp"
+			type="1">
+		</method>
+		<!-- 8.1查询上井劳务收入明细列表 -->
+		<method name="getlabourExReportList" realclass="com.u2a.business.ReportService" dbName="brickDao" trans="" limit=""	methodname="getlabourExReportList" source="a" dest="jsp/business/report/labour/labour_report.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="endDate" real="endDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+			</inparams> 
+			<outparams>
+				<outparam name="labourExReportList" type="LOGIC" source="attr" />
+				<outparam name="factory" type="String" source="attr" />
+				<outparam name="endDate" type="String" source="attr" />
+				<outparam name="yearD" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 8.1导出上井劳务收入明细列表 -->
+		<method name="importlabourExcel" realclass="com.u2a.business.ReportService" dbName="brickDao" trans="" limit=""	methodname="importlabourExcel" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="endDate" real="endDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+		</method>
+		
+		<!-- 8.1查询 设备劳务收入服务列表 -->
+		<method name="toSearchlabourEqDetail"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/labour/laboureq_search.jsp"
+			type="1">
+		</method>
+		<!-- 8.1查询 设备劳务收入列表 -->
+		<method name="getlabourEqReportList" realclass="com.u2a.business.ReportService" dbName="brickDao" trans="" limit=""	methodname="getlabourEqReportList" source="a" dest="jsp/business/report/labour/laboureq_report.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="endDate" real="endDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+			</inparams> 
+			<outparams>
+				<outparam name="labourEqReportList" type="LOGIC" source="attr" />
+				<outparam name="factory" type="String" source="attr" />
+				<outparam name="endDate" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 8.1导出设备劳务收入列表 -->
+		<method name="importlabourEqExcel" realclass="com.u2a.business.ReportService" dbName="brickDao" trans="" limit=""	methodname="importlabourEqExcel" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="endDate" real="endDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+		</method>
+		<!-- 8.2查询 劳务汇总 -->
+		<method name="toSearchlabourTotal"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/labour/labourtotal_search.jsp"
+			type="1">
+		</method>
+		<!--8.2 导出 劳务汇总 -->
+		<method name="importlabourTotal" realclass="com.u2a.business.ReportService" dbName="brickDao" trans="" limit=""	methodname="importlabourTotal" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="endDate" real="endDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+		</method>
+		<!-- 8.3查询 材料消耗汇总 -->
+		<method name="toSearchConsume"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/consume/consume_search.jsp"
+			type="1">
+		</method>
+		<!--8.3 导出 材料消耗汇总 -->
+		<method name="importconsumeExcel" realclass="com.u2a.business.ReportService" dbName="brickDao" trans="" limit=""	methodname="importconsumeExcel" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="endDate" real="endDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+		</method>
+		
+		
+		
+		<!-- 查询 上井服务列表 -->
+		<method name="toSearchExpats"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/expats/expats_search.jsp"
+			type="1">
+		</method>
+		<!-- 查询厂区上井服务列表 -->
+		<method name="getExpatsReportList" realclass="com.u2a.business.ReportService" dbName="brickDao" trans="" limit=""	methodname="getExpatsReportList" source="a" dest="jsp/business/report/expats/expats_report.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endInDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+			</inparams> 
+			<outparams>
+				<outparam name="expatsReportList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		
+		<!-- 查询厂区上井服务列表  irport导出-->
+		<method name="getExpatsReportOut" realclass="com.u2a.business.ReportService" dbName="brickDao" methodname="getExpatsReportOut" source="" dest="">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endInDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams>
+		</method>
+		
+		<!--  日报 -->
+		<method name="toSearchDaily"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/daily/daily_search.jsp"
+			type="1">
+		</method>
+		
+		<!-- 生成厂区日报 -->
+		<method name="importDailyReport" realclass="com.u2a.business.ReportjxService" dbName="brickDao" trans="" limit=""	methodname="importDailyReport" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="noteDate" real="noteDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!--  月报 -->
+		<method name="toSearchMonth"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/month/month_search.jsp"
+			type="1">
+		</method>
+		<!-- 生成厂区月报 -->
+		<method name="importMonthReport" realclass="com.u2a.business.ReportjxService" dbName="brickDao" trans="" limit=""	methodname="importMonthReport" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="noteDate" real="noteDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		
+		<!--  完成情况 -->
+		<method name="toSearchComstate"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/comstate/comstate_search.jsp"
+			type="1">
+		</method>
+		
+		<!-- 生成完成情况汇总 -->
+		<method name="importComstateReport" realclass="com.u2a.business.ReportService" dbName="brickDao" trans="" limit=""	methodname="importComstateReport" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="noteDate" real="noteDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		
+		<!-- 周报 -->
+		<method name="toSearchWeek"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/week/week_search.jsp"
+			type="1">
+		</method>
+		<!-- 查询厂区周报 -->
+		<method name="importWeekReport" realclass="com.u2a.business.ReportjxService" dbName="brickDao" trans="" limit=""	methodname="importWeekReport" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="noteDate" real="noteDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!-- 查询厂区周报 -->
+		<method name="getWeekReportList" realclass="com.u2a.business.ReportService" dbName="brickDao" trans="" limit=""	methodname="getWeekReportList" source="a" dest="jsp/business/report/week/week_report.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="noteDate" real="noteDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+			<outparams>
+				<outparam name="weekReportList" type="LOGIC" source="attr" />
+				<outparam name="weekNum" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 查询 完工设备产值汇总列表 -->
+		<method name="toSearchComplete"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/complete/complete_search.jsp"
+			type="1">
+		</method>
+		<!-- 查询完工设备列表 -->
+		<method name="importCompleteReport" realclass="com.u2a.business.ReportService" dbName="brickDao" trans="" limit=""	methodname="importCompleteReport" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="endDate" real="endDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!--  材料计划 -->
+		<method name="toSearchMaterialWf"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/busmaterialwf/material_search.jsp"
+			type="1">
+		</method>
+		<!--查询材料计划报表-->
+		<method name="queryMaterialWfReport" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="queryMaterialWfReport" source="a" dest="jsp/business/report/busmaterialwf/material_report.jsp" error="" type="2">
+			<inparams>
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="searchDate" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="materialWfReportList" type="LOGIC" source="attr" />
+				<outparam name="factory" type="String"  source="attr" />
+				<outparam name="searchDate" type="String" source="attr" />
+				<outparam name="orgId" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--材料计划报表导出-->
+		<method name="importMaterialWfReport" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="importMaterialWfReport" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+				<inparam name="request" type="Context" check="0" source="App.Request"/>
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="searchDate" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!--材料计划报表导出-->
+		<method name="importMaterialDjReport" realclass="com.u2a.business.ReportjxService" dbName="brickDao" trans="" limit=""	methodname="importMaterialDjReport" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+				<inparam name="request" type="Context" check="0" source="App.Request"/>
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="searchDate" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!--  大件材料计划 -->
+		<method name="toSearchMaterialDj"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/busmaterialwf/dj_search.jsp"
+			type="1">
+		</method>
+		<!--查询大件材料计划报表-->
+		<method name="queryMaterialDjReport" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="queryMaterialDjReport" source="a" dest="jsp/business/report/busmaterialwf/dj_report.jsp" error="" type="2">
+			<inparams>
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="searchDate" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="materialWfReportList" type="LOGIC" source="attr" />
+				<outparam name="factory" type="String"  source="attr" />
+				<outparam name="searchDate" type="String" source="attr" />
+				<outparam name="orgId" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--  大件材料计划 -->
+		<method name="toSearchMaterialDetail"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/busmaterialwf/dj_search.jsp"
+			type="1">
+		</method>
+		<!--查询大件材料计划报表-->
+		<method name="queryMaterialDetailReport" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="queryMaterialDjReport" source="a" dest="jsp/business/report/busmaterialwf/dj_report.jsp" error="" type="2">
+			<inparams>
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="searchDate" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="materialWfReportList" type="LOGIC" source="attr" />
+				<outparam name="factory" type="String"  source="attr" />
+				<outparam name="searchDate" type="String" source="attr" />
+				<outparam name="orgId" type="String" source="attr" />
+			</outparams>
+		</method>
+		
+		<!-- 公司材料消耗报表 -->
+		<method name="importOutReport" realclass="com.u2a.business.ReportjxService" dbName="brickDao" trans="" limit=""	methodname="importOutReport" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="inDate" real="inDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!--  消耗报表-->
+		<method name="toOutReport"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/out/out_search.jsp"
+			type="1">
+		</method>
+		<!-- 导出上井服务明细报表 -->
+		<method name="importExpatsExcel" realclass="com.u2a.business.ReportjxService" dbName="brickDao" methodname="importExpatsExcel" source="" dest="">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams>
+		</method>
+		
+		<!-- 机修公司劳务（收入）汇总表 -->
+		<method name="importLwhzReport" realclass="com.u2a.business.ReportjxService" dbName="brickDao" trans="" limit=""	methodname="importLwhzReport" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="inDate" real="inDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+			<!--  生产月报  -->
+		<method name="toCompeteMonthReport"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/report/month/month_complete.jsp"
+			type="1">
+		</method>
+		<!-- 导出生产月报 -->
+		<method name="importCompleteMonthReport" realclass="com.u2a.business.ReportjxService" dbName="brickDao" methodname="importCompleteMonthReport" source="" dest="">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="factory" type="String" check="0" source="param" />
+				<inparam name="inDate" real="inDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="response" type="Context" check="0" source="App.Response"/>
+			</inparams>
+		</method>
+	</package>	
+</root>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.WorkTypeInfo" table="work_type_info">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+       	<property name="workId" type="java.lang.String">
+            <column name="work_id" length="50" />
+        </property>
+        <property name="ranking" type="java.lang.String">
+            <column name="ranking" length="50" />
+        </property>
+        <property name="workType" type="java.lang.String">
+            <column name="work_type" length="50"/>
+        </property>
+       	<property name="typeCode" type="java.lang.String">
+            <column name="type_code" length="50"/>
+        </property>
+        <property name="quotaHour" type="java.lang.String">
+            <column name="quota_hour" length="50"/>
+        </property>
+        <property name="userName" type="java.lang.String">
+            <column name="user_name" length="50"/>
+        </property>
+        <property name="userCode" type="java.lang.String">
+            <column name="user_code" length="50"/>
+        </property>
+        <property name="adjustHour" type="java.lang.String">
+            <column name="adjust_hour" length="50"/>
+        </property>
+        <property name="practicalHour" type="java.lang.String">
+            <column name="practical_hour" length="50"/>
+        </property>
+        <property name="remarks" type="java.lang.String">
+            <column name="remarks" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

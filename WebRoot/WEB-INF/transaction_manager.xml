@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	
+
+	<bean id="transactionManagerSecond"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+   <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+            <property name="transactionManager" ref="transactionManagerSecond"/>
+            <property name="transactionAttributes">
+                    <props>
+                            <prop key="save*">PROPAGATION_REQUIRED,-Exception </prop>
+                            <prop key="update*">PROPAGATION_REQUIRED,-Exception </prop>
+                            <prop key="modify*">PROPAGATION_REQUIRED,-Exception </prop>
+                            <prop key="delete*">PROPAGATION_REQUIRED,-Exception </prop>
+                            <prop key="add*">PROPAGATION_REQUIRED,-Exception </prop>
+                            <prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+                            <prop key="*Transaction">PROPAGATION_REQUIRED,-Exception</prop>
+                    </props>
+            </property>
+    </bean>
+   <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">  
+        <property name="beanNames">  
+            <list>  
+                <value>brickBean</value>
+            </list>  
+        </property>  
+        <property name="interceptorNames">  
+            <list>  
+                <value>transactionInterceptor</value>  
+            </list>  
+        </property>  
+    </bean>		
+</beans>

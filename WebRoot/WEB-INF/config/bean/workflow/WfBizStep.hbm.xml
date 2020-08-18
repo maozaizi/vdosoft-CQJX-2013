@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<hibernate-mapping>
+    <class name="com.WfBizStep" table="WF_BIZ_STEP" >
+        <id name="id" type="java.lang.Long">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+         <property name="insid" type="java.lang.String">
+            <column name="INSID" length="40" />
+        </property>
+        <property name="stepId" type="java.lang.String">
+            <column name="STEP_ID" length="40" />
+        </property>
+        <property name="contTitle" type="java.lang.String">
+            <column name="CONT_TITLE" length="400" />
+        </property>
+        <property name="url" type="java.lang.String">
+            <column name="URL" length="400" />
+        </property>
+        <property name="stepType" type="java.lang.String">
+            <column name="step_type" length="1" />
+        </property>
+        <property name="state" type="java.lang.Long">
+            <column name="STATE" precision="22" scale="0" />
+        </property>
+        <property name="startDate" type="java.util.Date">
+            <column name="START_DATE" length="7" />
+        </property>
+        <property name="duedate" type="java.util.Date">
+            <column name="DUEDATE" length="7" />
+        </property>
+        <property name="finishdate" type="java.util.Date">
+            <column name="FINISHDATE" length="7" />
+        </property>
+        <property name="caller" type="java.lang.String">
+            <column name="CALLER" length="80" />
+        </property>
+         <property name="viewUrl" type="java.lang.String">
+            <column name="VIEW_URL" length="80" />
+        </property>
+         <property name="editUrl" type="java.lang.String">
+            <column name="EDIT_URL" length="80" />
+        </property>
+        <property name="modifyDate" type="java.util.Date">
+            <column name="MODIFY_DATE" length="7" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="MODIFY_USER" length="80" />
+        </property>
+        <property name="createDate" type="java.util.Date">
+            <column name="CREATE_DATE" length="7" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="CREATE_USER" length="80" />
+        </property>
+    </class>
+</hibernate-mapping>

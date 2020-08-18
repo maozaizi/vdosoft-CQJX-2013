@@ -1,0 +1,9 @@
+@charset "utf-8";
+/* CSS Document */
+*{ padding:0px; margin:0px auto; list-style:none;}
+.clear{ clear:both;}
+body{ font-family:Tahoma,Helvetica,Arial,sans-serif;}
+/*分页*/
+.page_left{ float:left; margin-left:20px; font:12px/20px Verdana, Geneva, sans-serif; color:#363636;}
+.page_right{ float:right; margin-right:20px; font:12px/20px Verdana, Geneva, sans-serif; color:#363636;}
+.red{ color:#f00;}

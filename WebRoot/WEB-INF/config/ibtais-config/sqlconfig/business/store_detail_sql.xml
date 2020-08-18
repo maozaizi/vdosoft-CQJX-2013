@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<select id="queryStoreDetailList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from store_detail where IS_VALID='1'
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="materialDetail">
+				material_detail like '%$materialDetail$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialCode">
+				material_code like '%$materialCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialGroup">
+				material_group like '%$materialGroup$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialClass">
+				material_class like '%$materialClass$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				org_id like '%$orgId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="beginDate">
+			<![CDATA[create_date>='$beginDate$']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">
+			<![CDATA[create_date<='$endDate$']]>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="queryStoreDetailList1" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from store_detail where IS_VALID='1' and num != 0
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="materialDetail">
+				material_detail like '%$materialDetail$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialCode">
+				material_code like '%$materialCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialGroup">
+				material_group like '%$materialGroup$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialClass">
+				material_class like '%$materialClass$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				org_id like '%$orgId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="beginDate">
+			<![CDATA[create_date>='$beginDate$']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">
+			<![CDATA[create_date<='$endDate$']]>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="queryOutStoreInfoList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from out_store_info where 1=1
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="workCard">
+				work_card like '%$workCard$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				org_id like '%$orgId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="beginDate">
+			<![CDATA[create_date>='$beginDate$']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">
+			<![CDATA[create_date<='$endDate$']]>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="queryOutStoreDetailList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from out_store_detail where 1=1
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="outId">
+				out_id = '$outId$'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<select id="queryStoreworkcardList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select a.work_card as workCard,sum(a.amount) as amount, b.org_name as orgName,a.dept_name as deptName from out_store_info a,
+		(select org_code,org_name from bs_base_organization where id =
+		(select parent_id from bs_base_organization where org_code = '$orgCode$')) b
+		where a.org_id ='$orgCode$'
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="workCard">
+				a.work_card = '$workCard$'
+			</isNotEmpty>
+		</dynamic>
+		group by a.work_card,b.org_name,a.dept_name
+	</select>
+	<select id="getOutStoreReturnList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from out_store_info where use_type=4
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="workCard">
+				material_detail like  '%$materialDetail$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="workCard">
+				material_class like  '%$materialClass$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="workCard">
+				material_group like  '%$materialGroup$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="workCard">
+				material_code like  '%$materialCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				org_id like '$orgId$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="getOtherOutStoreList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select t.id,t.material_detail,t.store_num,t.amount,t.material_class,t.material_group,t.material_code,
+			t.org_id,t.dept_name,t.modify_date,t.modify_user,t.create_date,t.create_user,t.remark,t.unity,t.material_type,t.out_date
+	    from other_out_store t where 1=1 
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="materialType">
+				material_type =  '$materialType$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				org_id like '$orgId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="beginDate">
+			<![CDATA[t.out_date>='$beginDate$']]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">
+			<![CDATA[t.out_date<='$endDate$']]>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	<select id="getStoreNum" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select sum(num)  storeNum from store_detail where 1=1 
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="equipmentModel">
+				material_code = #equipmentModel#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+</sqlMap>

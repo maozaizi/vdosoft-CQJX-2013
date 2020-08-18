@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	
+	<select id="queryExpatsDetailList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select 
+		a.id as id,
+		b.id as bid,
+		b.task_code as task_code,
+		b.task_detail as task_detail,
+		b.expats_to as expats_to ,
+		a.create_date as create_date,
+		a.is_complete as is_complete
+		from expats_detail a left join expats_info b on a.expats_id = b.id
+		where a.is_valid = '1' and b.is_valid = '1'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="orgCode">
+				a.org_code like '%$orgCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="taskCode">
+				b.task_code like '%$taskCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="beginInDate">
+				b.create_date&gt;$beginInDate$ 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">
+				b.create_date&lt;$endInDate$ 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="isComplete">
+				a.is_complete = '$isComplete$'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="queryExpatsInfoList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from expats_info where is_valid=1
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="orgCode">
+				org_code like '%$orgCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="beginInDate">
+				create_date&gt;$beginInDate$ 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">
+				create_date&lt;$endInDate$ 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="taskCode">
+				task_code like '%$taskCode$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+
+</sqlMap>

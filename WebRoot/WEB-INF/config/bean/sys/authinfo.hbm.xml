@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.AuthInfo" table="auth_info">
+        <id name="authId" type="java.lang.String">
+            <column name="auth_id" length="20" />
+            <generator class="notnative" />
+        </id>
+        <property name="rootAuthId" type="java.lang.String">
+            <column name="root_auth_id" length="20" />
+        </property>
+        <property name="parentAuthId" type="java.lang.String">
+            <column name="parent_auth_id" length="20" />
+        </property>
+        <property name="authGrade" type="java.lang.String">
+            <column name="auth_grade" length="2" not-null="true">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+        <property name="authName" type="java.lang.String">
+            <column name="auth_name" length="50" not-null="true">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+        <property name="authRemark" type="java.lang.String">
+            <column name="auth_remark" length="150">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+        <property name="url" type="java.lang.String">
+            <column name="url" length="100">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+        <property name="authType" type="java.lang.String">
+            <column name="auth_type" length="2" not-null="true">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+        <property name="authOrder" type="java.lang.Integer">
+            <column name="auth_order">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+         <property name="authCode" type="java.lang.String">
+            <column name="auth_code">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="IS_VALID" length="1" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="CREATE_USER" length="80" />
+        </property>
+        <property name="createDate" type="java.util.Date">
+            <column name="CREATE_DATE" length="7" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="MODIFY_USER" length="80" />
+        </property>
+        <property name="modifyDate" type="java.util.Date">
+            <column name="MODIFY_DATE" length="7" />
+        </property>
+        <property name="childList" type="java.util.List" >
+            <column name="childList" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

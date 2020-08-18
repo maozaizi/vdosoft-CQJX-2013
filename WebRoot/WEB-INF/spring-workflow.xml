@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<bean id="workflowStore"
+		class="com.u2a.framework.service.workflow.BrickJDBCWorkflowStore">
+		<property name="help" ref="wfhelp" />
+		<property name="db" ref="brickDao" />
+		<property name="ds">
+			<ref bean="dataSource" />
+		</property>
+		 
+		<!--<property name="entrySequence"
+			value="SELECT seq_os_wfentry.nextVal from dual" />
+		<property name="stepSequence"
+			value="SELECT seq_os_currentsteps.nextVal from dual" />
+		<property name="entrySequence" value="select nextval('entrySequence') from dual"/>
+		<property name="stepSequence" value="select nextval('stepSequence') from dual"/> -->
+			<property name="entrySequence"
+			value="select count(*) + 1 from os_wfentry" />
+		<property name="stepSequence"
+			value="select sum(c1) + 1 from (select 1 as tb, count(*) as c1 from os_currentstep union select 2 as tb, count(*) as c1 from os_historystep) as TabelaFinal" />
+		<property name="entryTable" value="OS_WFENTRY" />
+		<property name="entryId" value="ID" />
+		<property name="entryName" value="NAME" />
+		<property name="entryState" value="STATE" />
+		<property name="historyTable" value="OS_HISTORYSTEP" />
+		<property name="currentTable" value="OS_CURRENTSTEP" />
+		<property name="historyPrevTable" value="OS_HISTORYSTEP_PREV" />
+		<property name="currentPrevTable" value="OS_CURRENTSTEP_PREV" />
+		<property name="stepId" value="ID" />
+		<property name="stepEntryId" value="ENTRY_ID" />
+		<property name="stepStepId" value="STEP_ID" />
+		<property name="stepActionId" value="ACTION_ID" />
+		<property name="stepOwner" value="OWNER" />
+		<property name="stepCaller" value="CALLER" />
+		<property name="stepStartDate" value="START_DATE" />
+		<property name="stepFinishDate" value="FINISH_DATE" />
+		<property name="stepDueDate" value="DUE_DATE" />
+		<property name="stepStatus" value="STATUS" />
+		<property name="stepPreviousId" value="PREVIOUS_ID" />
+	</bean>
+	<!-- 
+		<property name="owner" value="OWNER" />
+		<property name="caller" value="CALLER" />
+		<property name="startDate" value="START_DATE" />
+		<property name="finishDate" value="FINISH_DATE" />
+		<property name="dueDate" value="DUE_DATE" />
+		<property name="status" value="STATUS" />
+		<property name="previousId" value="PREVIOUS_ID" />
+	<bean id="workflowFactory"
+		class="com.opensymphony.workflow.spi.hibernate.SpringWorkflowFactory" init-method="init">
+		<property name="resource">
+			<value>workflows.xml</value>
+		</property>
+		<property name="reload">
+			<value>true</value>
+		</property>
+	</bean>-->	 
+		<bean id="workflowFactory"
+		class="com.opensymphony.workflow.loader.JDBCWorkflowFactory" init-method="initDone">
+		<property name="ds">
+		<ref bean="dataSource" />
+		</property>
+		<property name="reload">
+		<value>false</value>
+		</property>
+		</bean>
+	<bean id="osworkflowConfiguration"
+		class="com.opensymphony.workflow.config.SpringConfiguration">
+		<property name="store">
+			<ref local="workflowStore" />
+		</property>
+		<property name="factory">
+			<ref local="workflowFactory" />
+		</property>
+	</bean>
+
+	<bean id="workflowTypeResolver"
+		class="com.opensymphony.workflow.util.SpringTypeResolver">
+	</bean>
+	<bean id="wfhelp"
+		class="com.u2a.framework.service.workflow.impl.WorkFlowHelperImpl">
+		<property name="db" ref="brickDao" />
+	</bean>
+	<bean id="initEntry"
+		class="com.u2a.framework.service.workflow.util.InitEntry">
+		<property name="db" ref="brickDao" />
+	</bean>
+	<bean id="getLastCaller"
+		class="com.u2a.framework.service.workflow.util.GetLastCaller">
+		<property name="db" ref="brickDao" />
+	</bean>
+	<bean id="updateBusinessState"
+		class="com.u2a.framework.service.workflow.util.UpdateBusinessState">
+		<property name="db" ref="brickDao" />
+	</bean>
+	<bean id="getProcessCaller"
+		class="com.u2a.framework.service.workflow.util.GetProcessCaller">
+		<property name="db" ref="brickDao" />
+	</bean>
+	<bean id="getCheckCaller"
+		class="com.u2a.framework.service.workflow.util.GetCheckCaller">
+		<property name="db" ref="brickDao" />
+	</bean>
+</beans>

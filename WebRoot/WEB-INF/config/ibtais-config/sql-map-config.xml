@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig 
+	PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" 
+	"http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<!-- 系统sql 开始 -->
+		<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/sys/user_sql.xml"/>
+		<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/sys/auth_sql.xml"/>
+		<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/sys/auth_group_sql.xml"/> 
+		<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/datadict_sql.xml"/>	
+		<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/sys/custom/custom_sql.xml"/>	
+		<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/sys/logrecords_sql.xml"/>	
+	<!-- 系统sql 结束 -->
+	
+	<!-- 基础sql 开始  -->
+		<!-- 数据字典sql -->
+		<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/base/dictionary/dictionary_sql.xml"/>
+		<!-- 基础组织结构sql -->
+		<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/base/baseorganization/baseorganization_sql.xml"/>
+		<!-- 应用基础组织 -->
+		<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/base/organizationdetali/organizationdetali_sql.xml"/>
+		<!-- 短消息 -->
+		<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/base/mailmanage/mail_manage_sql.xml"/>
+	<!-- 基础sql 结束  -->
+	<!-- 工作流sql -->
+	<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/workflow/workflow_sql.xml"/>
+	<!--Business sql -->
+	<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/business/equipment_info_sql.xml"/>
+	<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/business/bus_mechanic_sql.xml"/>
+	
+	<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/business/chargeoff_detail_sql.xml"/>
+	<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/business/materialinfo_sql.xml"/>
+	<!-- 出库明细 -->
+	<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/business/store_detail_sql.xml"/>
+	<!-- 上井 -->
+	<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/business/expats_sql.xml"/>
+	<!-- 井队信息 -->
+	<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/business/drilling_crew_sql.xml"/>
+	<!-- 报表 -->
+	<sqlMap resource="/WEB-INF/config/ibtais-config/sqlconfig/business/report_sql.xml"/>
+</sqlMapConfig>

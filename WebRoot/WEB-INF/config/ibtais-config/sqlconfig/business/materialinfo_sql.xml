@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<select id="queryMaterialList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from material_info where IS_VALID='1'
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="materialClass">
+				material_class like '%$materialClass$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialGroup">
+				material_group like '%$materialGroup$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialDetail">
+				material_detail like '%$materialDetail$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialCode">
+				material_code like '%$materialCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="id">
+				id != '$id$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="isFormal">
+				is_formal like '%$isFormal$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="queryMaterialWfReport" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select t.material_detail as materialDetail,
+		t.unity as unity ,t.material_num as materialNum,
+		t.real_num as realNum,t.ratify_num as ratifyNum,
+		t.estimate_price estimatePrice,t.remark,t.material_class as materialClass,
+		t.material_group as materialGroup,t.create_date as createDate,
+		t.total_price as totalPrice,t2.org_name as orgName,t3.org_name as parentOrgName
+		 from bus_material_plan_wf t,bus_plan_info_wf t1,bs_base_organization t2,bs_base_organization t3
+		 where  t.plan_id =t1.id and t1.org_id=t2.org_code and t2.parent_id = t3.id
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="searchDate">
+				convert(char(6),t.create_date,112) = '$searchDate$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				t2.org_code like '$orgId$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="queryMaterialDjReport" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select t.material_detail as materialDetail,
+			t.unity as unity ,t.material_num as materialNum,
+			t.real_num as realNum,t.ratify_num as ratifyNum,
+			t.estimate_price estimatePrice,t.remark,t.material_class as materialClass,
+			t.material_group as materialGroup,t.create_date as createDate,
+			t.total_price as totalPrice,t2.org_name as orgName,t3.org_name as parentOrgName
+		 from bus_material_plan_wf t,bus_plan_info_wf t1,bs_base_organization t2,bs_base_organization t3
+		 where  t.plan_id =t1.id and t1.org_id=t2.org_code and t2.parent_id = t3.id and t1.is_valid=1 and t.estimate_price>5000
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="searchDate">
+				convert(char(6),t.create_date,112) = '$searchDate$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				t2.org_code like '$orgId$%'
+			</isNotEmpty>
+		</dynamic>
+		union
+	   select t.material_detail as materialDetail,
+			t.unity as unity ,t.material_num as materialNum,
+			t.real_num as realNum,t.ratify_num as ratifyNum,
+			t.estimate_price estimatePrice,t.remark,t.material_class as materialClass,
+			t.material_group as materialGroup,t.create_date as createDate,
+			t.total_price as totalPrice,t2.org_name as orgName,t3.org_name as parentOrgName
+	   from bus_material_plan_wf t,bus_plan_info_wf t1,bs_base_organization t2,bs_base_organization t3
+	 	where  t.plan_id =t1.id and t1.org_id=t2.org_code and t2.parent_id = t3.id and t1.is_valid=1  and t.estimate_price>5000
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="searchDate">
+				convert(char(6),t.create_date,112) = '$searchDate$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				t2.org_code like '$orgId$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<update id="updateMaterialPlan"
+		parameterClass="com.brick.data.IMap">
+		update bus_material_plan set material_code = #materialCode# where material_code=#oldCode#
+	</update>
+	<update id="updateMaterialPlanWf"
+		parameterClass="com.brick.data.IMap">
+		update bus_material_plan_wf set material_code = #materialCode# where material_code=#oldCode#
+	</update>
+	<select id="getBusMaterialPlanList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from bus_material_plan where 1=1 
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="planId">
+				plan_id = #planId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="type">
+				type in ($type$)
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="flag">
+				<isEqual compareValue="1" property="flag">
+					estimate_price &gt; 5000
+				</isEqual>
+				<isEqual compareValue="2" property="flag">
+					estimate_price &gt;= 10000
+				</isEqual>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="getToolsPlanList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from bus_toolswf where 1=1 
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="workCard">
+				work_card like '%$workCard$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="equipmentName">
+				equipment_name like '%$equipmentName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				org_id like '%$orgId$%'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
+	
+</sqlMap>

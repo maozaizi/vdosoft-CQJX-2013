@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="storedetail">
+		<!-- 列表查询 -->
+		<method name="getStoreDetailList" realclass="com.u2a.business.StoreDetailService" dbName="brickDao" 
+			trans="" limit=""	methodname="getStoreDetailList" source="aa" 
+			dest="jsp/business/storedetail/storedetail_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="storeDetail" type="LOGIC"
+					classname="com.StoreDetail" source="param">
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+					<inparam name="beginDate"  type="String" check="0" source="param" />
+					<inparam name="endDate"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到添加页面 -->
+		<method name="toAddStoreDetail"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/storedetail/storedetail_addframe.jsp"
+			type="1">
+		</method>
+		<!-- 选择材料信息IFrameList -->
+		<method name="toMaterialInfoList" realclass="com.u2a.business.MaterialInfoService" 
+			dbName="brickDao" trans="" limit=""	methodname="getList" source="a" dest="jsp/business/storedetail/materialinfo_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="materialInfo" type="LOGIC"
+					classname="com.MaterialInfo" source="param">
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 添加库存 -->
+		<method name="saveStoreDetail" realclass="com.u2a.business.StoreDetailService" dbName="brickDao" trans="" limit=""	methodname="saveStoreDetail" source="a" dest="jsp/business/storedetail/storedetail_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="storeDetail" type="LIST"
+					classname="com.StoreDetail" source="param">
+					<inparam name="materialCode"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="num"  type="String" check="0" source="param" />
+					<inparam name="unitPrice" type="Double" check="0" source="param" />
+					<inparam name="referencePrice"  type="Double" check="0" source="param" />
+					<inparam name="materialType"  type="String" check="0" source="param" />
+					<inparam name="unity"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!-- 修改库存 -->
+		<method name="modifyStoreDetail" realclass="com.u2a.business.StoreDetailService" dbName="brickDao" trans="" limit=""	methodname="modifyStoreDetail" source="a" dest="jsp/business/storedetail/storedetail_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="id"  type="String" check="0" source="param" />
+				<inparam name="num"  type="String" check="0" source="param" />
+				<inparam name="unitPrice" type="Double" check="0" source="param" />
+				<inparam name="materiaType"  type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!-- 跳转明细修改 -->
+		<method name="toUpdateStoreDetail"
+			realclass="com.u2a.business.StoreDetailService"
+			dbName="brickDao" trans="" limit="" methodname="toUpdateStoreDetail"
+			source="a" dest="jsp/business/storedetail/storedetail_update.jsp"
+			type="1">
+			<inparams>
+				<inparam name="id" real="id" type="String"
+					check="1" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="storeMap" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 删除明细 -->
+		<method name="delStoreDetail"
+			realclass="com.u2a.business.StoreDetailService"
+			dbName="brickDao" trans="" limit="" methodname="deleteStoreDetail"
+			source="a" dest="jsp/business/storedetail/storedetail_list.jsp" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="id" real="id" type="String"
+					check="1" source="param" />
+				<inparam name="url" real="url" type="String" check="1" source="param" />
+			</inparams>
+		</method>
+		<!-- 出库历史列表 -->
+		<method name="getOutStoreInfoList" realclass="com.u2a.business.StoreDetailService" dbName="brickDao" 
+			trans="" limit=""	methodname="getOutStoreInfoList" source="aa" 
+			dest="jsp/business/storedetail/outstoreinfo_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="outStoreInfo" type="LOGIC"
+					classname="com.OutStoreInfo" source="param">
+					<inparam name="workCard"  type="String" check="0" source="param" />
+					<inparam name="beginDate"  type="String" check="0" source="param" />
+					<inparam name="endDate"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 出库明细列表 -->
+		<method name="getOutStoreDetailList" realclass="com.u2a.business.StoreDetailService" dbName="brickDao" 
+			trans="" limit=""	methodname="getOutStoreDetailList" source="aa" 
+			dest="jsp/business/storedetail/outstoredetail_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="outId" real="outId" type="String" check="0" source="param"/>
+				<inparam name="workCard" real="workCard" type="String" check="0" source="param"/>
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+				<outparam name="workCard" type="String" source="attr" />
+			</outparams>
+		</method>
+		
+		<method name="getStoreList" realclass="com.u2a.business.StoreDetailService" dbName="brickDao" 
+			trans="" limit=""	methodname="getStoreList" source="aa" 
+			dest="jsp/business/storedetail/store_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="workCard" real="workCard" type="String" check="0" source="param"/>
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<method name="getOutStoreReturnList" realclass="com.u2a.business.StoreDetailService" dbName="brickDao" 
+			trans="" limit=""	methodname="getOutStoreReturnList" source="aa" 
+			dest="jsp/business/outstorereturn/return_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="materialGroup" real="materialGroup" type="String" check="0" source="param"/>
+				<inparam name="materialDetail" real="materialDetail" type="String" check="0" source="param"/>
+				<inparam name="materialCode" real="materialCode" type="String" check="0" source="param"/>
+				<inparam name="materialClass" real="materialClass" type="String" check="0" source="param"/>
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到添加退货页面 -->
+		<method name="toAddReturn"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/outstorereturn/return_add.jsp"
+			type="1">
+		</method>
+		<!--退料-->
+		<method name="saveOutStoreReturn" realclass="com.u2a.business.StoreDetailService" dbName="brickDao" trans="" limit=""	methodname="saveOutStoreReturn" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="outStoreInfo" type="LIST" classname="com.outStoreInfo" source="param">
+					<inparam name="materialClass" type="String" check="0" source="param" />
+					<inparam name="materialGroup" type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialDetail" type="String" check="0" source="param" />
+					<inparam name="unity" type="String" check="0" source="param" />
+					<inparam name="storeNum" type="String" check="0" source="param" />
+					<inparam name="useType" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<!--退料详细信息-->
+		<method name="toReturnDetail" realclass="com.u2a.business.StoreDetailService" dbName="brickDao" trans="" limit=""	methodname="toReturnDetail" source="a" dest="jsp/business/outstorereturn/return_detail.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="outStoreDetailList" type="LIST" source="attr" />
+			</outparams>
+		</method>
+	</package>
+</root>

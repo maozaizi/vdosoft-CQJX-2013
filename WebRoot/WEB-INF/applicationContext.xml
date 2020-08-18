@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+
+	<bean id="dataSource1"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName"
+			value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+		</property>
+		<property name="url"
+			value="jdbc:sqlserver://192.168.0.199:1433;DatabaseName=CQJX-YS">
+		</property>
+		<property name="username" value="sa"></property>
+		<property name="password" value="sa"></property>
+		<!-- 最小空闲连接数 
+			<property name="minIdle" value="0"></property>-->
+		<!-- 最大空闲连接数 
+			<property name="maxIdle" value="100"></property>-->
+		<!-- 初始化时创建连接数
+			<property name="initialSize" value="3"></property> -->
+		<!-- 支持最大活动连接数<property name="url" value="jdbc:sqlserver://172.20.10.159:1433;DatabaseName=CQJX-YS"></property>
+			<property name="maxActive" value="1000"></property> -->
+		<!-- 连接耗光时，等待时间 -1 无限等待
+			<property name="maxWait" value="-1"></property> -->
+		<!-- 连接验证 
+		trd	<property name="validationQuery" value="select 1"></property>-->
+	</bean>
+
+	<!-- ①对数据源进行代理-->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+		<property name="targetDataSource" ref="dataSource1" />
+	</bean>
+	<bean id="sqlMapClient"
+		class="com.brick.manager.SqlMapClientFactoryBean">
+		<property name="configLocation"
+			value="/WEB-INF/config/ibtais-config/sql-map-config.xml" />
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	<!-- 原型模式 -->
+	<bean id="brickDao" class="com.brick.dao.DAO">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="logic" class="com.brick.manager.Logic"></bean>
+	<bean id="brickBean" class="com.brick.manager.BrickFactoryBean"
+		factory-method="createInstance" scope="prototype">
+		<constructor-arg ref="logic"></constructor-arg>
+		<property name="db" ref="brickDao" />
+	</bean>
+</beans>

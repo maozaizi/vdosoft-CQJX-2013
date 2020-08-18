@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.PostInfo" table="bs_post_info">
+        <id name="postId" type="java.lang.String">
+            <column name="post_id" length="40"/>
+            <generator class="notnative" />
+        </id>
+        <property name="orderby" type="java.lang.String">
+            <column name="orderby" length="100"/>
+        </property>
+        <property name="postCode" type="java.lang.String">
+            <column name="post_code" length="500">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+        <property name="postName" type="java.lang.String">
+            <column name="post_name" length="500">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+        <property name="associationRole" type="java.lang.String">
+            <column name="association_role" length="40">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+         <property name="postDuties" type="java.lang.String">
+            <column name="post_duties" length="1">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+        <property name="orgId" type="java.util.Date">
+            <column name="org_id" length="19">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+         <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="40">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+         <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="19">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+         <property name="createDate" type="java.util.Date">
+            <column name="create_date" length="40">
+                <comment>Ȩ</comment>
+            </column>
+        </property> 
+         <property name="modifyDate" type="java.util.Date">
+            <column name="modify_date" length="19">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

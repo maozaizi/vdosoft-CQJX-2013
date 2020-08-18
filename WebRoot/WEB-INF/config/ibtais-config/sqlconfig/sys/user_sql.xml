@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+
+	<select id="loginsql" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from user_info where is_valid = '1'
+			<isNotEmpty prepend="and" property="userPwd">
+				user_pwd=#userPwd#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="userName">
+				user_name=#userName#
+			</isNotEmpty>
+	</select>
+	
+	<select id="get_type_code_sql" parameterClass="com.brick.data.IMap"	resultClass="java.util.HashMap">
+		select i.user_type_code from user_info u,user_type_info i where u.user_id=#userId# and u.user_type_id=i.user_type_id 		
+	</select>
+
+	<select id="searchsql" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select u.*,info.user_type_name from user_info u left join user_type_info info on u.user_type_id=info.user_type_id
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="and" property="userName">
+				u.user_name like '%$userName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="email">
+				u.email like '%$email$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="userType">
+				u.user_type_id=#userType#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="starttime">
+				(u.reg_date&gt;#starttime# or u.reg_date like '%$starttime$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endtime">
+				(u.reg_date&lt;#endtime# or u.reg_date like '%$endtime$%')
+			</isNotEmpty>
+		</dynamic>
+		order by u.reg_date desc
+	</select>
+
+	<select id="gettypesql" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select user_type_id,user_type_name from user_type_info t where
+		user_type_id in (#ids#)
+	</select>
+
+
+
+	<select id="usertypesql" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from user_type_info
+
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="and" property="userTypeId">
+				user_type_id=#userTypeId#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<select id="queryUserBeyondGroup"
+		parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from user_group_member where user_id=#userId#
+	</select>
+	<select id="queryUserAuth"
+		parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select distinct a.*
+		  from auth_info a,
+		       auth_group_member b,
+		       BS_POST_INFO   c,
+		       BS_POST_USER d
+		 where a.auth_id = b.auth_id
+		   and b.auth_group_id = c.POST_CODE
+		   and c.POST_ID = d.POST_ID
+		   and d.user_id = #userid#
+		   and a.IS_VALID = '1'
+		   and b.IS_VALID = '1'
+		   and b.IS_VALID = '1'
+		   and d.IS_VALID = '1'
+	</select>
+
+	<select id="queryParentAuth" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from auth_info where auth_id=#parentAuthId#
+	</select>
+	<!-- 获取用户岗位信息列表 -->
+	<select id="getPostUserList" parameterClass="com.brick.data.IMap"	resultClass="java.util.HashMap">
+		select ui.user_id,ui.org_id,ui.gender,ui.nation,ui.name,bpu.post_id,bpu.is_valid,bpu.post_user_id 
+		from (select us.* from user_info us where us.org_id=#orgId# and us.is_valid = '1') ui
+		    left join (select * from bs_post_user where post_id=#postId#  and is_valid = '1') bpu
+		    on ui.user_id=bpu.user_id
+	</select>
+	<!-- 通过岗位获取岗位下的所有人员 -->
+	<select id="get_assign_user" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+	   select distinct u.*
+	  from AUTH_GROUP a,bs_post_info t, user_info u, bs_post_user b
+	 where t.post_name=#postCode#
+	   and a.AUTH_GROUP_ID= t.post_code
+	   and t.post_id = b.post_id
+	   and u.user_id = b.user_id
+	   and u.org_id like '%$orgId$%'
+	   and u.is_valid='1'
+   </select>
+   <select id="queryuserposts" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select a.* from bs_post_info a,bs_post_user b where a.post_id = b.post_id and b.user_id=#userid#
+	</select>
+   
+</sqlMap>

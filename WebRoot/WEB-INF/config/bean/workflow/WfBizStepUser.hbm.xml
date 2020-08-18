@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<hibernate-mapping>
+    <class name="com.WfBizStepUser" table="WF_BIZ_STEP_USER" >
+        <id name="id" type="java.lang.String">
+            <column name="ID" length="40" />
+            <generator class="assigned" />
+        </id>
+          <property name="stepid" type="java.lang.String">
+            <column name="STEPID" length="40" />
+        </property>
+        <property name="userid" type="java.lang.String">
+            <column name="USERID" length="40" />
+        </property>
+        <property name="stepstate" type="java.lang.String">
+            <column name="stepstate" length="1" />
+        </property>
+        <property name="approveOpinion" type="java.lang.String">
+            <column name="APPROVE_OPINION" length="1000" />
+        </property>
+        <property name="approveResult" type="java.lang.String">
+            <column name="APPROVE_RESULT" length="200" />
+        </property>
+        <property name="state" type="java.lang.Long">
+            <column name="STATE" precision="22" scale="0" />
+        </property>
+        <property name="execdate" type="java.util.Date">
+            <column name="EXECDATE" length="7" />
+        </property>
+        <property name="modifyDate" type="java.util.Date">
+            <column name="MODIFY_DATE" length="7" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="MODIFY_USER" length="80" />
+        </property>
+        <property name="createDate" type="java.util.Date">
+            <column name="CREATE_DATE" length="7" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="CREATE_USER" length="80" />
+        </property>
+    </class>
+</hibernate-mapping>

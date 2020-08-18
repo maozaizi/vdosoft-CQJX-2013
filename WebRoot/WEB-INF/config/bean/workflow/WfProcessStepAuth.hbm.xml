@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.WfProcessStepAuth" table="WF_PROCESS_STEP_AUTH">
+        <id name="id" type="java.lang.String">
+            <column name="ID" length="40" />
+            <generator class="assigned" />
+        </id>
+         <property name="processStepId" type="java.lang.String">
+            <column name="PROCESS_STEP_ID" length="40" />
+        </property>
+        <property name="autId" type="java.lang.String">
+            <column name="AUT_ID" length="40" />
+        </property>
+        <property name="autName" type="java.lang.String">
+            <column name="AUT_NAME" length="100" />
+        </property>
+        <property name="strtype" type="java.lang.String">
+            <column name="STRTYPE" length="1" />
+        </property>
+        <property name="authorizedType" type="java.lang.String">
+            <column name="AUTHORIZED_TYPE" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="authgroup">
+	
+		<!-- 查询所有权限组 -->
+		<method name="allAuthGroup" realclass="com.u2a.framework.service.sys.AuthGroupService" methodname="getAllAuthGroup" dbName="brickDao" trans="" limit="" source="a" dest="" error="" type="1">
+			<inparams>
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+		
+		<!-- 列表 -->
+		<method name="list" realclass="com.u2a.framework.service.sys.AuthGroupService" methodname="getList" dbName="brickDao" trans="" limit="" source="a" dest="jsp/sys/authgroup/authgroup_list.jsp" error="" type="1">
+			<inparams>
+				<inparam name="authGroup" type="LOGIC" classname="com.AuthGroup" source="param">
+					<inparam name="authGroupName" type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="currentPageNO" type="Integer" source="param" default="1"/>
+				<inparam name="request" type="Context" source="App.Request" />
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+				<outparam name="authGroupName" type="String" source="attr" />
+			</outparams>
+		</method>
+		
+		<!-- 跳转添加页面 -->
+		<method name="goAdd" realclass="com.u2a.framework.service.sys.AuthGroupService" methodname="gotoAddPage" dbName="brickDao" trans="" limit="" source="a" dest="jsp/sys/authgroup/authgroup_add.jsp" error="" type="1">
+			<inparams>
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+		
+		<!-- 添加 -->
+		<method name="save" realclass="com.u2a.framework.service.sys.AuthGroupService" methodname="saveAuthGroup" dbName="brickDao" trans="" limit="" source="a" dest="" error="" type="1">
+			<inparams>
+				<inparam name="authGroup" type="LOGIC" classname="com.AuthGroup" source="param">
+					<inparam name="authGroupName" type="String" check="1" source="param"/>
+					<inparam name="authGroupRemark" type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="url"  real="url"  type="String" check="0"  source="param"/>
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+		
+		<!-- 详细信息 -->
+		<method name="detail" realclass="com.u2a.framework.service.sys.AuthGroupService" methodname="goModifyAuthGroup" dbName="brickDao" trans="" limit="" source="a" dest="jsp/sys/authgroup/authgroup_modify.jsp" error="" type="1">
+			<inparams>
+				<inparam name="authGroup" type="LOGIC" classname="com.AuthGroup" source="param">
+					<inparam name="authGroupId" type="String" check="1" source="param" remark="权限组ID"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="authGroup" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+	
+		<!-- 修改 -->
+		<method name="modify" realclass="com.u2a.framework.service.sys.AuthGroupService" methodname="modifyAuthGroup" dbName="brickDao" trans="" limit="" source="a" dest="" error="" type="1">
+			<inparams>
+				<inparam name="authGroup" type="LOGIC" classname="com.AuthGroup" source="param">
+					<inparam name="authGroupId" type="String" check="1" source="param"/>
+					<inparam name="authGroupName" type="String" check="1" source="param"/>
+					<inparam name="authGroupRemark" type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="url"  real="url"  type="String" check="0"  source="param"/>
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+		
+		<!-- 详细信息 -->
+		<method name="delete" realclass="com.u2a.framework.service.sys.AuthGroupService" methodname="deleteAuthGroup" dbName="brickDao" trans="" limit="" source="a" dest="" error="" type="1">
+			<inparams>
+				<inparam name="authGroup" type="LOGIC" classname="com.AuthGroup" source="param">
+					<inparam name="authGroupId" type="String" check="1" source="param" remark="权限组ID"/>
+				</inparam>
+				<!-- <inparam name="userGroupAuth" type="LOGIC" classname="com.UserGroupAuth" source="param">
+					<inparam name="authGroupId" type="String" check="1" source="param" remark="权限组ID"/>
+				</inparam> -->
+				<inparam name="url"  real="url"  type="String" check="0"  source="param"/>
+			</inparams>
+			<outparams>
+				<outparam name="authGroup" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		
+		<!-- 成员列表 -->
+		<method name="memberlist" realclass="com.u2a.framework.service.sys.AuthGroupService" dbName="brickDao" trans="" limit=""	methodname="getAuthGroupMebList" source="aa" dest="jsp/sys/authgroup/authgroup_member_list.jsp" error="" type="1">
+			<inparams>
+				<inparam name="auth" type="LOGIC" classname="com.AuthInfo" source="param"></inparam>
+				<inparam name="authGroupMember" type="LOGIC" classname="com.AuthGroupMember" source="param">
+					<inparam name="authGroupId" type="String" check="1" source="param" remark="权限组ID"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="authGroupId" type="String" source="attr"/>
+				<outparam name="authList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		
+		<!-- 保存权限组成员 -->
+		<method name="saveMember" realclass="com.u2a.framework.service.sys.AuthGroupService" dbName="brickDao" trans="" limit=""	methodname="saveAuthGroupMember" source="aa" dest="" error="" type="1">
+			<inparams>
+				<inparam name="authGroupMember" type="LOGIC" classname="com.AuthGroupMember" source="param">
+					<inparam name="authGroupId" type="String" check="1" source="param" remark="权限组ID"/>
+				</inparam>
+				<inparam name="url"  real="url"  type="String" check="0"  source="param"/>
+				<inparam name="request" type="Context" source="App.Request" />
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+	</package>
+	
+</root>

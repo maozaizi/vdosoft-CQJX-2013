@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.BusPlanInfoWf" table="bus_plan_info_wf">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="planCode" type="java.lang.String">
+            <column name="plan_code" length="50"/>
+        </property>
+        <property name="auditState" type="java.lang.String">
+            <column name="audit_state" length="10"/>
+        </property>
+       	<property name="checkTime" type="java.sql.Date">
+            <column name="check_time" length="10"/>
+        </property>
+        <property name="cclResult" type="java.lang.String">
+            <column name="ccl_result" length="4" />
+        </property>
+        <property name="cclRemark" type="java.lang.String">
+            <column name="ccl_remark" length="100" />
+        </property>
+        <property name="cqResult" type="java.lang.String">
+            <column name="cq_result" length="4" />
+        </property>
+        <property name="cqRemark" type="java.lang.String">
+            <column name="cq_remark" length="100" />
+        </property>
+        <property name="zrResult" type="java.lang.String">
+            <column name="zr_result" length="4" />
+        </property>
+        <property name="zrRemark" type="java.lang.String">
+            <column name="zr_remark" length="100" />
+        </property>
+        <property name="scResult" type="java.lang.String">
+            <column name="sc_result" length="4" />
+        </property>
+        <property name="scRemark" type="java.lang.String">
+            <column name="sc_remark" length="100" />
+        </property>
+        <property name="jyResult" type="java.lang.String">
+            <column name="jy_result" length="4" />
+        </property>
+        <property name="jyRemark" type="java.lang.String">
+            <column name="jy_remark" length="100" />
+        </property>
+        <property name="jlResult" type="java.lang.String">
+            <column name="jl_result" length="4" />
+        </property>
+        <property name="jlRemark" type="java.lang.String">
+            <column name="jl_remark" length="100" />
+        </property>
+        <property name="zgsResult" type="java.lang.String">
+            <column name="zgs_result" length="4" />
+        </property>
+        <property name="zgsRemark" type="java.lang.String">
+            <column name="zgs_remark" length="100" />
+        </property>
+         <property name="planRemark" type="java.lang.String">
+            <column name="plan_remark" length="100" />
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="4" />
+        </property>
+        <property name="createDate" type="java.sql.Date">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40" />
+        </property>
+        <property name="modifyDate" type="java.sql.Date">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40" />
+        </property>
+        <property name="orgId" type="java.lang.String">
+            <column name="org_id" length="40" />
+        </property>
+        <property name="memo" type="java.lang.String">
+            <column name="memo" length="500" />
+        </property>
+        <property name="bigRemark" type="java.lang.String">
+            <column name="big_remark" length="300">
+            </column>	            
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="dictionary">
+		<!-- 数据字典 tree结构 -->
+		<method name="getDataItemBaseInfoList" realclass="com.u2a.framework.service.base.dictionary.DictionaryService" dbName="brickDao" trans="" limit=""	methodname="getDataItemBaseInfoList" source="a" dest="jsp/base/dictionary/dataitembaseinfo_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="dataItemBaseInfo" type="LOGIC" classname="com.DataItemBaseInfo" source="param"/>
+				<inparam name="expendId"  type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+				<outparam name="dataItemBaseInfoList" type="LOGIC" source="attr" />
+				<outparam name="cb" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		
+		<!-- 数据字典  添加tree节点转向 -->
+		<method name="toSave" realclass="com.u2a.framework.service.base.dictionary.DictionaryService" dbName="brickDao" trans="" limit=""	methodname="toAddDataItemBaseInfo" source="aa" dest="jsp/base/dictionary/dataitembaseinfo_add.jsp" error="" type="2">
+			<inparams>
+				<inparam name="parentId"  type="String" check="0" source="param" remark="当前节点ID"/>
+				<inparam name="dataItemId"  type="String" check="0" source="param" remark="id"/>
+			</inparams>
+			<outparams>
+				<outparam name="navigation"  type="String" source="param"/>
+			</outparams>
+		</method>
+		
+		<!-- 数据字典  添加tree节点转向 -->
+		<method name="toSaveMx" realclass="com.u2a.framework.service.base.dictionary.DictionaryService" dbName="brickDao" trans="" limit="" methodname="toAddDataItemBaseInfo" source="aa" dest="jsp/base/dictionary/dataitembaseinfomx_add.jsp" error="" type="2">
+			<inparams>
+				<inparam name="parentId"  type="String" check="0" source="param" remark="当前节点ID"/>
+				<inparam name="dataItemCode"  type="String" check="0" source="param" remark="编码"/>
+				<inparam name="dataItemId"  type="String" check="0" source="param" remark="id"/>
+			</inparams>
+			<outparams>
+				<outparam name="navigation"  type="String" source="param"/>
+			</outparams>
+		</method>
+		
+		<!-- 数据字典  添加tree节点 -->
+		<method name="add" realclass="com.u2a.framework.service.base.dictionary.DictionaryService" dbName="brickDao" trans="" limit=""	methodname="addDataItemBaseInfo" source="aa" dest="jsp/base/dictionary/dataitembaseinfo_add.jsp" error="" type="2">
+			<inparams>
+				<inparam name="dataItemName"  type="String" check="1" source="param" remark="名称"/>
+				<inparam name="dataItemCode"  type="String" check="0" source="param" remark="编码"/>
+				<inparam name="dataItemValue"  type="String" check="0" source="param" remark="值"/>
+				<inparam name="memo"  type="String" check="0" source="param" remark="描述"/>
+				<inparam name="parentId"  type="String" check="0" source="param" remark="父节点ID"/>
+				<inparam name="orderby" type="Integer" check="0" source="param" remark="排序" errmsg="排序为数字"/>
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+				<inparam name="url" type="String" check="0" source="param" remark="重定向路径"/>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		
+		<!-- 数据字典  添加tree节点 -->
+		<method name="addMx" realclass="com.u2a.framework.service.base.dictionary.DictionaryService" dbName="brickDao" trans="" limit="" methodname="addDataItemBaseInfoMx" source="aa" dest="jsp/base/dictionary/dataitembaseinfomx_add.jsp" error="" type="2">
+			<inparams>
+				<inparam name="dataItemCode"  type="String" check="0" source="param" remark="编码"/>
+				<inparam name="dataItemName"  type="String" check="1" source="param" remark="名称"/>
+				<inparam name="dataItemValue"  type="String" check="1" source="param" remark="值"/>
+				<inparam name="memo"  type="String" check="0" source="param" remark="描述"/>
+				<inparam name="orderby" type="Integer" check="0" source="param" remark="排序" errmsg="排序为数字"/>
+				<inparam name="parentId"  type="String" check="0" source="param" remark="父节点ID"/>
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+				<inparam name="url" type="String" check="0" source="param" remark="重定向路径"/>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		
+		<!-- 数据字典  修改tree节点转向 -->
+		<method name="goModify" realclass="com.u2a.framework.service.base.dictionary.DictionaryService" dbName="brickDao" trans="" limit="" methodname="toUpdateDataItemBaseInfo" source="aa" dest="jsp/base/dictionary/dataitembaseinfo_update.jsp" error="" type="1">
+			<inparams>
+				<inparam name="dataItemBaseInfo" type="LOGIC" classname="com.DataItemBaseInfo" source="param">
+					<inparam name="dataItemId"  type="String" check="0" source="param" remark="当前节点ID"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="dataItemBaseInfo" type="LOGIC" source="attr" />
+				<outparam name="navigation"  type="String" source="param"/>
+			</outparams>
+		</method>
+		
+		<!-- 数据字典明细  修改tree节点转向 -->
+		<method name="goModifyMx" realclass="com.u2a.framework.service.base.dictionary.DictionaryService" dbName="brickDao" trans="" limit="" methodname="toUpdateDataItemBaseInfo" source="aa" dest="jsp/base/dictionary/dataitembaseinfomx_update.jsp" error="" type="1">
+			<inparams>
+				<inparam name="dataItemBaseInfo" type="LOGIC" classname="com.DataItemBaseInfo" source="param">
+					<inparam name="dataItemId"  type="String" check="0" source="param" remark="当前节点ID"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="dataItemBaseInfo" type="LOGIC" source="attr" />
+				<outparam name="navigation"  type="String" source="param"/>
+			</outparams>
+		</method>
+		
+		<!-- 数据字典  修改 -->
+		<method name="modify" realclass="com.u2a.framework.service.base.dictionary.DictionaryService" dbName="brickDao" trans="" limit=""	methodname="updateDataItemBaseInfo" source="aa" dest="jsp/base/dictionary/dataitembaseinfo_update.jsp" error="" type="1">
+			<inparams>
+				<inparam name="dataItemBaseInfo" type="LOGIC" classname="com.DataItemBaseInfo" source="param">
+					<inparam name="dataItemId"  type="String" check="0" source="param"/>
+					<inparam name="dataItemCode"  type="String" check="0" source="param"/>
+					<inparam name="dataItemName" type="String" check="1" source="param" remark="名称"/>
+					<inparam name="dataItemValue"  type="String" check="0" source="param" remark="值"/>
+					<inparam name="memo" type="String" check="0" source="param" />
+					<inparam name="orderby" type="Integer" check="0" source="param" remark="排序" errmsg="排序为数字"/>
+				</inparam>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="url"  type="String" check="1" source="param" remark="跳转参数"/>
+			</inparams>
+		</method>
+		
+		<!-- 数据字典  修改 -->
+		<method name="modifyMx" realclass="com.u2a.framework.service.base.dictionary.DictionaryService" dbName="brickDao" trans="" limit=""	methodname="updateDataItemBaseInfo" source="aa" dest="jsp/base/dictionary/dataitembaseinfo_update.jsp" error="" type="1">
+			<inparams>
+				<inparam name="dataItemBaseInfo" type="LOGIC" classname="com.DataItemBaseInfo" source="param">
+					<inparam name="dataItemId"  type="String" check="0" source="param"/>
+					<inparam name="dataItemCode"  type="String" check="0" source="param"/>
+					<inparam name="dataItemName"  type="String" check="1" source="param" remark="名称"/>
+					<inparam name="dataItemValue"  type="String" check="1" source="param" remark="值"/>
+					<inparam name="memo"  type="String" check="0" source="param" />
+					<inparam name="orderby" type="Integer" check="0" source="param" remark="排序" errmsg="排序为数字"/>
+				</inparam>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="url"  type="String" check="1" source="param" remark="跳转参数"/>
+			</inparams>
+		</method>
+		
+		<!-- 数据字典  删除 -->
+		<method name="delete" realclass="com.u2a.framework.service.base.dictionary.DictionaryService" dbName="brickDao" trans="" limit=""	 methodname="deleteDataItemBaseInfo"  source="aa" dest="jsp/base/dictionary/dataitembaseinfo_update.jsp" error="" type="1">
+			<inparams>
+				<inparam name="dataItemBaseInfo" type="LOGIC" classname="com.DataItemBaseInfo" source="param">
+					<inparam name="dataItemId"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="url"  type="String" check="1" source="param" remark="跳转参数"/>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		
+		<!-- 查看数据字典信息 -->
+		<method name="get" realclass="com.u2a.framework.service.base.dictionary.DictionaryService" dbName="brickDao" trans="" limit=""	 methodname="getInfo"  source="aa" dest="jsp/base/dictionary/dataitembaseinfo_show.jsp" error="" type="1">
+			<inparams>
+				<inparam name="dataItemBaseInfo" type="LOGIC" classname="com.DataItemBaseInfo" source="param">
+					<inparam name="dataItemId"  type="String" check="0" source="param"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="dataItemBaseInfo" type="LOGIC" source="attr" />
+				<outparam name="navigation"  type="String" source="param"/>
+			</outparams>
+		</method>
+	</package>	
+</root>

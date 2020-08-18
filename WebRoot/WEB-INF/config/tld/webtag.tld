@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd ">
+    
+    <!-- 配置信息 -->
+	<tlib-version>1.0</tlib-version>
+	<short-name>web</short-name>
+	<uri>http://u2a.com/framework</uri>
+
+	<!-- 函数注释 ****************** -->
+	
+	<!-- 获取我的自定义快捷方式 -->
+	<function> 
+		<name>getDeptBycode</name>
+		<function-class>com.u2a.framework.commons.WebFunction</function-class>
+		<function-signature>java.lang.String getDeptBycode(java.lang.String)</function-signature>
+	</function> 
+	<function> 
+		<name>getMyCustom</name>
+		<function-class>com.u2a.framework.commons.WebFunction</function-class>
+		<function-signature>java.util.List getMyCustom(java.lang.String)</function-signature>
+	</function> 
+	<!-- 获取工作流 -->
+	<function> 
+		<name>getWorkFlow</name>
+		<function-class>com.u2a.framework.commons.WebFunction</function-class>
+		<function-signature>java.util.List getWorkFlow(com.brick.data.IMap)</function-signature>
+	</function> 
+	<!-- 获取已经完成的工作流信息 -->
+	<function> 
+		<name>getCompleteWorkFlow</name>
+		<function-class>com.u2a.framework.commons.WebFunction</function-class>
+		<function-signature>java.util.List getCompleteWorkFlow(com.brick.data.IMap)</function-signature>
+	</function> 
+	<!-- 获取数据字典信息 -->
+	<function> 
+		<name>getDataItem</name>
+		<function-class>com.u2a.framework.commons.WebFunction</function-class>
+		<function-signature>java.util.List getDataItem(java.lang.String)</function-signature>
+	</function> 
+	<!-- 获取数据字典信息 -->
+	<function> 
+		<name>getMaterialInfoList</name>
+		<function-class>com.u2a.framework.commons.WebFunction</function-class>
+		<function-signature>java.util.List getMaterialInfoList(java.lang.String)</function-signature>
+	</function> 
+	<!-- 获取厂区名称 -->
+	<function> 
+		<name>getDeptName</name>
+		<function-class>com.u2a.framework.commons.WebFunction</function-class>
+		<function-signature>java.lang.String getDeptName(java.lang.String)</function-signature>
+	</function> 
+</taglib>

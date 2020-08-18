@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<modules>
+
+	<!-- 系统module 开始 -->
+		<module location="/WEB-INF/config/module/sys/usergroup.xml"></module>
+		<module location="/WEB-INF/config/module/sys/user.xml"></module>
+		<module location="/WEB-INF/config/module/sys/auth.xml"></module>
+		<module location="/WEB-INF/config/module/sys/authgroup.xml"></module>
+		<module location="/WEB-INF/config/module/sys/custom/custom.xml"></module>
+		<module location="/WEB-INF/config/module/sys/logrecords.xml"></module>
+	<!-- 系统module 结束 -->
+
+	
+	<!-- 基础module 开始 -->
+		<!-- 基础组织结构 -->
+		<module location="/WEB-INF/config/module/base/baseorganization/baseorganization.xml"></module>
+		<!-- 应用组织结构 -->
+		<module location="/WEB-INF/config/module/base/organizationdetali/org.xml"></module>
+		<!-- 选择组织结构树人员或者岗位 -->
+		<module location="/WEB-INF/config/module/base/organizationdetali/orgSelect.xml"></module>
+		<!-- 数据字典 -->
+		<module location="/WEB-INF/config/module/base/dictionary/dictionary.xml"></module>
+		<!-- 短消息 -->
+		<module location="/WEB-INF/config/module/base/mailmanage/mailmanage.xml"></module>
+	<!-- 基础module 结束 -->
+
+    
+	<!-- 上传组件modules phc-->
+	<module location="/WEB-INF/config/module/common/fileupload/fileupload.xml"></module>
+	
+	
+	<!-- 流程管理 -->
+	<module location="/WEB-INF/config/module/workflow/workflow.xml"></module>
+	
+	<!-- 我的工作台 -->
+	<module location="/WEB-INF/config/module/workflow/mywork.xml"></module>
+	<!-- 物料信息 -->
+	<module location="/WEB-INF/config/module/business/materialinfo.xml"></module>
+	<!-- Business -->
+	<module location="/WEB-INF/config/module/business/equipmentinfo.xml"></module>
+	<!-- 机修 -->
+	<module location="/WEB-INF/config/module/business/busmechanic.xml"></module>
+	<!--电修-->
+	<module location="/WEB-INF/config/module/business/buselectrical.xml"></module>
+	<!--铆焊-->
+	<module location="/WEB-INF/config/module/business/busrivetweld.xml"></module>
+	<!--钻修-->
+	<module location="/WEB-INF/config/module/business/busdrilling.xml"></module>
+	<!--机加-->
+	<module location="/WEB-INF/config/module/business/mechtreatment.xml"></module>
+	<!--进修单-->
+	<module location="/WEB-INF/config/module/business/businrepairinfo.xml"></module>
+	<!-- 物料出账 -->
+	<module location="/WEB-INF/config/module/business/chargeoffdetail.xml"></module>
+	<!-- 我的工作台 -->
+	<module location="/WEB-INF/config/module/business/mywork.xml"></module>
+	<!-- 出库明细 -->
+	<module location="/WEB-INF/config/module/business/storedetail.xml"></module>
+	<!-- 材料申请 -->
+	<module location="/WEB-INF/config/module/business/busmaterialplanwf.xml"></module>
+	<!-- 上井服务信息 -->
+	<module location="/WEB-INF/config/module/business/expatsinfo.xml"></module>
+	<!-- 井队信息 -->
+	<module location="/WEB-INF/config/module/business/drillingcrew.xml"></module>
+	<!-- 报表信息 -->
+	<module location="/WEB-INF/config/module/business/report.xml"></module>
+	<!-- 其他材料 -->
+	<module location="/WEB-INF/config/module/business/otheroutstore.xml"></module>
+	
+	<module location="/WEB-INF/config/module/business/produceplan.xml"></module>
+	<!-- 劳保材料清单 -->
+	<module location="/WEB-INF/config/module/business/bustoolswf.xml"></module>
+</modules>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+	<!-- 数据项基本信息表 -->
+    <class name="com.DataItemBaseInfo" table="bs_data_item_info">
+        <id name="dataItemId" type="java.lang.String">
+            <column name="data_item_id" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="parentId" type="java.lang.String">
+            <column name="parent_id" length="40" />
+        </property>
+        <property name="dataItemCode" type="java.lang.String">
+            <column name="data_item_code" length="40" />
+        </property>
+        <property name="dataItemName" type="java.lang.String">
+            <column name="data_item_name" length="100" />
+        </property>
+        <property name="dataItemValue" type="java.lang.String">
+            <column name="data_item_value" length="100" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="type" length="4">
+            	<comment>0分类 1详细</comment>
+            </column>	            
+        </property>
+        <property name="synchronizeTime" type="java.util.Date">
+            <column name="synchronize_time" length="19" />
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="4">
+            	<comment>0有效 1无效</comment>
+            </column>	            
+        </property>
+        <property name="memo" type="java.lang.String">
+            <column name="memo" length="500" />
+        </property>
+        <property name="isSys" type="java.lang.String">
+            <column name="isSys" length="4">
+            	<comment>1系统，0用户添加，为1不能修改，删除，默认0,1的手工到数据库修改</comment>
+            </column>	            
+        </property>
+        <property name="orderby" type="java.lang.Integer">
+            <column name="orderby"/>
+        </property>
+        <property name="createDate" type="java.util.Date">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40" />
+        </property>
+        <property name="modifyDate" type="java.util.Date">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40" />
+        </property>
+        <property name="childList" type="java.util.List">
+            <column name="childList" />
+        </property>
+    </class>
+</hibernate-mapping>

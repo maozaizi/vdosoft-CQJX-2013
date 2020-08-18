@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.baseorganization" table="bs_base_organization">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40"/>
+            <generator class="notnative" />
+        </id>
+        <property name="orgCode" type="java.lang.String">
+            <column name="org_code" length="40"/>
+        </property>
+        <property name="orgName" type="java.lang.String">
+            <column name="org_name" length="40"/>
+        </property>
+        <property name="parentId" type="java.lang.String">
+            <column name="parent_id" length="40"/>
+        </property>
+        <property name="memo" type="java.lang.String">
+            <column name="memo" length="40"/>
+        </property>
+        <property name="iLevel" type="java.lang.Integer">
+            <column name="ilevel"/>
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="is_valid">
+            </column>
+        </property>
+        <property name="orderby" type="java.lang.Integer">
+            <column name="orderby">
+            </column>
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" >
+            </column>
+        </property>
+         <property name="createDate" type="java.util.Date">
+            <column name="create_date" length="19">
+            </column>
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" >
+            </column>
+        </property>
+         <property name="modifyDate" type="java.util.Date">
+            <column name="modify_date" length="19">
+            </column>
+        </property>
+        <property name="serialnum" type="java.lang.Integer">
+            <column name="serialnum">
+            </column>
+        </property>
+        <property name="childList" type="java.util.List">
+            <column name="childList" />
+        </property>
+    </class>
+</hibernate-mapping>

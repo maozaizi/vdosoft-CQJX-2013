@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<select id="queryChargeoffDetailList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from chargeoff_detail where IS_VALID='1'
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="deptGet">
+				dept_get like '%$deptGet$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="receiptCode">
+				receipt_code like '%$receiptCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="batch">
+				batch like '%$batch$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="applicationNo">
+				application_no like '%$applicationNo$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialDetail">
+				material_detail like '%$materialDetail$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="materialCode">
+				material_code like '%$materialCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="attId">
+				att_id = '$attId$'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="getStoreList" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+			select * from store_detail where material_code =#materialCode# and real_price is null and org_id like #orgId#
+	</select>
+	<select id="getOutStoreList" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+			select * from out_store_detail where material_code =#materialCode# and real_price is null and org_id like #orgId#
+	</select>
+	<select id="getNoOutStoreList" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from out_store_detail where real_price is null 
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="deptId">
+				org_id = #deptId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="workCard">
+				work_card = #workCard#
+			</isNotEmpty>
+		</dynamic>	
+	</select>
+
+
+
+</sqlMap>

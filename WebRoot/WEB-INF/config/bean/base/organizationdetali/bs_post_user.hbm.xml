@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.PostUser" table="bs_post_user">
+        <id name="postUserId" type="java.lang.String">
+            <column name="post_user_id" length="40"/>
+            <generator class="notnative" />
+        </id>
+        <property name="userId" type="java.lang.String">
+            <column name="user_id" length="40"/>
+        </property>
+        <property name="postId" type="java.lang.String">
+            <column name="post_id" length="100"/>
+        </property>
+         <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="40">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+         <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="19">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+         <property name="createDate" type="java.util.Date">
+            <column name="create_date" length="40">
+                <comment>Ȩ</comment>
+            </column>
+        </property> 
+         <property name="modifyDate" type="java.util.Date">
+            <column name="modify_date" length="19">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+         <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40">
+                <comment>Ȩ</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

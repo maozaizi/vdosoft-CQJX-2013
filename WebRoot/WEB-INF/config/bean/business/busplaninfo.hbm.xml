@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.BusPlanInfo" table="bus_plan_info">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="planCode" type="java.lang.String">
+            <column name="plan_code" length="50"/>
+        </property>
+       	<property name="auditState" type="java.lang.String">
+            <column name="audit_state" length="10"/>
+        </property>
+        <property name="workCard" type="java.lang.String">
+            <column name="work_card" length="50" />
+        </property>
+        <property name="busId" type="java.lang.String">
+            <column name="bus_id" length="50" />
+        </property>
+        <property name="busName" type="java.lang.String">
+            <column name="bus_name" length="50" />
+        </property>
+         <property name="orgId" type="java.lang.String">
+            <column name="org_id" length="50" />
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="4" />
+        </property>
+        <property name="createDate" type="java.sql.Date">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40" />
+        </property>
+        <property name="modifyDate" type="java.sql.Date">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40" />
+        </property>
+        <property name="bigRemark" type="java.lang.String">
+            <column name="big_remark" length="1000" />
+        </property>
+    </class>
+</hibernate-mapping>

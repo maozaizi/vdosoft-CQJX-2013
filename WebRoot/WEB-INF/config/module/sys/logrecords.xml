@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="logRecords">
+		<!-- 获取操作历史信息列表-->
+		<method name="getLogRecordsList" realclass="com.u2a.framework.service.sys.logrecords.LogRecordsService" methodname="getLogRecordsList" dbName="brickDao" trans="" limit="" source="a" dest="jsp/business/busmechanic/log_records.jsp" error=""  type="1">
+			<inparams>
+			    <inparam name="id1" type="String" source="param" check="0" />
+			    <inparam name="name1" type="String" source="param" check="0" />
+			    <inparam name="id2" type="String" source="param" check="0" />
+			    <inparam name="name2" type="String" source="param" check="0" />
+			    <inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+	</package>	
+</root>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<events>
+	<!-- ID在所有系统中唯一 
+	<event id="article.saveArticle"  method="event.executeFunction" delay="6000"/>
+	<event id="article.modify" method="event.exeteFunction" delay="7000"/>
+	-->
+</events>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+
+	<package name="mailManage">	
+	
+	<method name="toback" realclass="com.u2a.framework.service.UserInfoService" dbName="brickDao" trans="" limit="" methodname="toback" source="" dest="jsp/main.jsp"   type="1">
+			<outparams>
+			</outparams>
+	 </method>
+	 
+	<!-- 查询收件信息 -->
+		<method name="getReceiveMail" realclass="com.u2a.framework.service.base.mailManage.MailService" methodname="getReceiveMail" dbName="brickDao" trans="" limit="" source="a" dest="jsp/base/mailmanage/receive.jsp" error=""  type="1">
+			 <inparams>
+		       <inparam name="currentPageNO" real="currentPageNO" type="String" check="0" source="param" default="1"/>
+		       <inparam name="userMap" type="ENTITY" source="session" />
+		       <inparam name="contTitle" type="String" check="0" source="param"/>
+		       <inparam name="sendUserName" type="String" check="0" source="param"/>
+		       <inparam name="createDate1" type="Date" check="0" source="param"/>
+		       <inparam name="createDate2" type="Date" check="0" source="param"/>
+		       <inparam name="request" type="Context" check="0" source="App.Request" />
+		    </inparams>
+			<!-- outparams 输出参数 -->
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+			<!-- 查询发件信息 -->
+		<method name="getSendMail" realclass="com.u2a.framework.service.base.mailManage.MailService" methodname="getSendMail" dbName="brickDao" trans="" limit="" source="a" dest="jsp/base/mailmanage/send.jsp" error=""  type="1">
+			 <inparams>
+		       <inparam name="currentPageNO" real="currentPageNO" type="String" check="0" source="param" default="1"/>
+		       <inparam name="userMap" type="ENTITY" source="session" />
+		       <inparam name="contTitle" type="String" check="0" source="param"/>
+		       <inparam name="reciveUserName" type="String" check="0" source="param"/>
+		       <inparam name="createDate1" type="Date" check="0" source="param"/>
+		       <inparam name="createDate2" type="Date" check="0" source="param"/>
+		       <inparam name="request" type="Context" check="0" source="App.Request" />
+		    </inparams>
+			<!-- outparams 输出参数 -->
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<method name="getNewMails" realclass="com.u2a.framework.service.base.mailManage.MailService" methodname="getNewMails" dbName="brickDao" trans="" limit="" source="a" dest="jsp/backend.jsp" error=""  type="1">
+			 <inparams>		      
+		       <inparam name="userMap" type="ENTITY" source="session" />
+		    </inparams>
+			
+			<outparams>
+				<outparam name="newMailsNum" type="Integer" source="attr" />
+			</outparams>
+		</method>
+		<!-- 写信 跳转 -->
+		<method name="toAdd" realclass="com.u2a.framework.service.SysService" methodname="toPage" dbName="brickDao" trans="" limit="" source="a" dest="jsp/base/mailmanage/add.jsp" error="">
+			<inparams>
+				<inparam name="url"  type="String" check="0" source="param" remark="跳转地址"/>
+				 <inparam name="currentPageNO" real="currentPageNO" type="String" check="0" source="param" default="1"/>
+			</inparams>
+			<outparams>
+				<outparam name="url" type="String" source="param" />
+				<outparam name="currentPageNO" type="String"  source="param" />
+			</outparams>
+		</method>
+		<!-- 查询收件信息明细 -->
+		 <method name="getReceiveDetail" realclass="com.u2a.framework.service.base.mailManage.MailService" methodname="getReceiveDetail" dbName="brickDao" trans="" limit="" source="a" dest="jsp/base/mailmanage/receive_detail.jsp" error=""  type="1">
+			 <inparams>
+		       <inparam name="currentPageNO" real="currentPageNO" type="String" check="0" source="param" default="1"/>
+		      
+		       <inparam name="ID" real="ID" type="String" check="0" source="param"/>
+		       <inparam name="sendUserId" real="sendUserId" type="String" source="param"/>
+		       <inparam name="reciveUserId" real="reciveUserId" type="String" source="param"/>
+		       <inparam name="request" type="Context" check="0" source="App.Request" />
+		       <inparam name="url"  type="String" source="param" />
+		    </inparams>
+			
+			<outparams>
+				<outparam name="detail" type="ENTITY" source="attr" />
+				<outparam name="page" type="ENTITY" source="attr" />
+				<outparam name="ID" type="String" source="attr" />
+				<outparam name="url" type="String" source="param" />
+			</outparams>
+		</method>
+		<!-- 查询发件信息明细 -->
+		 <method name="getSendDetail" realclass="com.u2a.framework.service.base.mailManage.MailService" methodname="getSendDetail" dbName="brickDao" trans="" limit="" source="a" dest="jsp/basemailmanage/send_detail.jsp" error=""  type="1">
+			 <inparams>
+		       <inparam name="currentPageNO" real="currentPageNO" type="String" check="0" source="param" default="1"/>
+		      
+		       <inparam name="ID" real="ID" type="String" check="0" source="param"/>
+		       <inparam name="sendUserId" real="sendUserId" type="String"/>
+		       <inparam name="reciveUserId" real="reciveUserId" type="String" />
+		       <!--<inparam name="taskCode" real="taskCode" type="String" />-->
+		       <inparam name="request" type="Context" check="0" source="App.Request" />
+		       <inparam name="url" type="String" source="param" />
+		    </inparams>			
+			<outparams>
+			    <outparam name="detail" type="ENTITY" source="attr" />
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		
+		<!-- 获取我的消息 -->
+		<method name="getMyMail" realclass="com.u2a.framework.service.base.mailManage.MailService" methodname="getMyMail" dbName="brickDao" trans="" limit="" source="a" dest="" error=""  type="1">
+			<inparams>
+				<inparam name="userId"  type="String" source="param" remark="userId"/>
+				<inparam name="count"  type="Integer" source="param" remark="count"/>
+			</inparams>
+			<outparams>
+				<outparam name="list" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		
+		<!-- 发送信息 -->
+		 <method name="add" realclass="com.u2a.framework.service.base.mailManage.MailService" methodname="add" dbName="brickDao" trans="" limit="" source="" dest="api/mailManage/getReceiveDetail" error=""  type="1">
+			 <inparams>
+		       <inparam name="mail" type="LOGIC" classname="com.MailManage" source="param">
+			       <inparam name="sendUserId" real="sendUserId" type="String" check="0" source="param" remark="发件人"/>
+			       <inparam name="reciveUserId" real="reciveUserId" type="String" check="1" source="param" remark="收件人"/>
+			       <inparam name="sendUserName" real="sendUserName" type="String" check="0" source="param" />
+			       <inparam name="reciveUserName" real="reciveUserName" type="String" check="0" source="param" />
+			       <inparam name="contTitle" real="contTitle" type="String" check="1" source="param" remark="标题"/>
+			       <inparam name="contContent" real="contContent" type="String" check="0" source="param" remark="内容"/>
+			       <inparam name="ID" real="ID" type="String" check="0" source="param" />
+			       
+		       </inparam>
+		        <inparam name="flag" real="flag" type="String" check="0" source="param" />
+		        <inparam name="request" type="Context" check="0" source="App.Request" />
+		        <inparam name="userMap" type="ENTITY" source="session" />
+		        <inparam name="url" real="url" type="String" check="0" source="param" />
+		    </inparams>
+			<outparams>
+				<outparam name="detail" type="ENTITY" source="attr" />
+				<outparam name="page" type="ENTITY" source="attr" />
+				<outparam name="ID" type="String" source="attr" />
+			</outparams>
+		</method>
+			<!-- 单位参照列表 -->
+		<method name="userRefList" realclass="com.u2a.framework.service.UserInfoService" dbName="brickDao" trans="" limit="" methodname="userList" source="jsp/main.jsp" dest="jsp/base/mailmanage/user_ref_list.jsp"   type="1">
+		   <inparams>
+		       <inparam name="currentPageNO" real="currentPageNO" type="String" check="0" source="param" default="1"/>  
+		       <inparam name="userName" real="userName" type="String" check="0" source="param" />
+		       <inparam name="email" real="email" type="String" check="0" source="param" />
+		       <inparam name="starttime" real="starttime" type="String" check="0" source="param"/>
+		       <inparam name="endtime" real="endtime" type="String" check="0" source="param"/>
+		       <inparam name="verifyState" type="String" check="0" source="param"/>
+		    </inparams>
+			<!-- outparams 输出参数 -->
+			<outparams>
+				<outparam name="usersMap" type="ENTITY" source="attr" />
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		
+		
+		
+			<!-- 导出检查项条文库（测试） -->
+		<method name="daoChuTiaoWen" realclass="com.db.sqlite.SqliteDemo" dbName="brickDao" trans="" limit="" methodname="daoChuTiaoWen" source="aa" dest="jsp/base/mailmanage/send.jsp"   type="1">
+			<inparams>
+				<inparam name="request" type="Context" check="0"
+					source="App.Request" />
+			</inparams>		
+		</method>
+			<!-- 下载检查项条文库文件（测试） -->
+		<method name="downLoad" realclass="com.db.sqlite.SqliteDemo" dbName="brickDao" trans="" limit="" methodname="downLoad" source="aa" dest="jsp/base/mailmanage/send.jsp"   type="1">
+			<inparams>
+				<inparam name="request" type="Context" check="0"
+					source="App.Request" />
+				<inparam name="response" type="Context" check="0"
+					source="App.Response" />
+				<inparam name="serlvetContext" real="serlvetContext"
+					type="Context" check="0" source="App.Context" />
+				<inparam name="session" real="session" type="Context"
+					check="0" source="App.Session" />
+			</inparams>		
+		</method>
+	</package>	
+</root>

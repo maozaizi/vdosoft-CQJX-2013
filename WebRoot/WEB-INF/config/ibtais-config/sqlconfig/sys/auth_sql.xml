@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd"> 
+
+<sqlMap>
+	
+	<select id="queryAllAuthList" resultClass="java.util.HashMap">
+		select * from auth_info where IS_VALID='1' order by auth_order asc
+	</select>
+
+	<select id="queryAuthList" resultClass="java.util.HashMap">
+		select * from auth_info where parent_auth_id=#authId# and IS_VALID='1' order by AUTH_ORDER
+	</select>
+	
+	<select id="queryChildAuth" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from auth_info where parent_auth_id=#authId# and IS_VALID='1' order by AUTH_ORDER 
+	</select>
+</sqlMap>

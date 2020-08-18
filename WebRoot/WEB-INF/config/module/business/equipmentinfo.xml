@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="equipmentinfo">
+		<!-- 查询 设备信息列表 -->
+		<method name="getEquipmentInfoList" realclass="com.u2a.business.EquipmentInfoService" dbName="brickDao" trans="" limit=""	methodname="getEquipmentInfoList" source="a" dest="jsp/business/equipmentinfo/equipmentinfo_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="equipmentName" real="equipmentName" type="String" check="0" source="param" />
+				<inparam name="equipmentCode" real="equipmentCode" type="String" check="0" source="param" />
+				<inparam name="equipmentModel" real="equipmentModel" type="String" check="0" source="param" />
+				<inparam name="machineCode" real="machineCode" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="equipmentList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<method name="toAddEquipmentInfo"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/equipmentinfo/equipmentinfo_add.jsp"
+			type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="parentId" real="parentId" type="String" check="0" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="parentId" type="String" source="param" />
+			</outparams>
+		</method>
+		<method name="addEquipmentInfo"
+			realclass="com.u2a.business.EquipmentInfoService"
+			dbName="brickDao" trans="" limit="" methodname="addEquipmentInfo"
+			source="jsp/business/equipmentinfo/equipmentinfo_add.jsp" dest="jsp/business/equipmentinfo/equipmentinfo_list.jsp" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="equipmentInfo" type="LOGIC"
+					classname="com.EquipmentInfo" source="param">
+					<inparam name="equipmentName" real="equipmentName"
+						type="String" check="0" source="param" />
+					<inparam name="equipmentCode" real="equipmentCode" type="String"
+						check="0" source="param" />
+					<inparam name="machineCode" real="machineCode"
+						type="String" check="0" source="param" />
+					<inparam name="parentId" real="parentId"
+						type="String" check="0" source="param" />
+					<inparam name="unity" real="unity"
+						type="String" check="0" source="param" />
+					<inparam name="standardNum" real="standardNum"
+						type="Double" check="0" source="param" />
+					<inparam name="personNum" real="personNum"
+						type="Integer" check="0" source="param" />
+					<inparam name="value" real="value"
+						type="Integer" check="0" source="param" />
+					<inparam name="equipmentType" real="equipmentType"
+						type="String" check="0" source="param" />
+					<inparam name="quotaHour" real="quotaHour"
+						type="Integer" check="0" source="param" />
+					<inparam name="majorCost" 
+						type="Integer" check="0" source="param" />
+					<inparam name="mediumHour" 
+						type="Integer" check="0" source="param" />
+					<inparam name="mediumCost" 
+						type="Integer" check="0" source="param" />
+					<inparam name="checkHour" 
+						type="Integer" check="0" source="param" />
+					<inparam name="checkCost" 
+						type="Integer" check="0" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams>
+		</method>
+		<method name="toUpdateEquipmentInfo"
+			realclass="com.u2a.business.EquipmentInfoService"
+			dbName="brickDao" trans="" limit="" methodname="toUpdateEquipmentInfo"
+			source="a" dest="jsp/business/equipmentinfo/equipmentinfo_update.jsp"
+			type="1">
+			<inparams>
+				<inparam name="id" real="id" type="String"
+					check="1" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="equipmentInfoMap" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<method name="toEquipmentInfoDetails"
+			realclass="com.u2a.business.EquipmentInfoService"
+			dbName="brickDao" trans="" limit="" methodname="toUpdateEquipmentInfo"
+			source="a" dest="jsp/business/equipmentinfo/equipmentinfo_details.jsp"
+			type="1">
+			<inparams>
+				<inparam name="id" real="id" type="String"
+					check="1" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="equipmentInfoMap" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<method name="updateEquipmentInfo"
+			realclass="com.u2a.business.EquipmentInfoService"
+			dbName="brickDao" trans="" limit="" methodname="updateEquipmentInfo"
+			source="jsp/business/equipmentinfo/equipmentinfo_update.jsp" dest="jsp/business/equipmentinfo/equipmentinfo_list.jsp" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="equipmentInfo" type="LOGIC"
+					classname="com.EquipmentInfo" source="param">
+					<inparam name="equipmentName" real="equipmentName"
+						type="String" check="0" source="param" />
+					<inparam name="id" real="id"
+						type="String" check="0" source="param" />
+					<inparam name="equipmentCode" real="equipmentCode" type="String"
+						check="0" source="param" />
+					<inparam name="machineCode" real="machineCode"
+						type="String" check="0" source="param" />
+					<inparam name="unity" real="unity"
+						type="String" check="0" source="param" />
+					<inparam name="standardNum" real="standardNum"
+						type="String" check="0" source="param" />
+					<inparam name="personNum" real="personNum"
+						type="String" check="0" source="param" />
+					<inparam name="value" real="value"
+						type="String" check="0" source="param" />
+					<inparam name="equipmentType" real="equipmentType"
+						type="String" check="0" source="param" />
+					<inparam name="quotaHour" real="quotaHour"
+						type="String" check="0" source="param" />
+					<inparam name="majorCost"
+						type="String" check="0" source="param" />
+					<inparam name="mediumHour" 
+						type="String" check="0" source="param" />
+					<inparam name="mediumCost" 
+						type="String" check="0" source="param" />
+					<inparam name="checkHour"
+						type="String" check="0" source="param" />
+					<inparam name="checkCost"
+						type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0"
+					source="param" />
+			</inparams>
+		</method>
+		<method name="delEquipmentInfo"
+			realclass="com.u2a.business.EquipmentInfoService"
+			dbName="brickDao" trans="" limit="" methodname="deleteEquipmentInfo"
+			source="a" dest="jsp/business/equipmentinfo/equipmentinfo_list.jsp" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="id" real="id" type="String"
+					check="1" source="param" />
+				<inparam name="url" real="url" type="String" check="1"
+					source="param" />
+			</inparams>
+		</method>
+	</package>	
+</root>

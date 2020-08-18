@@ -1,0 +1,1027 @@
+/* CSS Document*/
+body{behavior:url(csshover3.htc);font:14px/1.5 arial,helvetica,clean,sans-serif;color:#383838;background-color:#e0eaf6}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,p,blockquote,th,td{margin:0;padding:0}
+div.MainContent {
+	padding:0 10px;
+}
+input.long20 {
+	width:240px;
+}
+input.date {
+	width:75px;
+}
+/* ============= 通用 表格 ============ */
+table.normal {
+	width:100%;
+	border-top:1px solid #c5c5c5;
+	border-left:1px solid #c5c5c5;
+}
+
+table.normal caption {
+	height:28px;
+	line-height:28px;
+}
+
+table.normal th {
+	height:24px;
+	line-height:24px;
+	padding-left:6px;
+	border-right:1px solid #c5c5c5;
+	border-bottom:1px solid #bebebe;
+	background-image:url("images/list_titlebg.png");
+	background-repeat:repeat-x;
+}
+
+table.normal td {
+	border-right:1px solid #d5d5d5;
+	border-bottom:1px solid #ededed;
+	background-color:#fff;
+	padding:6px 6px 6px 12px;
+}
+
+table.normal tfoot td {
+	background-image:url("images/list_titlebg.png");
+	background-repeat:repeat-x;
+	height:24px;
+	border-bottom:1px solid #c5c5c5;
+	padding:0;
+}
+table.nofoot {
+	width:100%;
+	border:1px solid #c5c5c5;
+}
+
+/*========== 标准表格样式 ==========*/
+h3.cBlack {
+	position:relative;
+	background-image: url("images/splitline.png");
+	background-repeat: repeat-x;
+	background-position:bottom;
+	height:30px;
+	line-height:30px;
+	font-size: 12px;
+    font-weight: normal;
+	margin-bottom:6px;
+}
+.List {
+	border: 1px solid #C5D2E2;
+	margin-top:10px;
+	border-collapse:collapse;
+}
+.List caption{
+	height: 28px;
+	background-image: url("images/list_tibg.gif");
+	background-repeat: repeat-x;
+	text-align:left;
+	padding-left: 10px;	
+	line-height: 28px;
+	font-weight:bold;	
+}
+.List thead th {
+	background-image: url("images/list_titlebg.gif");
+    background-repeat: repeat-x;
+    border-right: 1px solid #CCCCCC;
+	text-align:left;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 10px;
+    white-space: nowrap;	
+}
+.List thead th.RadioButton, table.List tbody td.RadioButton {
+	padding-left:0;
+	text-align: center;
+}
+.List tbody td {
+	background-color: #FFFFFF;
+    border-bottom: 1px solid #E0EAF6;
+    border-right: 1px solid #E0EAF6;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    padding-top: 2px;
+}
+
+.List tfoot td {
+	background-image: url("images/list_endbg.gif");
+    background-repeat: repeat-x;
+    height: 25px;
+}
+.List_Td img{	
+	margin:-3px;
+	margin-right:5px;
+}
+/*=================== 表格中的操作按钮 模块定位 ===================*/
+.opt_btn{
+	width:100%;
+	height:40px;
+	position:relative;
+	line-height:normal;
+	margin-top:8px;
+	padding-top:10px;
+	background-image:url("images/splitline.png");
+	background-repeat:repeat-x;
+}
+
+.xy{position:absolute;top:11px;left:2px}
+.yy{position:absolute;top:11px;left:2px}
+.OptBar{position:relative;margin:0;padding:0;height:24px}
+.OptbtnPos{position:absolute;top:3px;right:10px;margin:0;padding:0}
+
+/*========== 按钮样式(包含添加、修改、删除等) =========*/
+a.btn{background-image:url("images/button_img.gif");background-position:right -20px;display:inline-block;overflow:hidden;margin-left:5px;padding-right:2px;color:#333;text-decoration:none}
+span.r{display:inline-block;height:20px;line-height:20px;background-image:url("images/button_img.gif");background-position:0 -20px;cursor:pointer;padding:0 6px 0 10px}
+a.btn:hover{background-position:right 0;color:#333;text-decoration:none}
+a.btn span:hover{background-position:0 0}
+
+/*========== 大按钮样式(包含添加、修改、删除等) =========*/
+a.Bbtn{background-image:url("images/big_button_img.gif");background-position:right -30px;display:inline-block;overflow:hidden;margin-left:5px;padding-right:2px;color:#fff;text-decoration:none;font-size:14px;font-weight:700}
+span.Br{display:inline-block;height:30px;line-height:30px;background-image:url("images/big_button_img.gif");background-position:0 30px;cursor:pointer;padding:0 12px 0 16px}
+a.Bbtn:hover{background-position:right -60px;color:#fff;text-decoration:none}
+a.Bbtn span:hover{background-position:0 0}
+
+/*========== 查询条件 模块 =========*/
+.SearchCond {
+	border: 1px solid #C5D2E2;
+	padding:20px;
+}
+
+/*========== 基本信息显示列表 模块 =========*/
+div.ListBasicInfo td.TableTitle {
+	background-color:#ccddf2;
+	text-align:right;
+}
+
+/*========== 编辑表格页面 =========*/
+.EditBox {
+
+}
+.EditBox table {
+    border: 1px solid #c5d2e2;
+	margin-top: 6px;
+}
+.EditBox th {
+	background-image: url("images/list_titlebg.gif");
+    background-repeat: repeat-x;
+    border-right: 1px solid #CCCCCC;
+	text-align:left;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 10px;
+    white-space: nowrap;	
+}
+.EditBox th.RadioButton, .EditBox td.RadioButton {
+	padding-left:0;
+	text-align: center;
+}
+.EditBox td {
+	background-color: #FFFFFF;
+    border-bottom: 1px solid #E0EAF6;
+    border-right: 1px solid #E0EAF6;
+    height: 30px;
+    line-height: 30px;
+    padding:6px 0px 0px 10px;
+}
+.EditBox_td1 {
+    width:110px;
+	line-height:30px;
+	height: 30px;
+	background-color: #FFF;
+	border-right:1px solid #E0EAF6;
+	border-bottom: 1px solid #E0EAF6;
+	text-align: right;
+	vertical-align: top;
+}
+
+/*========== 搜索表格页面 =========*/
+.SearchBox {
+    border: 1px solid #c5d2e2;
+	margin-top: 6px;
+	color: #1a3061;
+	padding-bottom:1px;
+}
+.SearchBox_Th {
+	line-height:25px;
+	height: 25px;
+	background-image: url("images/list_titlebg.gif");
+	background-repeat: repeat-x;
+	padding-left: 10px;
+	text-align:left;
+	font-weight:bold;
+}
+.SearchBox_TD {
+	line-height:22px;
+	height: 22px;
+	background-color: #fff;
+	border-right:1px solid #E0EAF6;
+	border-bottom: 1px solid #E0EAF6;
+	padding-top: 6px;
+	text-align: right;
+	vertical-align: top;
+}
+.SearchBox_TD1 {
+    line-height:22px;
+	height: 22px;
+	background-color: #FFF;
+	border-bottom: 1px solid #E0EAF6;
+	padding:6px 10px;
+
+}
+/*========== 搜索表格页面 END =========*/
+
+/*==========文本框 =========*/
+
+.Textarea{
+	color:#636363;
+	height:260px;
+	width:630px;
+	margin:10px 10px;
+	padding:5px;
+}
+/*==========文本框 END =========*/
+
+/*==========录入框 =========*/
+.Input_10{
+	color:#636363;
+	width:126px;
+	line-height: 14px;
+}
+.Input_15{
+	color:#636363;
+	width:160px;
+	line-height: 14px;
+}
+.Input_20{
+	color:#636363;
+	width:260px;
+	line-height: 14px;
+}
+.Input_40{
+	color:#636363;
+	width:480px;
+	line-height: 14px;
+}
+.Input_100{
+	color:#636363;
+	height:46px;
+	width:480px;
+}
+.Input_200{
+	color:#636363;
+	height:80px;
+	width:480px;
+}
+.Input_date{
+	background-image: url(images/rili.gif) ;
+	background-repeat:no-repeat;
+	background-position: right;
+	color:#636363;
+	width:118px;
+	line-height: 14px;
+}
+.Input_l{
+	line-height: 14px;
+	color:#636363;
+	width:40px;
+}
+.Input_xl{
+	line-height: 14px;
+	color:#636363;
+	width:20px;
+}
+/*==========录入框END =========*/
+
+/*==========下拉列表 =========*/
+.Select_10{
+	color:#636363;
+	width:155px;
+	line-height: 14px;
+}
+.Select_20{
+	color:#636363;
+	width:266px;
+	line-height: 14px;
+}
+.Select_40{
+	color:#636363;
+	width:505px;
+	line-height: 14px;
+}
+.Select_l{
+	color:#636363;
+	font-size: 12px;
+	border:1px solid #b5b8c8;
+	height:20px;
+	width:60px;
+	line-height: 14px;
+}
+/*==========下拉列表 END =========*/
+
+/*==========建筑消防设计审核申报表 =========*/
+.Box {
+	font-size: 13px;
+    width:720px;
+	background-color:#99bce8;
+	margin-bottom:-1px;
+}
+.Box_TD {
+	line-height:28px;
+	height: 28px;
+	background-color: #FFF;
+	padding-top: 2px;
+	text-align: center;
+	background-position: center;
+}
+.Box_TD1 {
+    text-align: left;
+	font-size:12px;
+    line-height:28px;
+	height: 28px;
+	background-color: #FFF;
+	padding:2px 10px;
+}
+.Box_TD1 span{
+	vertical-align: bottom;   
+	margin-bottom:-2px;
+}
+.Box_TD1 p {
+   margin:-2px -2px;
+}
+.Box_TD p {
+   margin:-2px -2px;
+}
+/*==========建筑消防设计审核申报表 END =========*/
+
+
+/*=========询问笔录 =========*/
+.Bli {
+	font-size: 13px;
+    width:720px;
+    border:1px solid #99bce8;
+    background:#fff;
+	margin-bottom:-1px;
+}
+.Bli h3 {
+  margin:20px 0;
+  font-size: 6.6mm;
+  text-align:center;
+  letter-spacing:10px;
+}
+.Bli p {
+	line-height:28px;
+	padding-left: 10px;
+	
+}
+/*==========询问笔录 END =========*/
+
+
+/*==========左列表菜单样式=========*/
+.leftbox
+{ 
+	width:125px;
+	float:left;
+	clear:both;
+}
+.leftbox ul {
+	LIST-STYLE-TYPE: none;
+	border-bottom:1px solid #cbcbcb;
+}
+.leftbox ul a{
+	text-decoration:none;
+}
+.leftbox ul a li{
+    background-image:url(images/leftbox_bg.gif);
+	height:26px;
+	line-height:26px;
+	padding-right:2px;
+	padding-left:15px;
+	margin-bottom:0;
+    color: #1A3061;
+	border-left:1px solid #cbcbcb;
+	border-right:1px solid #cbcbcb;
+	text-decoration:none;
+}
+.leftbox ul a li:hover{
+    color:#FFFFFF;
+    background-image:url(images/leftbox_bg_hover.gif);
+	border-left:1px solid #182d5e;
+	border-right:1px solid #182d5e;
+	text-decoration:none;
+	
+}
+/*==========左列表菜单样式 END=========*/
+
+/*==========  向导模块 =========*/
+.flow-steps{margin:20px 0;overflow:hidden}
+.flow-steps li span,.flow-steps li strong{display:block}
+.flow-steps li.done .first{background-color:#b7d2f2;background-position:-12px -72px}
+.flow-steps li .first{background:url("images/flow_steps2.png") no-repeat scroll -12px -69px #E4E4E4}
+.flow-steps li.done{background-color:#b7d2f2;background-position:100% 0}
+.flow-steps li{width:129px;background:url("images/flow_steps2.png") no-repeat scroll 100% -48px #bbc4ce;float:left;font-size:12px;font-weight:700;height:23px;line-height:23px;overflow:hidden;padding:0 15px 0 0;text-align:center}
+.flow-steps li.current{background-color:#64a2eb;color:#FFF}
+.flow-steps li.current-prev{background-position:100% -24px!important}
+.flow-steps li.last{background-position:100% -192px}
+
+
+/*==========  分页 =========*/
+.page a{color:#666}
+.page .pages{float:left;overflow:hidden;height:21px;padding:2px 5px}
+.page .pages span{float:left;line-height:21px}
+.page .pages select{float:left;margin:0 3px;font-size:12px}
+.page{display:block;overflow:hidden;height:24px;background-repeat:repeat-x}
+.pagination{float:right;padding-left:7px;background-position:0 -199px}
+.pagination span span{background:url(images/grid.png) no-repeat}
+.pagination span span.hr{background:none}
+.page ul{padding:1px}
+.page li{float:left;display:block;overflow:hidden;height:23px;padding:0}
+.pagination li.j-first a,.pagination li.j-prev a{padding:0 0 0 3px}
+.pagination li.j-first span.hr,.pagination li.j-prev span.hr{padding:0 4px 0 0}
+.pagination li.j-first span.hr span,.pagination li.j-prev span.hr span{padding:0 0 0 9px}
+.pagination li.j-next a,.pagination li.j-last a{padding:0 0 0 3px}
+.pagination li.j-next span.hr,.pagination li.j-last span.hr{padding:0 4px 0 0}
+.pagination li.j-next span.hr span,.pagination li.j-last span.hr span{padding:0 9px 0 0}
+.pagination a,.pagination li span,.pagination li span span{display:block;text-decoration:none;line-height:23px}
+.pagination li span.first span span{background-position:0 -444px}
+.pagination li a.first span span{background-position:0 -244px}
+.pagination li a.prev span span{background-position:0 -294px}
+.pagination li a.next span span{background-position:100% -344px}
+.pagination li span.next span span{background-position:100% -544px}
+.pagination li a.last span span{background-position:100% -394px}
+.pagination li span.last span span{background-position:100% -594px}
+.pagination li a:hover{background:url(images/grid.png) no-repeat;background-position:0 -100px}
+.pagination li a:hover span.hr{background:url(images/grid.png) no-repeat;background-position:100% -150px}
+.pagination li.jumpto{padding:2px 2px 0 7px;background-position:0 -200px}
+.pagination li.jumpto .textInput{float:left;width:30px;padding:1px;border-color:#acaeaf}
+.pagination li.jumpto .goto{background:url(images/grid.png) no-repeat;float:left;display:block;overflow:hidden;width:16px;height:19px;border:0;text-indent:-1000px;background-position:0 -650px;cursor:pointer}
+/*==========  分页 END =========*/
+
+/*==========  公用搜索模块 =========*/
+div.SearchBlock{width:650px}
+div.SearchBlock fieldset{border:solid #99bce8 1px;padding:25px 10px 45px 20px;position:relative}
+div.SearchBlock fieldset a.schPos{position:absolute;right:33px}
+div.SearchBlock legend{width:57px;padding-left:30px;background-image:url("images/fdz-icon.gif");background-repeat:no-repeat;background-position:6px 0}
+div.SearchBlock th{text-align:right}
+div.SearchBlock td{height:30px;text-align:left}
+div.SearchBlock td input.check{vertical-align:-2px;width:auto}
+div.SearchBlock td input.ipt_text{width:160px}
+div.SearchBlock td input.timeInput{width:70px}
+div.simp_sech th {padding:6px 6px 6px 12px;width:92px;text-align:right}
+/*==========  公用搜索模块结束 =========*/
+
+/*==========  消防队伍管理-菜单 模块 =========*/
+div.second_menu{margin:5px 10px 5px 5px;width:186px;background-color:#e2eaf4;background-image:url("images/second_menu_bg.png");background-repeat:repeat-y;color:#263e74}
+div.second_menu h2{width:162px;height:30px;line-height:30px;overflow:hidden;background-image:url("images/second_menu_h2_bg.png");background-repeat:no-repeat;font-size:12px;font-weight:700;padding-left:24px}
+div.second_menu ul{width:154px;background-image:url("images/second_menu_ul_bg.png");background-repeat:no-repeat;background-position:bottom;padding:0 18px 10px 14px}
+div.second_menu li{margin:10px 0}
+div.second_menu a{display:block;color:#263e74;text-decoration:none;height:20px;background-image:url("images/second_menu_li_bg.png");background-repeat:no-repeat;background-position:0 0;padding-left:16px}
+div.second_menu a:hover{background-position:0 -20px;color:#fff}
+div.second_menu li.selected a{background-image:url("images/second_menu_li_bg.png");background-repeat:no-repeat;background-position:0 -20px;color:#fff}
+/*==========  消防队伍管理-菜单 模块 END ======*/
+
+/*==========  消防局系统-左侧菜单 模块 =========*/
+div.sys_menu{margin:5px 10px 5px 5px;width:186px;background-color:#e2eaf4;background-image:url("images/second_menu_bg.png");background-repeat:repeat-y;color:#263e74}
+div.sys_menu ul.nav{background-image:url("images/second_menu_ul_bg.png");background-repeat:no-repeat;background-position:bottom;padding:0 0 10px}
+div.sys_menu a.heading{display:block;height:30px;line-height:30px;overflow:hidden;background-image:url("images/bg_navigation.png");background-repeat:no-repeat;font-size:12px;font-weight:700;padding-left:24px;cursor:pointer}
+div.sys_menu a.expanded{background:url("images/bg_navigation.png") repeat scroll 0 -30px transparent}
+ul.navigation{width:154px;padding:0 18px 10px 14px}
+ul.navigation li{margin:10px 0}
+ul.navigation a{font-size:12px;display:block;color:#263e74;text-decoration:none;height:20px;background-image:url("images/second_menu_li_bg.png");background-repeat:no-repeat;background-position:0 0;padding-left:16px}
+ul.navigation a:hover{background-position:0 -20px;color:#fff}
+
+/*==========  消防局系统-头部 模块 =========*/
+div.sys_head{width:100%;height:90px;background-color:#1b3160;background-image:url("images/sys_head_bg.png");background-repeat:repeat-x}
+div.sys_hbinfo,div.sys_head_nav{position:relative;width:100%}
+div.sys_head h1,div.sys_user_links span.sys_pwd,div.sys_head_nav a{background-image:url("images/sys_head_img_e.png");background-repeat:no-repeat}
+div.sys_head h1{position:absolute;padding-left:20px;background-position:0 -14px;left:10px;top:10px}
+div.sys_head h1 a{font-size:12px;font-weight:700;color:#e4f0fd;text-decoration:none}
+div.sys_user_links span.sys_message{padding-left:20px;background-image: url("images/messige_icon.png");background-repeat: no-repeat;background-position: 0px 0px;color: #FFFFFF;}
+div.sys_user_links span{font-size:12px;font-weight:400;color:#9fb8d6;text-decoration:none}
+div.sys_user_links a{font-size:12px;font-weight:400;color:#e4f0fd;text-decoration:none}
+div.sys_user_links{position:absolute;right:10px;top:10px}
+div.sys_user_links span.sys_uname{display:inline-block;margin-right:16px}
+div.sys_user_links span.sys_pwd{display:inline-block;padding-left:18px}
+div.sys_head_nav ul{position:absolute;left:50px;top:49px;width:750px}
+div.sys_head_nav li{float:left;margin-right:30px;height:40px}
+div.sys_head_nav a{display:inline-block;height:39px;line-height:44px;overflow:hidden;text-decoration:none;padding:0 8px 0 32px;font-size:14px;font-weight:700;color:#FFF}
+div.sys_head_nav li.nav_avtive{padding-left:7px;background-color:#e0eaf7;border-top:solid #142755 1px;border-right:solid #142755 1px;border-left:solid #142755 1px;-webkit-border-top-left-radius:5px;-webkit-border-top-right-radius:5px;-moz-border-radius-topleft:5px;-moz-border-radius-topright:5px;border-top-left-radius:5px;border-top-right-radius:5px}
+div.sys_head_nav li.nav_avtive a{color:#0c3a86}
+div.sys_pwd a:hover{color:#09F;text-decoration:underline}
+div.sys_head_nav a:hover{text-decoration:underline}
+div.sys_head_nav li.nav_avtive a:hover{text-decoration:none}
+div.sys_user_links span.edit_pwd{background-position:0 -31px}
+div.sys_user_links span.logout{background-position:0 4px}
+div.sys_head_nav a.yw{background-position:4px -96px}
+div.sys_head_nav a.gzt{background-position:0 -50px}
+div.sys_head_nav a.zhsz{background-position:0 -143px}
+div.sys_head_nav a.wjgl{background-position:0 -188px}
+div.sys_head_nav a.dxx{background-position:0 -232px}
+div.sys_head_nav a.fhw{background-position:0 -282px}
+
+/*==========  子系统-头部 模块 =========*/
+div.sys2_head{width:100%;height:53px;background-color:#1b3160;background-image:url("images/sys2_head_bg.png");background-repeat:repeat-x}
+div.sys2_hbinfo,div.sys2_head_nav{position:relative;width:100%}
+div.sys2_head h1,div.sys2_user_links span.sys2_pwd,div.sys2_head_nav a{background-image:url("images/sys_head_img_e.png");background-repeat:no-repeat}
+div.sys2_head h1{position:absolute;padding-left:20px;background-position:0 -14px;left:10px;top:17px}
+div.sys2_head h1 a{font-size:12px;font-weight:700;color:#e4f0fd;text-decoration:none}
+div.sys2_user_links span{font-size:12px;font-weight:400;color:#9fb8d6;text-decoration:none}
+div.sys2_user_links a{font-size:12px;font-weight:400;color:#e4f0fd;text-decoration:none}
+div.sys2_user_links{position:absolute;right:10px;top:17px}
+div.sys2_user_links span.sys2_uname{display:inline-block;margin-right:16px}
+div.sys2_user_links span.sys2_pwd{display:inline-block;padding-left:18px}
+div.sys2_user_links span.edit_pwd{background-position:0 -31px}
+div.sys2_user_links span.logout{background-position:0 4px}
+
+/*==========  删除原因-DIV层 =========*/
+div.white_content{width:500px;background-color:#ced9e7;background-image:url("images/del_layer_bg2.png");background-repeat:repeat-y}
+span.t,span.b{display:block;width:500px;height:15px}
+span.t{background-image:url("images/del_layer_bg1.png");background-repeat:no-repeat;background-position:0 0}
+span.b{background-image:url("images/del_layer_bg3.png");background-repeat:no-repeat;background-position:0 0}
+div.del_reason{width:480px;margin:0 auto}
+div.del_btn{width:140px;margin:10px auto}
+div.del_reason table{border:solid #99bbe8 1px}
+div.del_reason th{height:24px;line-height:24px;padding-left:6px;border-bottom:1px solid #bebebe;background-image:url("images/list_titlebg.png");background-repeat:repeat-x}
+div.del_reason td{border-bottom:1px solid #ededed;background-color:#fff;padding:6px}
+.black_overlay{display:none;position:absolute;top:0%;left:0%;width:100%;height:100%;background-color:black;z-index:1001;-moz-opacity:0.8;opacity:.80;filter: alpha(opacity=80)}  
+.white_content {display:none;position: absolute;top:20%;left:25%;z-index:1002;overflow: auto}
+
+
+/*==========  网站 添加新文章 模块开始 =========*/
+table.eList{width:100%;border-top:1px solid #c5d2e2;border-left:1px solid #c5d2e2;border-collapse:collapse}
+table.eList th{height:24px;line-height:24px;text-align:left;padding-left:6px;border-right:1px solid #c5d2e2;border-bottom:1px solid #bebebe;background-image:url("images/list_titlebg.gif");background-repeat:repeat-x}
+table.eList td{height:24px;line-height:24px;border-bottom:1px dotted #c5d2e2;background-color:#fff;padding:2px 0 0 10px}
+table.eList td.cKedit{border-top:1px dashed #333;border-bottom:none}
+table.eList tfoot td{background-image:url("images/list_endbg.gif");background-repeat:repeat-x;height:25px}
+/*==========  网站 添加新文章 模块结束 =========*/
+
+div.Temp-0 { margin-top:10px; width:240px; margin-left:36%}
+div.Temp-1 { margin-top:10px; width:240px; margin-left:15%}
+div.Temp-2 { margin-top:10px; width:240px; margin-left:10%}
+div.Temp-3 { margin-top:30px; width:240px; margin-left:256px;}
+div.Temp-4 { margin-top:10px; width:240px; margin-left:0px;}
+
+/*==========  子系统 头部 样式 =========*/
+
+/*==========站内信 begin=========*/
+.mailblock {}
+.mailblock_out {
+    border:1px solid #e6e6e6;
+	position:relative;
+	background:#d8e0ea;
+	margin-top:10px;	
+	width:980px;
+}
+.mailblock_in {
+	background:#f6fafe;
+	border:1px solid #c7d4e3;
+	position:relative;
+	top:-2px;
+	left:-2px;
+}
+.mailblock_th {
+    background-image: url("images/mailblock_th_bg.gif");
+	border-bottom:1px solid #e6e6e6;
+	margin-bottom:10px;
+	height:35px;
+	line-height:35px;
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+	letter-spacing:10px;
+}
+.mailblock_biao {
+    border-top:1px solid #e6e6e6;
+	color:#383838;
+	font-size:15px;
+	font-weight:bold;
+	color:#ccc;
+	padding-left:10px;
+	padding-top:10px;	
+}
+.mailblock_tftd {
+	background-image: url("images/list_endbg.gif");
+    background-repeat: repeat-x;
+    height: 25px;
+    border-bottom:1px solid #fff;
+}
+.mailblock_td {
+   padding:0 10px;
+   height: 26px;
+   line-height: 26px;
+   vertical-align: top;
+}
+.mailblock_td1{
+   padding-right:10px;
+   height: 26px;
+   line-height: 26px;
+}
+.reply{}
+.reply_td{border-bottom:1px dotted #ccc;text-align:center;padding-top:10px;	vertical-align:top;}
+.reply_td1{border-bottom:1px dotted #ccc;color:#a8a8a8;}
+.reply_name{color:#2962a2;font-weight:bold;float:left;}
+/*==========站内信 END=========*/
+/*==========TREE菜单 begin=========*/
+
+.treeblock_out {
+    border:1px solid #e6e6e6;
+	position:relative;
+	background:#dfe7f0;
+	margin-top:6px;
+	margin-left:10px;
+	width:93%;
+	overflow:auto;
+	height:515px;
+	_height:515px;
+}
+.treeblock_in {
+	background:#e2eaf4;
+	border-top:1px dotted #c9d6e5;
+	border-bottom:1px solid #c9d6e5;
+	position:relative;
+	top:-1px;
+	left:-1px;
+	height:100%;
+}
+.treeblock_th {
+	border-bottom:1px dotted #c9d6e5;
+	margin-bottom:10px;
+	height:30px;
+	line-height:30px;
+	font-weight:bold;
+	color:#263e74;
+	padding-left:10px;
+	background:#dce6f2;
+}
+.treeblock_td {
+   padding:10px 5px;
+   vertical-align: top;
+   background:#edf3f9;
+}
+.treeblock_td1 {
+   background:#edf3f9;
+   vertical-align: bottom;
+   padding-bottom:10px;
+}
+.tree_but {
+	position:absolute;
+	top:10px;
+	right:10px;
+}
+.ee{}
+a.tbut{height:20px;line-height:20px;overflow:hidden;padding-right:4px;color:#243d76;text-decoration:none}
+span.u{display:inline-block;height:20px;line-height:20px;background-image:url("images/but_img.gif");border-right:1px solid #c6d6e5;background-position:0 -20px;cursor:pointer;padding:0 8px 0 10px}
+a.tbut:hover{background-position:right 0;color:#333;text-decoration:none}
+a.tbut span:hover{background-position:0 0}
+
+/*===同步按钮 BEGIN===*/
+a.tbbut{background-image:url("images/tree_button.gif");background-position:right -25px;display:inline-block;overflow:hidden;margin-left:5px;padding-right:2px;color:#618faa;text-decoration:none;font-size:13px;font-weight:700}
+span.uu{display:inline-block;height:25px;line-height:25px;background-image:url("images/tree_button.gif");background-position:0 25px;cursor:pointer;padding:0 12px 0 16px}
+a.tbbut:hover{background-position:right -50px;text-decoration:none;}
+a.tbbut span:hover{background-position:0 0}
+/*===同步按钮 END===*/
+
+a.MzTreeview /* TreeView 链接的基本样式 */ { cursor: hand; color: #000080; margin-top: 5px; padding: 2 1 0 2; text-decoration: none; }
+.MzTreeview a.select /* TreeView 链接被选中时的样式 */ { color: highlighttext; background-color: highlight; }
+#kkk input {}
+.MzTreeViewRow {border:none;width:200px;padding:0px;margin:0px;border-collapse:collapse}
+.MzTreeViewCell0 {border-bottom:1px solid #CCCCCC;padding:0px;margin:0px;}
+.MzTreeViewCell1 {border-bottom:1px solid #CCCCCC;border-left:1px solid #CCCCCC;width:200px;padding:0px;margin:0px;}
+/*==========TREE菜单 END=========*/
+
+/*==========   条文库 模块开始 =========*/
+table.wList{width:100%;border:1px solid #c5d2e2;border-collapse:collapse}
+table.wList th{height:24px;line-height:24px;text-align:left;padding-left:6px;border-right:1px solid #c5d2e2;border-bottom:1px solid #bebebe;background-image:url("images/list_titlebg.gif");background-repeat:repeat-x}
+table.wList td{height:20px;line-height:20px;border-bottom:1px solid #e9edf1;background-color:#f3f7f9;padding:2px 10px 0 10px;text-align:right;}
+table.wList td.cKedit{border-top:1px dotted #b6c5cd;background-color:#fff;padding:10px;padding-right:0;text-align: left;}
+table.wList td.left{text-align: left;}
+/*========== 条文库 模块结束 =========*/
+
+/*========== 人员信息列表展示   开始 =========*/
+.resume {}
+.resume table {margin-top: 6px;}
+.resume th {background-image: url("images/resume_title_bg.gif");background-repeat: repeat-x;text-align:left;height: 28px;line-height: 28px;padding-left: 10px;white-space: nowrap;}
+.resume td {background-color: #FFFFFF;border-bottom: 1px solid #E0EAF6;border-right: 1px solid #E0EAF6;height: 24px;line-height: 24px;padding:6px 0px 0px 10px;}
+.resume_td1 {line-height:24px;height: 24px;background-color:#000;border-right:1px solid #E0EAF6;border-bottom: 1px solid #E0EAF6;text-align: right;vertical-align: top;}
+/*========== 人员信息列表展示   结束 =========*/
+.es_head{width:100%;height:51px;background-color:#274078;background-image:url("css/fire/images/external_sys_top_bg.png");background-repeat:repeat-x;position:relative}
+h1.es_title{font-size:14px;font-weight:700;color:#fff;height:20px;position:absolute;left:40px;top:15px}
+/*=================== yaohao begin===================*/
+.yaohao {
+	margin:10px auto;
+	width:500px;
+	
+}
+.yaohao caption{
+	height: 28px;
+	text-align:center;	
+	line-height: 28px;
+	color:#515a66;
+	font-size:14px;
+	font-weight:bold;	
+	margin-bottom:6px;
+	border-bottom:2px solid #9699a0;
+}
+.yaohao tbody td {
+	background-color: #2399d8;
+    height: 26px;
+    line-height: 26px;
+	color:#fff;
+	text-align:center;
+}
+.yaohao tbody td.on{
+	background-color: #bae1fd;
+	color:#04416c;
+	text-align:center;
+}
+/*=================== yaohao end ===================*/
+/*=================== 表单伸缩 begin ===================*/
+.jsba_from_box {
+	width:960px;
+	margin:10px auto;
+}
+.jsba_option {
+	background-color: #FFF;
+	border-bottom: #999 solid 2px;
+	margin-bottom:10px;
+}
+.jsba_title {
+	position:relative
+}
+.jsba_title a {
+	display:inline-block;
+	width:100%;
+	height:30px;
+	line-height:30px;
+	background-color: #FFF;
+	background-image: url("images/jsba-title-bg.png");
+	background-repeat: repeat-x;
+	font-weight: bold;
+	color: #333;
+	text-decoration: none;
+}
+.jsba_title span {
+	margin-left:10px;
+}
+.jsba_title b {
+	color:#FF0033;
+	margin-left:4px;
+}
+.jsba_content {
+	padding:10px;
+}
+/*=================== 表单伸缩 end ===================*/
+/*==========日程 begin=========*/
+.scheduleblock {
+	background:#fff;
+}
+.scheduleblock_out {
+    border:1px solid #e6e6e6;
+	position:relative;
+	background:#d8e0ea;
+	margin-top:10px;	
+	width:100%;
+}
+.scheduleblock_in {
+	background-color:#fff;
+	border-left:1px solid #c7d4e3;
+	border-right:1px solid #c7d4e3;
+	position:relative;
+	top:-2px;
+	left:-2px;
+}
+.scheduleblock_th {
+    background-image: url("images/mailblock_th_bg.gif");
+	border-bottom:1px solid #e6e6e6;
+	height:35px;
+	line-height:35px;
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+}
+
+/*==========站内信 END=========*/
+
+/*========== 个人工作台 开始=========*/
+.yui-skin-sam .user_workbench_grid {
+	margin:10px auto;
+	width:750px;
+}
+.benchblock {
+	width:550px;
+    height:224px;
+	border: 1px solid #C5D2E2;
+	background-color: #FFF;
+	border-collapse:collapse;
+	float:left;
+	margin-left:10px;
+	margin-top:10px;
+}
+.benchblock thead th {
+	background-image: url("images/list_titlebg.gif");
+	background-repeat: repeat-x;
+	text-align:left;
+	height: 25px;
+	line-height: 25px;
+	padding-left: 10px;
+	white-space: nowrap;
+}
+.benchblock thead th span a {
+	text-align:right;
+}
+.benchblock tbody td {
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #E0EAF6;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	padding-top: 2px;
+}
+.benchblock tfoot td {
+    padding-right: 10px;
+    background-repeat: repeat-x;
+    height: 30px;
+}
+
+.quickblock {
+	width:360px;
+    height:224px;
+	border: 1px solid #C5D2E2;
+	background-color: #FFF;
+	border-collapse:collapse;
+	float:left;
+	margin-right:10px;
+	margin-top:5px;
+}
+.quickblock thead th {
+	background-image: url("images/list_titlebg.gif");
+	background-repeat: repeat-x;
+	text-align:left;
+	height: 25px;
+	line-height: 25px;
+	padding-left: 10px;
+	white-space: nowrap;
+}
+.quickblock tbody td {background-color: #FFFFFF;padding-left: 10px;}
+.quickblock td span  {}
+.quickblock td span a { background-color: #eef6fa;line-height: 40px;padding-right: 10px;}
+/*========== 个人工作台 开始=========*/
+
+
+/*==========文书字号 start=========*/
+.wszh_mainbox{width:750px;margin:10px 0 10px 10px}
+.description{margin-top:16px;padding:12px;background-color:#dbe6f3;border:solid #99bce8 1px;border-radius:3px 3px 3px 3px}
+.description em{font-size:14px;font-weight:bold;color:#f60}
+.wszh_mainbox h1{font-size:14px;margin-bottom:20px;color:#1b3160;background-image:url("images/splitline.png");background-repeat:repeat-x;background-position:bottom;height:25px}
+.wszh_selectzh{margin-top:20px}
+.wszh_data table{border-collapse:collapse;width:100%}
+.wszh_data td,.wszh_data th{border:1px solid #fff;padding:5px 12px}
+.wszh_data td{background:none repeat scroll 0 0 #e6e9f5}
+.wszh_preview{margin-bottom:20px;height:60px;border:solid #99bce8 1px;border-radius:3px 3px 3px 3px;background-color:#dbe6f3;position:relative}
+.wszh_preview p span{margin-left:12px}
+.s-inpt-w,.s-btn-w{background:url("images/pic.gif") no-repeat scroll 0 0 transparent}
+.s-inpt-w_hh {width:300px!important}
+.s-inpt_hh{width:300px!important}
+.c-fm-w{position:relative;width:592px;z-index:2}
+.s-inpt-w{background-position:0 -67px;display:inline-block;height:37px;vertical-align:top;width:140px}
+.s-inpt{background:none repeat scroll 0 0 transparent;border:medium none;font:16px arial;height:25px;outline:medium none;padding:7px 5px 3px;position:relative;width:140px;z-index:5}
+.s-btn-w{cursor:pointer;display:inline-block;height:37px;width:88px}
+.s-btn-w:hover{background-position:-176px 0}
+.s-btn-w:active{background-position:-88px 0}
+.s-btn{background:none repeat scroll 0 0 transparent;border:medium none;cursor:pointer;font-size:14px;font-weight:bold;height:34px;position:relative;text-align:center;width:88px;z-index:1}
+.wszh-x{position:absolute;left:13px;top:13px}
+.wszh-x input{color:#333;font-size:22px;letter-spacing:-1px;font-family:微软雅黑,Microsoft YaHei,Helvetica,Tahoma,StSun,宋体,SimSun,sans-serif;!important letter-spacing:0;!important text-transform:none;!important background:0}
+.wszh-y{position:absolute;left:282px;top:13px}
+.wszh-y_hh{position:absolute;left:20px;top:13px}
+.wszh_optbtn{margin-left:200px}
+div.wszh_mainbox p.wszh_show{text-align:center;margin-bottom:30px;font-size:24px;color:#1b3160;font-family:Verdana,Geneva,sans-serif;text-decoration:none;font-weight:bold;width:50%;margin:0 auto 20px auto}
+div.wszh_mainbox h3{width:50%;margin:0 auto 10px auto}
+div.wszh_whichway{margin-bottom:20px}
+div.wszh_whichway_box{width:50%;margin:0 auto}
+div.wszh_download_url{width:50%;margin:10px auto 20px auto}
+div.wszh_whichway_box label{font-size:24px;font-weight:bold;text-decoration:none}
+div.wszh_whichway_box table{border-collapse:collapse;width:100%;margin:0 auto}
+div.wszh_whichway_box th{background:none repeat scroll 0 0 #efefef;border-bottom:medium none;border-top:medium none;color:#000;font-weight:bold;line-height:1.3;white-space:nowrap}
+div.wszh_whichway_box td,div.wszh_whichway_box th{border:0;padding:5px 12px}
+div.wszh_whichway_box td{background:0}
+div.wszh_uploadws_nm{height:25px;line-height:25px}
+/*==========文书字号 end=========*/
+
+/*\\\\\\\\ 2012-06-08新加样式 \\\\\\\\\*/
+
+/* ======== 系统-通用-文本录入框样式 ======== */
+div.general_textarea h4{margin-bottom:12px;padding-left:5px}
+div.general_textarea textarea{width:100%}
+
+/* ======== 系统-通用-基础信息显示样式 ======== */
+div.general_viewinfo_list{margin-bottom:20px}
+div.general_viewinfo_list h4{margin-bottom:12px;padding-left:5px}
+div.general_viewinfo_list table{border-collapse:collapse;width:100%}
+div.general_viewinfo_list th{background:none repeat scroll 0 0 #efefef;border-bottom:medium none;border-top:medium none;color:#000;font-weight:bold;line-height:1.3;white-space:nowrap}
+div.general_viewinfo_list td, div.general_viewinfo_list th{border:1px solid #99bce8;padding:5px 12px}
+div.general_viewinfo_list td{background:none repeat scroll 0 0 #fff}
+
+/* ======== 系统-通用-数据表格样式 ======== */
+div.general_data_list{margin-bottom:24px;border:solid #99bce8 1px;position:relative}
+.general_data_label label{font-size:14px;display:block;float:left;width:25%}
+div.general_data_list div.general_data_list_optbtn{width:50px;height:24px;position:absolute;right:20px;top:7px}
+div.general_data_list h4{height:33px;line-height:33px;background:none repeat scroll 0 0 #d2e0f0;border-bottom:solid #99bce8 1px;padding-left:12px;font-weight:normal}
+div.general_data_list table{margin-bottom:0;border-collapse:collapse;width:100%}
+div.general_data_list table thead th{text-align:left;padding-left:12px;height:25px;background-color:#e2e4e6;background-image:url("images/general_data_list_title_bg.png");border-right:solid #c5c5c5 1px}
+div.general_data_list table tbody td{padding:5px 12px;border-right:1px solid #d0d0d0;border-bottom:1px solid #ededed;background-color:#fff}
+div.general_data_list table thead th.lost,div.general_data_list table tbody td.lost{border-right:0}
+
+
+/* ======== 系统-通用-页面底部操作按钮样式 ======== */
+div.sys_page_btn{width:170px;margin:30px auto 10px;height:40px}
+
+/* ======== 系统-通用-查看详情页面样式 ======== */
+.ckxq_from_baseinfo table{border-collapse:collapse;width:100%;margin-bottom:20px}
+.ckxq_from_baseinfo td,.zxsq_gird .zxsq_main .ckxq_from_baseinfo th{border:1px solid #fff;padding:5px 12px}
+.ckxq_from_baseinfo td{background:none repeat scroll 0 0 #e6e9f5}
+.ckxq_from_baseinfo th{text-align:right;background:none repeat scroll 0 0 #d2d7e6;border-bottom:1px solid #fff;border-top:1px solid #fff;color:#000;font-weight:bold;line-height:1.3;white-space:nowrap;padding-right:12px}
+.zxsq_gird .zxsq_main .ckxq_from_baseinfo span{font-size:12px;font-style:italic;font-weight:bold}
+.zxsq_gird .zxsq_main .ckxq_from_baseinfo b{color:#f30}
+.ckxq_from_baseinfo h4{background:none repeat scroll 0 0 #d2d7e6;height:30px;line-height:30px;padding-left:12px;border-top:solid #fff 1px;border-right:solid #fff 1px;border-bottom:solid #999 1px;border-left:solid #fff 1px;font-size:14px;font-weight:bold;color:#000}
+.zxsq_gird .zxsq_main .ckxq_from_baseinfo h5{font-size:12px;font-weight:bold}
+.zxsq_gird .zxsq_main .ckxq_from_baseinfo span.ckxq_from_chkpass{color:#090}
+.zxsq_gird .zxsq_main .ckxq_from_baseinfo span.ckxq_from_chkfail{color:#F00}
+.ckxq_from_baseinfo .ckxq_from_view{margin-top:10px;margin-bottom:18px;border-bottom:1px dotted #FFF}
+.ckxq_from_baseinfo .ckxq_from_view h6.ckxq_from_view_title{font-size:14px;font-weight:bold;color:#006;margin-bottom:10px}
+.ckxq_from_baseinfo .ckxq_from_view h6.ckxq_from_view_title a{font-size: 12px}
+.ckxq_from_baseinfo .ckxq_from_view span.ckxq_from_view_title_nm,.zxsq_gird .zxsq_main .ckxq_from_baseinfo .ckxq_from_view span.ckxq_from_view_title_time{color:#666;padding:0 6px;font-size:12px;font-style:normal;font-weight:normal}
+.ckxq_from_baseinfo .ckxq_from_view p{padding-bottom:12px}
+.xuzhi_btn{margin:30px auto 10px;height:40px}
+
+/* ======== 系统-特殊-数据表格样式 ======== */
+div.spcil_data_list{border:solid #99bce8 1px;border-bottom:none;position:relative;margin-bottom:5px;}
+div.spcil_data_list div.spcil_data_list_optbtn{width:50px;height:24px;position:absolute;right:20px;top:7px}
+
+div.spcil_data_list h4{height:33px;line-height:33px;background:none repeat scroll 0 0 #d2e0f0;border-bottom:solid #99bce8 1px;padding-left:12px;font-weight:normal}
+div.spcil_data_list h4 span{float:right;margin-right:10px;}
+div.spcil_data_list table{margin-bottom:0;border-collapse:collapse;width:100%}
+div.spcil_data_list table thead th{text-align:left;padding-left:12px;height:25px;background-image:url("images/spcil_data_list_title_bg.png");background-color:#e2e4e6;border-right:solid #c5c5c5 1px}
+div.spcil_data_list table tbody td{padding:5px 12px;border-right:1px solid #d0d0d0;border-bottom:1px solid #ededed;background-color:#fff}
+div.spcil_data_list table tbody td p{width:100%;line-height:30px; border-bottom:1px solid #fff;}
+div.spcil_data_list table thead th.lost,div.general_data_list table tbody td.lost{border-right:0}
+/* ========文书预览 ======== */
+div.section {width:98%;margin:15px auto;margin-bottom:20px;}
+div.section p {margin:0;line-height:170%;font-size:16.0pt;text-indent:36.4pt;font-family:FangSong_GB2312;text-align: justify;}
+div.section p.h1 {text-align:center;line-height:120%;}
+div.section p.h2 {text-align:center;font-size:18.0pt;font-family:SimHei;line-height:120%;}
+div.section p.h3 {text-align:right;line-height:120%;}
+div.section p.left {text-indent:0pt;}
+div.section p.right {text-align:right;}
+div.section p span.underline {}
+/**项目详情样式*/
+.content{
+	width:100%;
+}
+.cls:after{
+	clear: both;
+    content: "";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.content-l{
+	float:left;
+	height:580px;
+	width:240px;
+}
+.content-r{
+	float:left;
+	height:580px;
+	width:640px;
+	border:1px solid #ccc;
+	margin-left:10px;
+}
+.benchblock-i {
+    background-color: #FFFFFF;
+    border: 1px solid #C5D2E2;
+    border-collapse: collapse;
+    height:120px;
+    width: 240px;
+}
+.benchblock-i thead th {
+	background-image: url("images/list_titlebg.gif");
+	background-repeat: repeat-x;
+	text-align:left;
+	height: 25px;
+	line-height: 25px;
+	padding-left: 10px;
+	white-space: nowrap;
+}
+.benchblock-i thead th span a {
+	text-align:right;
+}
+.benchblock-i tbody td {
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #E0EAF6;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	padding-top: 2px;
+}
+.benchblock-i tfoot td {
+    padding-right: 10px;
+    background-repeat: repeat-x;
+    height: 30px;
+}

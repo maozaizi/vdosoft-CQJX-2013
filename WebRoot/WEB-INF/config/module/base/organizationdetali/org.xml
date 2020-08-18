@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="org">
+		<!-- 基本组织结构维护  查询tree结构 -->
+		<!-- 消防局 -->
+		<method name="toMain" realclass="com.u2a.framework.service.SysService" methodname="toPage" dbName="brickDao" trans="" limit="" source="a" dest="jsp/base/org_detali/org/main.jsp" error="">
+		</method>
+		<!-- 获取tree列表 -->
+		<method name="getTree" methodname="getTree" dest="jsp/base/org_detali/org/tree.jsp" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" source="aa">
+			<inparams>
+			    <inparam name="userMap" real="user" type="LOGIC" check="1" source="session"/>
+			</inparams> 
+			<outparams>
+				<outparam name="organizationDetaliList" type="LOGIC" source="attr" />
+				<outparam name="expandId"  type="String" source="attr"/>
+				<outparam name="cb" type="ENTITY" source="attr" />
+				<inparam name="type"  type="String" source="param"/>
+			</outparams>
+		</method>
+		<!-- 获取节点详细信息 -->
+		<method name="getInfo" methodname="getInfo" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa"  dest="jsp/base/org_detali/org/info.jsp">
+			<inparams>
+				<inparam name="baseorganization" type="LOGIC" classname="com.baseorganization" source="param">
+					<inparam name="orgCode"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="isRefresh"  type="String" check="0" source="value" default="1"/>
+			</inparams> 
+			<outparams>
+				<outparam name="baseorganization" type="LOGIC" source="attr" />
+				<outparam name="userInfoList" type="LOGIC" source="attr" />
+				<outparam name="postInfoList" type="LOGIC" source="attr" />
+				<outparam name="isRefresh"  type="String" check="0" source="param"/>
+			</outparams>
+		</method>
+		<!-- 设置人员登陆名和密码 跳转-->
+		<method name="toSetUserLogin" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" methodname="toSetUserLogin" dbName="brickDao" trans="" limit="" source="a"  dest="jsp/base/org_detali/org/setUser.jsp">
+			<inparams>
+				<inparam name="userInfo" type="LOGIC" classname="com.UserInfo" source="param">
+					<inparam name="userId"  type="String" check="0" source="param"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="userInfo" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 设置人员登陆名和密码 -->
+		<method name="setUserLogin" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" methodname="setUserLogin" dbName="brickDao" trans="" limit="" source="a"  dest="jsp/base/org_detali/org/user_add.jsp">
+			<inparams>
+				<inparam name="userInfo" type="LOGIC" classname="com.UserInfo" source="param">
+					<inparam name="userId"  type="String" check="0" source="param"/>
+					<inparam name="userName"  type="String" check="0" source="param"/>
+					<inparam name="userPwd"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="tempUrl"  type="String" check="0" source="param"/>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<!-- 添加人员 跳转-->
+		<method name="toAddUserInfo" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" methodname="toAddUserInfo" dbName="brickDao" trans="" limit="" source="a"  dest="jsp/base/org_detali/org/user_add.jsp">
+			<inparams>
+				<inparam name="orgId"  type="String" check="0" source="param"/>
+			</inparams>
+			<outparams>
+				<outparam name="orgId" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 添加人员 -->
+		<method name="addUserInfo" methodname="addUserInfo" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa">
+			<inparams>
+				<inparam name="userInfo" type="LOGIC" classname="com.UserInfo" source="param">
+					<inparam name="orgId"  type="String" check="0" source="param"/>
+					<inparam name="name"  type="String" check="0" source="param"/>
+					<inparam name="gender"  type="String" check="0" source="param"/>
+					<inparam name="email"  type="String" check="0" source="param"/>
+					<inparam name="position"  type="String" check="0" source="param"/>
+					<inparam name="remark"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="tempUrl"  type="String" check="0" source="param"/>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<!-- 修改人员 跳转 -->
+		<method name="toModifyUserInfo" methodname="toModifyUserInfo" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa" dest="jsp/base/org_detali/org/user_modify.jsp">
+			<inparams>
+				<inparam name="userInfo" type="LOGIC" classname="com.UserInfo" source="param">
+					<inparam name="userId"  type="String" check="0" source="param"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="userInfo" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 修改人员 -->
+		<method name="modifyUserInfo" methodname="modifyUserInfo" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa">
+			<inparams>
+				<inparam name="userInfo" type="LOGIC" classname="com.UserInfo" source="param">
+					<inparam name="name"  type="String" check="0" source="param"/>
+					<inparam name="gender"  type="String" check="0" source="param"/>
+					<inparam name="email"  type="String" check="0" source="param"/>
+					<inparam name="position"  type="String" check="0" source="param"/>
+					<inparam name="remark"  type="String" check="0" source="param"/>
+					<inparam name="userId"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="tempUrl"  type="String" check="0" source="param"/>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>		
+		<!-- 删除人员 -->
+		<method name="deleteUserInfo" methodname="deleteUserInfo" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa" dest="jsp/base/org_detali/org/info.jsp">
+			<inparams>
+				<inparam name="userInfo" type="LOGIC" classname="com.UserInfo" source="param">
+					<inparam name="userId"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="reason"  type="String" check="0" source="param"/>
+				<inparam name="tempUrl"  type="String" check="0" source="param"/>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<!-- 添加岗位 跳转 -->
+		<method name="toAddPostInfo" methodname="toAddPostInfo" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa" dest="jsp/base/org_detali/org/post_add.jsp">
+			<inparams>
+				<inparam name="orgId"  type="String" check="0" source="param"/>
+			</inparams>
+			<outparams>
+				<outparam name="orgId" type="LOGIC" source="attr" />
+				<outparam name="postList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 添加岗位 -->
+		<method name="addPostInfo" methodname="addPostInfo" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa">
+			<inparams>
+				<inparam name="postInfo" type="LOGIC" classname="com.PostInfo" source="param">
+					<inparam name="orgId"  type="String" check="0" source="param"/>
+					<inparam name="postName"  type="String" check="0" source="param"/>
+					<inparam name="postCode"  type="String" check="0" source="param"/>
+					<inparam name="postDuties"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="tempUrl"  type="String" check="0" source="param"/>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<!-- 修改岗位 跳转 -->
+		<method name="toModifyPostInfo" methodname="toModifyPostInfo" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa" dest="jsp/base/org_detali/org/post_modify.jsp">
+			<inparams>
+				<inparam name="postInfo" type="LOGIC" classname="com.PostInfo" source="param">
+					<inparam name="postId"  type="String" check="0" source="param"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="postInfo" type="LOGIC" source="attr" />
+				<outparam name="postList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 修改岗位 -->
+		<method name="modifyPostInfo" methodname="modifyPostInfo" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa">
+			<inparams>
+				<inparam name="postInfo" type="LOGIC" classname="com.PostInfo" source="param">
+					<inparam name="postName"  type="String" check="0" source="param"/>
+					<inparam name="postCode"  type="String" check="0" source="param"/>
+					<inparam name="postDuties"  type="String" check="0" source="param"/>
+					<inparam name="postId"  type="String" check="0" source="param"/>
+					<inparam name="orgId"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="tempUrl"  type="String" check="0" source="param"/>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		
+		<!-- 删除岗位 -->
+		<method name="deletePostInfo" methodname="deletePostInfo" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa" dest="jsp/base/org_detali/org/info.jsp">
+			<inparams>
+				<inparam name="postInfo" type="LOGIC" classname="com.PostInfo" source="param">
+					<inparam name="postId"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="reason"  type="String" check="0" source="param"/>
+				<inparam name="tempUrl"  type="String" check="0" source="param"/>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<!-- 岗位管理 跳转 -->
+		<method name="toManagerPost" methodname="toManagerPost" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa" dest="jsp/base/org_detali/org/postuser.jsp">
+			<inparams>
+				<inparam name="postInfo" type="LOGIC" classname="com.PostInfo" source="param">
+					<inparam name="postId"  type="String" check="0" source="param"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="postId"  type="String" source="attr"/>
+				<outparam name="userInfoList" type="LOGIC" source="attr" />
+				<outparam name="orgId"  type="String" source="attr"/>
+			</outparams>
+		</method>
+		<!-- 删除岗位人员 -->
+		<method name="deletePost" methodname="deletePost" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa" dest="">
+			<inparams>
+				<inparam name="postUser" type="LOGIC" classname="com.PostUser" source="param">
+					<inparam name="postUserId"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="orgId" type="String" source="param" />
+				<inparam name="tempUrl" type="String" source="param" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<!-- 岗位加入人员 -->
+		<method name="joinPostUser" methodname="joinPostUser" realclass="com.u2a.framework.service.base.organizationDetali.OrgManagerService" dbName="brickDao" trans="" limit="" error="" type="2" source="aa" dest="">
+			<inparams>
+				<inparam name="postUser" type="LOGIC" classname="com.PostUser" source="param">
+					<inparam name="userId"  type="String" check="0" source="param"/>
+					<inparam name="postId"  type="String" check="0" source="param"/>
+				</inparam>
+				<inparam name="orgId" type="String" source="param" />
+				<inparam name="tempUrl" type="String" source="param" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+	</package>
+</root>

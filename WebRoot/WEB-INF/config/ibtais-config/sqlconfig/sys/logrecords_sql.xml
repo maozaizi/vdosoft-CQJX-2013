@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<!-- 获取日志记录表基本信息-->
+	<select id="logRecordsList" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select a.* from log_records a where 1=1
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="busIdOne">
+				a.bus_id ='$busIdOne$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="busNameOne">
+				a.bus_name ='$busNameOne$'
+			</isNotEmpty>
+		</dynamic>
+		<dynamic prepend="or">
+			<isNotEmpty prepend="and" property="busIdTow">
+				a.bus_id = '$busIdTow$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="busNameTow">
+				a.bus_name = '$busNameTow$'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+</sqlMap>

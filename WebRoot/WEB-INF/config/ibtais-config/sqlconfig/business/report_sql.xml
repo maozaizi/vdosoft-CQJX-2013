@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<!-- 8.1查询 上井服务列表 -->
+	<select id="getlabourExReportList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select 
+			Row_Number() over (order by info.departure_time desc) as rownum,
+			'' as remark,
+			'' as equipmentCode,
+			ISNULL(info.repair_type,'')  as repairType,
+			'' as repairFrom,
+			'' as useFrom,
+			info.project_dept as projectDept,
+			info.expats_to  as expatsTo,
+			ISNULL(detailzx.equipment_value,0.0) as zxValue,
+			ISNULL(detailjx.equipment_value,0.0) as jxValue,
+			ISNULL(detaildx.equipment_value,0.0) as dxValue,
+			ISNULL(detailjj.equipment_value,0.0) as jjValue,
+			ISNULL(detailmh.equipment_value,0.0) as mhValue,
+			0.0	as	qz1Value,
+			0.0	as	qz3Value,
+			0.0	as	qz4Value,
+			0.0	as	qz5Value,
+			ISNULL(detailzx.equipment_value,0.0)+ISNULL(detailjx.equipment_value,0.0)+ISNULL(detaildx.equipment_value,0.0)
+			+ISNULL(detailjj.equipment_value,0.0)+ISNULL(detailmh.equipment_value,0.0) totalvalue,
+			ISNULL(detailzx.amount,0.0) zxamount,
+			ISNULL(detailjx.amount,0.0) jxamount,
+			ISNULL(detaildx.amount,0.0) dxamount,
+			ISNULL(detailjj.amount,0.0) jjamount,
+			ISNULL(detailmh.amount,0.0) mhamount,
+			0.0	as	qz1amount,
+			0.0	as	qz3amount,
+			0.0	as	qz4amount,
+			0.0	as	qz5amount,
+			ISNULL(detailzx.amount,0.0)+ISNULL(detailjx.amount,0.0)+ISNULL(detaildx.amount,0.0)+ISNULL(detailjj.amount,0.0)
+			+ISNULL(detailmh.amount,0.0) totalamount,
+			ISNULL(detailzx.equipment_value,0.0)+ISNULL(detailjx.equipment_value,0.0)+ISNULL(detaildx.equipment_value,0.0)
+			+ISNULL(detailjj.equipment_value,0.0)+ISNULL(detailmh.equipment_value,0.0)+ISNULL(detailzx.amount,0.0)+ISNULL(detailjx.amount,0.0)+ISNULL(detaildx.amount,0.0)+ISNULL(detailjj.amount,0.0)
+			+ISNULL(detailmh.amount,0.0) total
+		from expats_info info
+			 left join expats_detail  detail  on detail.expats_id = info.id
+			 left join (select * from expats_detail expat 
+							left join 
+							(select sum(isnull(amount,0.0)) amount,bus_id,bus_name from out_store_detail group by bus_id,bus_name) mater 
+							on expat.id = mater.bus_id and mater.bus_name='com.ExpatsDetail' 
+						where org_code like '%|ZX|%')  detailzx on info.id = detailzx.expats_id
+			 left join (select * from expats_detail expat 
+							left join 
+							(select sum(isnull(amount,0.0)) amount,bus_id,bus_name from out_store_detail group by bus_id,bus_name) mater 
+							on expat.id = mater.bus_id and mater.bus_name='com.ExpatsDetail'
+						 where org_code like '%|JX|%|JX|%')  detailjx on info.id = detailjx.expats_id 
+			 left join (select * from expats_detail expat 
+							left join 
+							(select sum(isnull(amount,0.0)) amount,bus_id,bus_name from out_store_detail group by bus_id,bus_name) mater 
+							on expat.id = mater.bus_id and mater.bus_name='com.ExpatsDetail'
+						 where org_code like '%|DX|%')  detaildx on info.id = detaildx.expats_id 
+			 left join (select * from expats_detail expat 
+							left join 
+							(select sum(isnull(amount,0.0)) amount,bus_id,bus_name from out_store_detail group by bus_id,bus_name) mater 
+							on expat.id = mater.bus_id and mater.bus_name='com.ExpatsDetail'
+						where org_code like '%|JJ|%')  detailjj on info.id = detailjj.expats_id 
+			 left join (select * from expats_detail expat 
+							left join 
+							(select sum(isnull(amount,0.0)) amount,bus_id,bus_name from out_store_detail group by bus_id,bus_name) mater 
+							on expat.id = mater.bus_id and mater.bus_name='com.ExpatsDetail'
+						where org_code like '%|MH|%')  detailmh on info.id = detailmh.expats_id
+			where info.is_valid='1' 
+			<isNotEmpty prepend="and" property="endDate">
+				'$endDate$' = convert(char(6),info.departure_time,112) 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgCode">
+				info.org_code like '%$orgCode$%'
+			</isNotEmpty>
+			order  by info.departure_time	
+	</select>
+	<!-- 8.1.2查询 设备劳务服务列表 -->
+	<select id="getlabourEqReportList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select
+			Row_Number() over (order by info.create_date desc) as rownum,
+			info.distribute_remark  as remark,
+			info.body_code  as bodyCode,
+			info.repair_type as repairType,
+			info.dept_from  as repairFrom,
+			''	as  useFrom,
+			ISNULL(project_dept,'')  as projectDept,
+			info.dept_from  as expatsTo,
+			1  as zxnum,
+			0  as zxbzt,
+			ISNULL(drilling.equipment_value,0.0) as zxvalue,
+			1  as jxnum,
+			0  as jxbzt,
+			ISNULL(mechanic.equipment_value,0.0) as jxvalue,	
+			1  as dxnum,
+			0  as dxbzt,
+			ISNULL(electrical.equipment_value,0.0) as dxvalue,
+			1  as mhnum,
+			0  as mhbzt,
+			ISNULL(rivetweld.equipment_value,0.0) as mhvalue,
+			ISNULL(treatment.num,0)  as jjnum,
+			0  as jjbzt,
+			0.0 as jjvalue,
+			0  as qz1num,
+			0  as qz1bzt,
+			0.0 as qz1value,
+			0  as qz3num,
+			0  as qz3bzt,
+			0.0 as qz3value,
+			0  as qz4num,
+			0  as qz4bzt,
+			0.0 as qz4value,
+			0  as qz5num,
+			0  as qz5bzt,
+			0.0 as qz5value,
+			ISNULL(drilling.equipment_value,0.0)+ISNULL(mechanic.equipment_value,0.0)+ISNULL(electrical.equipment_value,0.0)
+			+ISNULL(rivetweld.equipment_value,0.0) as totalvalue,
+			0  as totalnum,
+			0  as totalbzt,
+			0  as totalmnum,
+			0  as totalhour,
+			ISNULL(drilling.equipment_value,0.0)+ISNULL(mechanic.equipment_value,0.0)+ISNULL(electrical.equipment_value,0.0)
+			+ISNULL(rivetweld.equipment_value,0.0) as total
+			from bus_inrepair_info info
+			left join (select * from bus_mechanic where repair_state='4' and is_valid='1'
+						) mechanic  on info.id = mechanic.inrepair_id
+			left join (select * from bus_drilling where repair_state='4' and is_valid='1'
+						) drilling  on info.id = mechanic.inrepair_id
+			left join (select * from bus_electrical where repair_state='4' and is_valid='1'
+						) electrical  on info.id = electrical.inrepair_id
+			left join (select * from bus_rivetweld where repair_state='4' and is_valid='1'
+						) rivetweld on info.id = rivetweld.inrepair_id
+			left join (select count(id) num from mech_treatment where  is_valid='1'
+						) treatment on info.id = mechanic.inrepair_id
+			where info.is_valid='1' and info.repair_state='4'
+			<isNotEmpty prepend="and" property="orgCode">
+				info.org_id like '%$orgCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">
+				'$endDate$' = convert(char(6),info.complete_date,112) 
+			</isNotEmpty>
+	</select>
+	<!-- where info.is_valid='1' and info.repair_state='4'-->
+	
+	<select id="getconsumeReportList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select 
+			t.org_id,
+			Row_Number() over (order by t.create_date desc) as rownum,
+			t.equipment_name as equipmentName,
+			t.equipment_model as equipmentModel,
+			t.self_code	as selfCode,
+			t.work_card as workCard,
+			t.repair_type as repairType,
+			t.dept_from as deptFrom,
+			t.unity as unity,
+			ISNULL(t.repair_value,0.0) as eqvalue,
+			t.quota_hour as quotaHour,
+			t.main_repair as mainRepair,
+			t.start_date as startDate,
+			t.complete_date as completeDate,
+			0.0  as lastvalue,
+			ISNULL(t.amount,0.0) as amount,
+			ISNULL(t.amount,0.0) as amountb
+		from (
+		select
+			t1.org_id,
+			t1.equipment_name,
+			t1.equipment_model,
+			info.self_code,
+			t1.work_card,
+			t1.repair_type,
+			info.dept_from,
+			t1.unity,
+			t1.equipment_value,
+			t1.quota_hour,
+			card.main_repair,
+			t1.start_date,
+			t1.complete_date,
+			t1.repair_value,
+			out.amount as amount,
+			outb.amount as amountb,
+			t1.create_date 
+		from bus_mechanic t1 
+		left join bus_inrepair_info info on info.id=t1.id
+		left join bus_work_card card on t1.main_card=card.assist_card and card.work_card=t1.work_card
+		left join (select amount,bus_id from out_store_detail out1 where unit_price&lt;10000) out on t1.id = out.bus_id 
+		left join (select amount,bus_id from out_store_detail out2 where unit_price&gt;=10000) outb on t1.id = out.bus_id
+		where t1.repair_state=3 or t1.repair_state=4 and t1.is_valid ='1'
+		union 
+		select
+			t1.org_id,
+			t1.equipment_name,
+			t1.equipment_model,
+			info.self_code,
+			t1.work_card,
+			t1.repair_type,
+			info.dept_from,
+			t1.unity,
+			t1.equipment_value,
+			t1.quota_hour,
+			card.main_repair,
+			t1.start_date,
+			t1.complete_date,
+			t1.repair_value,
+			out.amount as amount,
+			outb.amount as amountb,
+			t1.create_date 
+		from bus_drilling t1 
+		left join bus_inrepair_info info on info.id=t1.id
+		left join bus_work_card card on t1.main_card=card.assist_card and card.work_card=t1.work_card
+		left join (select amount,bus_id from out_store_detail out1 where unit_price&lt;10000) out on t1.id = out.bus_id 
+		left join (select amount,bus_id from out_store_detail out2 where unit_price>=10000) outb on t1.id = out.bus_id
+		where t1.repair_state=3 or t1.repair_state=4 and t1.is_valid ='1'
+		union
+		select
+			t1.org_id,
+			t1.equipment_name,
+			t1.equipment_model,
+			info.self_code,
+			t1.work_card,
+			t1.repair_type,
+			info.dept_from,
+			t1.unity,
+			t1.equipment_value,
+			t1.quota_hour,
+			card.main_repair,
+			t1.start_date,
+			t1.complete_date,
+			t1.repair_value,
+			out.amount as amount,
+			outb.amount as amountb,
+			t1.create_date 
+		from bus_electrical t1 
+		left join bus_inrepair_info info on info.id=t1.id
+		left join bus_work_card card on t1.main_card=card.assist_card and card.work_card=t1.work_card
+		left join (select amount,bus_id from out_store_detail out1 where unit_price&lt;10000) out on t1.id = out.bus_id 
+		left join (select amount,bus_id from out_store_detail out2 where unit_price>=10000) outb on t1.id = out.bus_id
+		where t1.repair_state=3 or t1.repair_state=4 and t1.is_valid ='1'
+		union 
+		select
+			t1.org_id,
+			t1.equipment_name,
+			t1.equipment_model,
+			info.self_code,
+			t1.work_card,
+			t1.repair_type,
+			info.dept_from,
+			t1.unity,
+			t1.equipment_value,
+			t1.quota_hour,
+			card.main_repair,
+			t1.start_date,
+			t1.complete_date,
+			t1.repair_value,
+			out.amount as amount,
+			outb.amount as amountb,
+			t1.create_date 
+		from bus_rivetweld t1 
+		left join bus_inrepair_info info on info.id=t1.id
+		left join bus_work_card card on t1.main_card=card.assist_card and card.work_card=t1.work_card
+		left join (select amount,bus_id from out_store_detail out1 where unit_price&lt;10000) out on t1.id = out.bus_id 
+		left join (select amount,bus_id from out_store_detail out2 where unit_price>=10000) outb on t1.id = out.bus_id
+		where t1.repair_state=3 or t1.repair_state=4 and t1.is_valid ='1'
+		) t where 1=1
+		<isNotEmpty prepend="and" property="orgCode">
+				t.org_id like '%$orgCode$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="endDate">
+			'$endDate$' = convert(char(6),t.create_date,112) 
+		</isNotEmpty>
+		order by t.create_date
+	</select>
+	
+	<!-- 上井服务明细表 -->
+	<select id="getExpatsReportList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select 
+			Row_Number() over (order by a.departure_time desc) as rownum,
+			a.vehicles_unit  as vehiclesUnit,
+			a.vehicles_model as vehiclesModel,
+			a.vehicles_plate as vehiclesPlate,
+			a.trans_unit     as transUnit,
+			b.equipment_name as equipmentName,
+			b.equipment_model as equipmentModel,
+			a.task_detail	 as  taskDetail,
+			a.repair_type    as repairType,
+			a.is_complete    as isComplete,
+			a.project_dept	 as projectDept,
+			a.expats_to		 as expatsTo,
+			b.dept_name		 as deptName,
+			b.expats_num	 as expatsNum,
+			a.back_time		 as backTime,
+			a.departure_time as departureTime,
+			ISNULL(a.remark,'')		 as remark	
+		from expats_info a left join expats_detail b on a.id = b.expats_id
+			where a.is_valid ='1' and b.is_valid = '1'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="orgCode">
+				a.org_code like '%$orgCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="beginInDate">
+				a.departure_time&gt;$beginInDate$ 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">
+				a.departure_time&lt;$endInDate$ 
+			</isNotEmpty>
+		</dynamic>
+			order by a.departure_time
+	</select>
+	<!-- 生产日报 -->
+	<select id="getDailyReportList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select 
+		work_card as workCard ,
+		equipment_name as 	equipmentName,
+		equipment_model	as	equipmentModel,
+		dept_name	as	deptFrom,
+		start_date	as	startDate,
+		note_date as noteDate,
+		note_content  as	noteContent,
+		material_qk		as	materialQk
+		from bus_work_note where is_valid = '1'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="orgCode">
+				org_code like '%$orgCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="noteDate">
+				note_date=#noteDate# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="startDate">
+				note_date >= #startDate# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">
+				note_date &lt;= #endDate# 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="workCard">
+				work_card = #workCard# 
+			</isNotEmpty>
+		</dynamic>
+		order by create_date
+	</select>
+	<!-- 生产周报 -->
+	<select id="getWeekNoteReportList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from bus_work_note where is_valid = '1'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="orgCode">
+				org_code like '%$orgCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="beginInDate">
+				create_date&gt;$beginInDate$ 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endDate">
+				create_date&lt;$endInDate$ 
+			</isNotEmpty>
+		</dynamic>
+		order by create_date
+	</select>
+	<!-- 生产月报 -->
+	<select id="getMonthNoteReportList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from bus_work_note where is_valid = '1'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="orgCode">
+				org_code like '%$orgCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="beginInDate">
+				create_date&gt;$beginInDate$ 
+			</isNotEmpty>
+		</dynamic>
+		order by create_date
+	</select>
+	<!-- 月完工设备统计表 -->
+	<select id="getMonthComReportList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select 
+			equipment_name as equipmentName,
+			equipment_model as equipmentModel,
+			repair_type 		as repairType,
+			work_card	  as workCard,
+			unity		as	unity,
+			team_number	as	teamNumber,
+			1			as  numbers,
+			repair_value		as repairValue,
+			man_hour		as  manHour,
+			complete_date	as  completeDate,
+			dept_name	as	deptName
+		 from bus_mechanic
+		 where complete_date is not null
+		 <isNotEmpty prepend="and" property="choosedate">
+				convert(char(6),$choosedate$,112) = convert(char(6),complete_date,112) 
+		  </isNotEmpty>
+		  <isNotEmpty prepend="and" property="orgCode">
+				org_id like '%$orgCode$%'
+			</isNotEmpty>
+		 union
+		 select 
+			equipment_name as equipmentName,
+			equipment_model as equipmentModel,
+			repair_type 		as repairType,
+			work_card	  as workCard,
+			unity		as	unity,
+			team_number	as	teamNumber,
+			1			as  numbers,
+			repair_value		as repairValue,
+			man_hour		as  manHour,
+			complete_date	as  completeDate,
+			dept_name	as	deptName
+		 from bus_drilling
+		   where complete_date is not null
+		 <isNotEmpty prepend="and" property="choosedate">
+				convert(char(6),$choosedate$,112) = convert(char(6),complete_date,112) 
+		  </isNotEmpty>
+		  <isNotEmpty prepend="and" property="orgCode">
+				org_id like '%$orgCode$%'
+			</isNotEmpty>
+		 union
+		 select 
+			equipment_name as equipmentName,
+			equipment_model as equipmentModel,
+			repair_type 		as repairType,
+			work_card	  as workCard,
+			unity		as	unity,
+			team_number	as	teamNumber,
+			1			as  numbers,
+			repair_value		as repairValue,
+			man_hour		as  manHour,
+			complete_date	as  completeDate,
+			dept_name	as	deptName
+		 from bus_electrical
+		  where complete_date is not null
+		 <isNotEmpty prepend="and" property="choosedate">
+				convert(char(6),$choosedate$,112) = convert(char(6),complete_date,112) 
+		  </isNotEmpty>
+		  <isNotEmpty prepend="and" property="orgCode">
+				org_id like '%$orgCode$%'
+			</isNotEmpty>
+		 union
+		 select 
+			equipment_name as equipmentName,
+			equipment_model as equipmentModel,
+			repair_type 		as repairType,
+			work_card	  as workCard,
+			unity		as	unity,
+			team_number	as	teamNumber,
+			1			as  numbers,
+			repair_value		as repairValue,
+			man_hour		as  manHour,
+			complete_date	as  completeDate,
+			dept_name	as	deptName
+		 from bus_rivetweld
+		 where complete_date is not null
+		 <isNotEmpty prepend="and" property="choosedate">
+				convert(char(6),$choosedate$,112) = convert(char(6),complete_date,112) 
+		  </isNotEmpty>
+		  <isNotEmpty prepend="and" property="orgCode">
+				org_id like '%$orgCode$%'
+			</isNotEmpty>
+	</select>
+	<!-- 获取当前的月生产计划 -->
+	<select id="getproduceplanList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+			select * from bus_produce_plan
+			where is_valid = '1'
+			 <isNotEmpty prepend="and" property="orgCode">
+				org_code like '%$orgCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="year">
+				year = '$year$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="month">
+				month = '$month$'
+			</isNotEmpty>	
+	</select>
+	
+	<!-- 获取当前车间在修和待修的设备 -->
+	<select id="getProplanrepairList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+			select 
+			   b.work_card  as workCard,
+			   a.equipment_name as equipmentName,				
+			   a.equipment_model as equipmentModel,
+			   a.unity  as unity,
+			   1    as   numbers,
+			   a.repair_type as repairType,
+			   a.equipment_value as equipmentValue,
+			   a.dept_from  as  deptFrom,
+			   b.org_id  as orgCode,
+			   b.id   as  busid
+		 from bus_inrepair_info a,$tableNames$ b 
+		 where b.IS_VALID='1'and a.IS_VALID='1' and b.inrepair_id=a.id
+			   and (getDate() &lt;b.complete_date or b.complete_date is null)
+			<isNotEmpty prepend="and" property="equipmentName">
+				a.equipment_name like '%$equipmentName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="equipmentModel">
+				a.equipment_model like '%$equipmentModel$%'
+			</isNotEmpty>
+			 <isNotEmpty prepend="and" property="orgCode">
+				b.org_id like '%$orgCode$%'
+			</isNotEmpty>
+			 <isNotEmpty prepend="and" property="workCards">
+			 	b.work_card in
+				<iterate  property="workCards" conjunction="," open="(" close=")" >  
+		            #workCards[]#
+		     	</iterate>
+			</isNotEmpty>
+	</select>
+	<select id="getOrgInfoList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+			select t.id as orgId,t.org_code as orgCode,t.org_name as orgName,t1.org_name as pOrgName from bs_base_organization t, bs_base_organization t1
+			where t.parent_id= t1.id and t.iLevel = 4 and t.is_valid = '1'
+			 <isNotEmpty prepend="and" property="orgCode">
+				t.org_code like '$orgCode$%'
+			</isNotEmpty>
+			order by t1.org_name
+	</select>
+	<select id="getOutStorePrice" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+			select isnull(sum(isnull(isnull(real_Total_Price,amount),0.0)),0.0) as outPrice from out_store_detail t
+				where 1=1 
+			 <isNotEmpty prepend="and" property="outType">
+				t.out_type = #outType#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id = #orgId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="inDate">
+				'$inDate$' = convert(char(6),t.create_date,112) 
+			</isNotEmpty>
+	</select>
+	
+	<select id="getMonthReport" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+			select 
+			t1.equipment_name,
+			t1.equipment_model ,
+			t1.dept_from ,
+			t1.repair_type,    
+			t.work_card,
+			t1.self_code,
+			t1.unity,
+			t1.standard_num,
+			t1.output_value,
+			t1.quota_hour,
+			t.complete_date
+			from $tableName$ t, bus_inrepair_info t1 where t.inrepair_id = t1.id
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id = #orgId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="inDate">
+				'$inDate$' = convert(char(6),t.complete_date,112) 
+			</isNotEmpty>
+	</select>
+	
+	
+	<select id="getWeekReportList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+			<!-- 钻修 -->
+			select 
+			t1.equipment_name,
+			t1.equipment_model ,
+			t1.dept_from ,
+			t1.repair_type,    
+			t.work_card,
+			t1.self_code,
+			t1.unity,
+			t1.standard_num,
+			t1.output_value,
+			t1.quota_hour,
+			t.complete_date,
+			t1.repair_type,
+			t1.project_dept,
+			t1.in_date,
+			t.factory_date
+			from bus_drilling t, bus_inrepair_info t1 where t.inrepair_id = t1.id
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id = #orgId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="startdate">
+				$dateColumn$&gt;='$startdate$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enddate">
+				$dateColumn$&lt;='$enddate$' 
+			</isNotEmpty>
+			<!-- 电修 -->
+			union
+			select 
+			t1.equipment_name,
+			t1.equipment_model ,
+			t1.dept_from ,
+			t1.repair_type,    
+			t.work_card,
+			t1.self_code,
+			t1.unity,
+			t1.standard_num,
+			t1.output_value,
+			t1.quota_hour,
+			t.complete_date,
+			t1.repair_type,
+			t1.project_dept,
+			t1.in_date,
+			t.factory_date
+			from bus_electrical t, bus_inrepair_info t1 where t.inrepair_id = t1.id
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id = #orgId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="startdate">
+				$dateColumn$&gt;='$startdate$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enddate">
+				$dateColumn$&lt;='$enddate$'
+			</isNotEmpty>
+			union
+			<!-- 机修 -->
+			select 
+			t1.equipment_name,
+			t1.equipment_model ,
+			t1.dept_from ,
+			t1.repair_type,    
+			t.work_card,
+			t1.self_code,
+			t1.unity,
+			t1.standard_num,
+			t1.output_value,
+			t1.quota_hour,
+			t.complete_date,
+			t1.repair_type,
+			t1.project_dept,
+			t1.in_date,
+			t.factory_date
+			from bus_mechanic t, bus_inrepair_info t1 where t.inrepair_id = t1.id
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id = #orgId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="startdate">
+				$dateColumn$&gt;='$startdate$'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enddate">
+				$dateColumn$&lt;='$enddate$' 
+			</isNotEmpty>
+			<!-- 铆焊 -->
+			union
+			select 
+			t1.equipment_name,
+			t1.equipment_model ,
+			t1.dept_from ,
+			t1.repair_type,    
+			t.work_card,
+			t1.self_code,
+			t1.unity,
+			t1.standard_num,
+			t1.output_value,
+			t1.quota_hour,
+			t.complete_date,
+			t1.repair_type,
+			t1.project_dept,
+			t1.in_date,
+			t.factory_date
+			from bus_rivetweld t, bus_inrepair_info t1 where t.inrepair_id = t1.id
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id = #orgId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="startdate">
+				$dateColumn$&gt;='$startdate$' 
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enddate">
+				$dateColumn$&lt;='$enddate$' 
+			</isNotEmpty>
+	</select>
+	
+	
+	<select id="getMonthReportList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+			<!-- 钻修 -->
+			select 
+			t1.equipment_name,
+			t1.equipment_model ,
+			t1.dept_from ,
+			t1.repair_type,    
+			t.work_card,
+			t1.self_code,
+			t1.unity,
+			t1.standard_num,
+			t1.output_value,
+			t1.quota_hour,
+			t.complete_date,
+			t1.repair_type,
+			t1.project_dept,
+			t1.in_date,
+			t.factory_date,
+			t.dept_name,
+			t1.incarno
+			from bus_drilling t, bus_inrepair_info t1 where t.inrepair_id = t1.id
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id = #orgId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="inDate">
+				'$inDate$' = convert(char(6),t.complete_date,112) 
+			</isNotEmpty>
+			<!-- 电修 -->
+			union
+			select 
+			t1.equipment_name,
+			t1.equipment_model ,
+			t1.dept_from ,
+			t1.repair_type,    
+			t.work_card,
+			t1.self_code,
+			t1.unity,
+			t1.standard_num,
+			t1.output_value,
+			t1.quota_hour,
+			t.complete_date,
+			t1.repair_type,
+			t1.project_dept,
+			t1.in_date,
+			t.factory_date,
+			t.dept_name,
+			t1.incarno
+			from bus_electrical t, bus_inrepair_info t1 where t.inrepair_id = t1.id
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id = #orgId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="inDate">
+				'$inDate$' = convert(char(6),t.complete_date,112) 
+			</isNotEmpty>
+			union
+			<!-- 机修 -->
+			select 
+			t1.equipment_name,
+			t1.equipment_model ,
+			t1.dept_from ,
+			t1.repair_type,    
+			t.work_card,
+			t1.self_code,
+			t1.unity,
+			t1.standard_num,
+			t1.output_value,
+			t1.quota_hour,
+			t.complete_date,
+			t1.repair_type,
+			t1.project_dept,
+			t1.in_date,
+			t.factory_date,
+			t.dept_name,
+			t1.incarno
+			from bus_mechanic t, bus_inrepair_info t1 where t.inrepair_id = t1.id
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id = #orgId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="inDate">
+				'$inDate$' = convert(char(6),t.complete_date,112) 
+			</isNotEmpty>
+			<!-- 铆焊 -->
+			union
+			select 
+			t1.equipment_name,
+			t1.equipment_model ,
+			t1.dept_from ,
+			t1.repair_type,    
+			t.work_card,
+			t1.self_code,
+			t1.unity,
+			t1.standard_num,
+			t1.output_value,
+			t1.quota_hour,
+			t.complete_date,
+			t1.repair_type,
+			t1.project_dept,
+			t1.in_date,
+			t.factory_date,
+			t.dept_name,
+			t1.incarno
+			from bus_rivetweld t, bus_inrepair_info t1 where t.inrepair_id = t1.id
+			<isNotEmpty prepend="and" property="orgId">
+				t.org_id = #orgId#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="inDate">
+				'$inDate$' = convert(char(6),t.complete_date,112) 
+			</isNotEmpty>
+	</select>
+</sqlMap>

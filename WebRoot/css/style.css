@@ -1,0 +1,27 @@
+#autoHeight {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+
+.scroll_view {
+	height: 480px;
+	overflow: auto;
+}
+
+.show_view {
+	position: relative;
+	padding-bottom: 190px;
+}
+
+.opt_bar {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 170px;
+	padding: 10px 0 10px 10px
+}
+

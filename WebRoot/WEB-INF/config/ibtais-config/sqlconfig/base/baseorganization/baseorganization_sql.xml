@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd"> 
+
+<sqlMap>
+	<select id="queryChild" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from bs_base_organization where is_valid = '1' and base_organization_id like #baseOrganizationId#||'%'  and base_organization_id != #baseOrganizationId#
+	</select>
+	<!-- 查询行政区划信息 -->
+	<select id="getPoliticalAreaInfo" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+ 		select  a.political_id,a.corps_code,a.division_code,a.platoon_code,a.create_date from bs_political_org_link a where a.is_valid = '1' and  a.org_id=#orgId#
+	</select>
+	<!-- 根据省市县查询组织 -->
+	<select id="getOrgIdByAddress" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select b.base_organization_id, t.* from bs_political_org_link t,bs_base_organization b where t.is_valid = '1' and t.org_id = b.id
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="corpsCode">
+				t.corps_code like '$corpsCode$%'
+			</isNotEmpty>
+			<isEmpty prepend="and" property="corpsCode">
+				t.corps_code is null
+			</isEmpty>
+			<isNotEmpty prepend="and" property="divisionCode">
+				t.division_code like '$divisionCode$%'
+			</isNotEmpty>
+			<isEmpty prepend="and" property="divisionCode">
+				t.division_code is null
+			</isEmpty>
+			<isNotEmpty prepend="and" property="platoonCode">
+				t.platoon_code like '$platoonCode$%' 
+			</isNotEmpty>
+			<isEmpty prepend="and" property="platoonCode">
+				t.platoon_code is null
+			</isEmpty>
+		</dynamic>
+	</select>
+	<!-- 根据省市县查询组织 -->
+	<select id="checkPoliticalOrgId" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select b.base_organization_id, t.* from bs_political_org_link t,bs_base_organization b where t.is_valid = '1' and t.org_id = b.id and b.base_organization_id like '$baseOrgId$%'
+		<dynamic prepend="">
+			<isNotEmpty prepend="and" property="corpsCode">
+				t.corps_code like '$corpsCode$%'
+			</isNotEmpty>
+			<isEmpty prepend="and" property="corpsCode">
+				t.corps_code is null
+			</isEmpty>
+			<isNotEmpty prepend="and" property="divisionCode">
+				t.division_code like '$divisionCode$%'
+			</isNotEmpty>
+			<isEmpty prepend="and" property="divisionCode">
+				t.division_code is null
+			</isEmpty>
+			<isNotEmpty prepend="and" property="platoonCode">
+				t.platoon_code like '$platoonCode$%' 
+			</isNotEmpty>
+			<isEmpty prepend="and" property="platoonCode">
+				t.platoon_code is null
+			</isEmpty>
+		</dynamic>
+	</select>
+	<!-- 获取人员管理的组织树 -->
+	<select id="getBureauTree" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select * from bs_base_organization where is_valid = '1' and parent_id = #parentId#
+	</select>
+</sqlMap>

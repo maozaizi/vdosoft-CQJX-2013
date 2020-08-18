@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="sys">
+		<!-- 跳转空 -->
+		<method name="toPage" realclass="com.u2a.framework.service.SysService" dbName="" trans="" limit=""	methodname="toPage" source="aa" dest="" error="" >
+			<inparams>
+		    </inparams>
+			<outparams>
+			</outparams>
+		</method>
+	</package>
+</root>

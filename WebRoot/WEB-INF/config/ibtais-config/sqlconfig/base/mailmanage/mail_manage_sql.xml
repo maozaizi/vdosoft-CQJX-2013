@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<select id="getreceive" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from message_info where IS_VALID = '1' and RECIVEUSERID =
+		#RECIVEUSERID# and table_name is null 
+		
+		<isNotEmpty prepend="and" property="contTitle">
+			CONT_TITLE like '%$contTitle$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="sendUserName">
+			SENDUSERNAME like '%$sendUserName$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="createDate1">
+			<![CDATA[create_date>=#createDate1# ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="createDate2">
+			<![CDATA[create_date<=#createDate2# ]]>
+		</isNotEmpty>
+		
+		order by create_date desc
+	</select>
+
+	<!--<select id="getreceivebyid" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from message_info where is_valid = '1' and id = #id# order
+		by create_date desc
+	</select>-->
+
+	<select id="getrecord" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from message_info where (senduserid = #reciveUserId# and
+		reciveuserid = #sendUserId# or senduserid = #sendUserId# and
+		reciveuserid = #reciveUserId#) and IS_VALID = '1' and table_name is null 
+		order by create_date desc
+	</select>
+	<select id="getNewMailsNum" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select count(*) from message_info where READ_STATUS = '1' and RECIVEUSERID = #reciveUserId#
+	</select>
+	<select id="getsend" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		<!-- 田鹏原始的sql，在列表页面多笔记录只显示一条-->
+		<!-- select * from (SELECT DISTINCT task_code,cont_title,create_date,senduserid,sendusername FROM message_info where senduserid = 
+		#senduserid#  order by create_date desc) -->
+		<!-- 现改为一对一显示-->
+		select * from message_info where IS_VALID = '1' and senduserid =
+		#senduserid# and table_name is null 		
+		<isNotEmpty prepend="and" property="contTitle">
+			CONT_TITLE like '%$contTitle$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="reciveUserName">
+			RECIVEUSERNAME like '%$reciveUserName$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="createDate1">
+		<![CDATA[create_date>=#createDate1# ]]>
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="createDate2">
+		<![CDATA[create_date<=#createDate2# ]]>
+		</isNotEmpty>
+		order by create_date desc
+	</select>
+	<!--<select id="getSendDetail" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from message_info where task_code = #taskCode#
+	</select>-->
+</sqlMap>

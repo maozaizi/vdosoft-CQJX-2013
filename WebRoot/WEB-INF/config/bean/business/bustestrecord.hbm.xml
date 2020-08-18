@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.BusTestRecord" table="bus_test_record">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="busId" type="java.lang.String">
+            <column name="bus_id" length="40"/>
+        </property>
+       	<property name="busName" type="java.lang.String">
+            <column name="bus_name" length="40"/>
+        </property>
+        <property name="rotationalSpeed" type="java.lang.Double">
+            <column name="rotational_speed" />
+        </property>
+        <property name="torque" type="java.lang.Double">
+            <column name="torque" />
+        </property>
+        <property name="power" type="java.lang.Double">
+            <column name="power" />
+        </property>
+        <property name="oilTemp" type="java.lang.Double">
+            <column name="oil_temp" />
+        </property>
+        <property name="inwaterTemp" type="java.lang.Double">
+            <column name="inwater_temp" />
+        </property>
+        <property name="outwaterTemp" type="java.lang.Double">
+            <column name="outwater_temp" />
+        </property>
+        <property name="lowwaterTemp" type="java.lang.Double">
+            <column name="lowwater_temp" />
+        </property>
+        <property name="oilPres" type="java.lang.Double">
+            <column name="oil_pres" />
+        </property>
+        <property name="oilRate" type="java.lang.Double">
+            <column name="oil_rate" />
+        </property>
+        <property name="MPG" type="java.lang.Double">
+            <column name="MPG" />
+        </property>
+        <property name="temp1" type="java.lang.Double">
+            <column name="temp1" />
+        </property>
+        <property name="temp2" type="java.lang.Double">
+            <column name="temp2" />
+        </property>
+        <property name="temp3" type="java.lang.Double">
+            <column name="temp3" />
+        </property>
+        <property name="temp4" type="java.lang.Double">
+            <column name="temp4" />
+        </property>
+        <property name="temp5" type="java.lang.Double">
+            <column name="temp5" />
+        </property>
+        <property name="temp6" type="java.lang.Double">
+            <column name="temp6" />
+        </property>
+        <property name="temp7" type="java.lang.Double">
+            <column name="temp7" />
+        </property>
+        <property name="temp8" type="java.lang.Double">
+            <column name="temp8" />
+        </property>
+        <property name="temp9" type="java.lang.Double">
+            <column name="temp9" />
+        </property>
+        <property name="temp10" type="java.lang.Double">
+            <column name="temp10" />
+        </property>
+        <property name="temp11" type="java.lang.Double">
+            <column name="temp11" />
+        </property>
+        <property name="temp12" type="java.lang.Double">
+            <column name="temp12" />
+        </property>
+        <property name="voltage" type="java.lang.Double">
+            <column name="voltage" />
+        </property>
+        <property name="electricity" type="java.lang.Double">
+            <column name="electricity" />
+        </property>
+        <property name="displacement" type="java.lang.Double">
+            <column name="displacement" />
+        </property>
+        <property name="pressure" type="java.lang.Double">
+            <column name="pressure" />
+        </property>
+        <property name="bearingTemp" type="java.lang.Double">
+            <column name="bearing_temp" />
+        </property>
+        <property name="noloadTime" type="java.lang.Double">
+            <column name="noload_time" />
+        </property>
+        <property name="fullloadTime" type="java.lang.Double">
+            <column name="fullload_time" />
+        </property>
+        <property name="currentDrain" type="java.lang.Double">
+            <column name="current_drain" />
+        </property>
+        <property name="createDate" type="java.sql.Date">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40" />
+        </property>
+        <property name="modifyDate" type="java.sql.Date">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40" />
+        </property>
+    </class>
+</hibernate-mapping>

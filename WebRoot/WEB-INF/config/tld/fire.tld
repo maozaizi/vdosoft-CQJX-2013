@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd ">
+    
+    <!-- 配置信息 -->
+	<tlib-version>1.0</tlib-version>
+	<short-name>xdz</short-name>
+	<uri>http://u2a.com/fire/functions</uri>
+
+
+	<!-- 函数注释 ****************** -->
+	
+	<!--
+	<function> 
+		<name></name>
+		<function-class></function-class>
+		<function-signature></function-signature>
+	</function> 
+	-->
+
+	
+ <!--IP过滤将IP部分隐藏-->
+	<function> 
+		<name>IPFiter</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.String IPFiter(java.lang.String,java.lang.String)</function-signature>
+	</function>
+	 <!--先将text截取再将html转换为实体-->
+	<function> 
+		<name>subtextAndEncode</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.String subtextAndEncode(java.lang.String,int,int)</function-signature>
+	</function>
+	
+	
+	<function>
+		<name>getUrl</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.String getUrl(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String)</function-signature>
+	</function>
+	
+	<function>
+		<name>getIdCard</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.String getIdCard(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>getAge</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.Integer getAge(java.util.Date)</function-signature>
+	</function>
+	<function>
+		<name>calculationDay</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.Integer calculationDay(java.util.Date,java.util.Date)</function-signature>
+	</function>
+	<function>
+		<name>substr</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.String substr(java.lang.String,int,int)</function-signature>
+	</function>
+	
+	<function>
+		<name>getCDate</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.String getCDate(java.util.Date)</function-signature>
+	</function>
+	<function>
+		<name>floor</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.Double floor(double,int)</function-signature>
+	</function>
+	<function>
+		<name>formatDate</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.String formatDate(java.util.Date,java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>compare</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.Boolean compare(java.util.Date)</function-signature>
+	</function>
+	<function>
+		<name>trim</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.String trim(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>toUTF8</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.String urlToUTF8(java.lang.String)</function-signature>
+	</function>
+	<function> 
+		<name>fontUTF8</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.String toUTF8(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>replace</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.String replace(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>HTMLEditer</name>
+		<function-class>com.u2a.util.Util</function-class>
+		<function-signature>java.lang.String HTMLEditer(java.lang.String)</function-signature>
+	</function>
+	
+	
+</taglib>

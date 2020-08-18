@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<select id="getDataDict" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from $tablename$
+		<dynamic prepend="where">
+			<isNotEmpty prepend="and" property="id">
+				$field$=#id#
+			</isNotEmpty>
+		</dynamic>
+		<dynamic prepend="order by">
+			<isNotEmpty property="order">$order$ $forword$</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="getMaxPrimary" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select max($key$) as maxkey  from $tableName$ where $key$ like '$id$%'		
+	</select>
+</sqlMap>
+

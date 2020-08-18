@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="expats">
+		<!-- 查询 设备信息列表 -->
+		<method name="toApply"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/expats/expats_add.jsp"
+			type="1">
+		</method>
+		<!-- 保存上井任务分配信息 -->
+		<method name="saveExpatsInfo" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="saveExpatsInfo" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="deptName" type="Array" check="0" source="param" />
+				<inparam name="deptId" type="Array" check="0" source="param" />
+				<inparam name="equipmentId" type="Array" check="0" source="param" />
+				<inparam name="url" type="String" check="0" source="param" />
+				<inparam name="expatsInfo" type="LOGIC"
+					classname="com.expatsInfo" source="param">
+					<inparam name="taskCode" type="String" check="0" source="param" />
+					<inparam name="taskDetail" type="String" check="0" source="param" />
+					<inparam name="projectDept" type="String" check="0" source="param" />
+					<inparam name="expatsTo" type="String" check="0" source="param" />
+					<inparam name="departureTime" type="String" check="0" source="param" />
+					<inparam name="vehiclesUnit" type="String" check="0" source="param" />
+					<inparam name="vehiclesModel" type="String" check="0" source="param" />
+					<inparam name="vehiclesPlate" type="String" check="0" source="param" />
+					<inparam name="transUnit" type="String" check="0" source="param" />
+					<inparam name="workCard" type="String" check="0" source="param" />
+				</inparam>
+			</inparams> 
+		</method>
+		<!-- 查询调度上井列表 -->
+		<method name="getExpatsInfoList" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="getExpatsInfoList" source="a" dest="jsp/business/expats/expats_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="taskCode" real="taskCode" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endInDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到调度编辑页面 -->
+		<method name="toUpdateExpats" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="toUpdateExpats" source="a" dest="jsp/business/expats/expats_update.jsp" error="" type="2">
+			<inparams>
+				<inparam name="expatsInfo" type="LOGIC"
+					classname="com.expatsInfo" source="param">
+					<inparam name="id" type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam  name="expatsMap" type="LOGIC" source="attr"/>
+				<outparam  name="expatsDetailList" type="LOGIC" source="attr"/>
+				<outparam  name="materialList" type="LOGIC" source="attr"/>
+				<outparam  name="flag" type="String" source="attr"/>
+			</outparams>
+		</method>
+		<!-- 跳转到详情页面 -->
+		<method name="toDetailExpats" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="toUpdateExpats" source="a" dest="jsp/business/expats/expats_detail.jsp" error="" type="2">
+			<inparams>
+				<inparam name="expatsInfo" type="LOGIC"
+					classname="com.expatsInfo" source="param">
+					<inparam name="id" type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam  name="expatsMap" type="LOGIC" source="attr"/>
+				<outparam  name="expatsDetailList" type="LOGIC" source="attr"/>
+				<outparam  name="materialList" type="LOGIC" source="attr"/>
+				<outparam  name="flag" type="String" source="attr"/>
+			</outparams>
+		</method>
+		<!-- 保存调度编辑页面 -->
+		<method name="updateExpats" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="updateExpats" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="expatsInfo" type="LOGIC"
+					classname="com.expatsInfo" source="param">
+					<inparam name="id" type="String" check="0" source="param" />
+					<inparam name="backTime" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<!-- 查询调度上井列表 -->
+		<method name="getExpatsList" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="getExpatsList" source="a" dest="jsp/business/expats/expatsdetail_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="taskCode" real="taskCode" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endInDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到上井确认页面 -->
+		<method name="toUpdateExpatsDetail" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="toUpdateExpatsDetail" source="a" dest="jsp/business/expats/expatsdetail_update.jsp" error="" type="2">
+			<inparams>
+				<inparam name="expatsDetail" type="LOGIC"
+					classname="com.expatsDetail" source="param">
+					<inparam name="id" type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam  name="expatsInfo" type="LOGIC" source="attr"/>
+				<outparam  name="expatsdeatail" type="LOGIC" source="attr"/>
+				<outparam  name="materialList" type="LOGIC" source="attr"/>
+			</outparams>
+		</method>
+		<!-- 保存上井确认页面 -->
+		<method name="saveExpats" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="saveExpats" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="expatsDetail" type="LOGIC"
+					classname="com.expatsDetail" source="param">
+					<inparam name="id" type="String" check="0" source="param" />
+					<inparam name="expatsPerson" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="outStoreInfo" type="LIST" classname="com.outStoreInfo" source="param">
+					<inparam name="materialClass" type="String" check="0" source="param" />
+					<inparam name="materialGroup" type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialDetail" type="String" check="0" source="param" />
+					<inparam name="unity" type="String" check="0" source="param" />
+					<inparam name="storeNum" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<!-- 跳转到上井完工页面 -->
+		<method name="toCompleteExpats" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="toCompleteExpats" source="a" dest="jsp/business/expats/expatsdetail_complete.jsp" error="" type="2">
+			<inparams>
+				<inparam name="expatsDetail" type="LOGIC"
+					classname="com.expatsDetail" source="param">
+					<inparam name="id" type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam  name="expatsInfo" type="LOGIC" source="attr"/>
+				<outparam  name="expatsdeatail" type="LOGIC" source="attr"/>
+				<outparam  name="materialList" type="LOGIC" source="attr"/>
+			</outparams>
+		</method>
+		<!-- 保存上井完工页面 -->
+		<method name="saveExpatsComplete" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="saveExpatsComplete" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="expatsDetail" type="LOGIC"
+					classname="com.expatsDetail" source="param">
+					<inparam name="id" type="String" check="0" source="param" />
+					<inparam name="departureDate" type="String" check="0" source="param" />
+					<inparam name="workHour" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+		<!-- 选择材料信息IFrame -->
+		<method name="toChooseMaterialInfo"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/expats/materialinfo_frame.jsp"
+			type="1">
+		</method>
+		<!-- 选择材料信息列表 -->
+		<method name="chooseMaterialInfo" realclass="com.u2a.business.MaterialInfoService" dbName="brickDao" trans="" limit=""	methodname="getList" source="a" dest="jsp/business/expats/materialinfo_choose.jsp" error="" type="2">
+			<inparams>
+				<inparam name="materialInfo" type="LOGIC"
+					classname="com.MaterialInfo" source="param">
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="flag"  type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 上井售后列表 -->
+		<method name="getSupplyList" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="getExpatsList" source="a" dest="jsp/business/expats/supply_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="taskCode" real="taskCode" type="String" check="0" source="param" />
+				<inparam name="beginInDate" real="beginInDate" type="String" check="0" source="param" />
+				<inparam name="endInDate" real="endInDate" type="String" check="0" source="param" />
+				<inparam name="isComplete" real="isComplete" type="String" check="0" default="1" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到上井确认页面 -->
+		<method name="toEditSupply" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="toUpdateExpatsDetail" source="a" dest="jsp/business/expats/supply_edit.jsp" error="" type="2">
+			<inparams>
+				<inparam name="expatsDetail" type="LOGIC"
+					classname="com.expatsDetail" source="param">
+					<inparam name="id" type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam  name="expatsInfo" type="LOGIC" source="attr"/>
+				<outparam  name="expatsdeatail" type="LOGIC" source="attr"/>
+			</outparams>
+		</method>
+		<!-- 保存上井确认页面 -->
+		<method name="saveSupply" realclass="com.u2a.business.ExpatsService" dbName="brickDao" trans="" limit=""	methodname="saveSupply" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="expatsDetail" type="LOGIC"
+					classname="com.expatsDetail" source="param">
+					<inparam name="id" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="outStoreInfo" type="LIST" classname="com.outStoreInfo" source="param">
+					<inparam name="materialClass" type="String" check="0" source="param" />
+					<inparam name="materialGroup" type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialDetail" type="String" check="0" source="param" />
+					<inparam name="unity" type="String" check="0" source="param" />
+					<inparam name="storeNum" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams>
+		</method>
+	</package>	
+</root>

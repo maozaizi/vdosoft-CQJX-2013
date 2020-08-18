@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-mapping>
+    <class name="com.treatinstore" table="treat_instore">
+        <id name="id" type="java.lang.String">
+            <column name="ID" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" length="50"/>
+        </property>
+        <property name="unity" type="java.lang.String">
+            <column name="unity" length="50"/>
+        </property>
+        <property name="innum" type="java.lang.Integer">
+            <column name="innum" length="50"/>
+        </property>
+        <property name="intime" type="java.sql.Date">
+            <column name="inTime" length="19" />
+        </property>
+        <property name="orgId" type="java.lang.String">
+            <column name="org_id" length="19" />
+        </property>
+        <property name="maincard" type="java.lang.String">
+            <column name="maincard" length="50"/>
+        </property>
+        <property name="assistCard" type="java.lang.String">
+            <column name="assistCard" length="50"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="otherout">
+		<!-- 列表查询 -->
+		<method name="getOtherOutStoreList" realclass="com.u2a.business.OtherOutStoreService" dbName="brickDao" 
+			trans="" limit=""	methodname="getOtherOutStoreList" source="aa" 
+			dest="jsp/business/otheroutstore/otheroutstore_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="materialType"  type="String" check="0" source="param" />
+				<inparam name="beginDate"  type="String" check="0" source="param" />
+				<inparam name="endDate"  type="String" check="0" source="param" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<method name="toAddOtherOutStore"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/otheroutstore/otheroutstore_add.jsp"
+			type="1">
+		</method>
+		<!-- 选择材料信息IFrame -->
+		<method name="toChooseMaterialInfo"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/otheroutstore/materialinfo_frame.jsp"
+			type="1">
+		</method>
+		<!-- 其他材料出库 -->
+		<method name="saveOutStore" realclass="com.u2a.business.OtherOutStoreService" dbName="brickDao" trans="" limit=""	methodname="saveOutStore" source="a" dest="" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="materialType" real="materialType" type="String" check="0" source="param" />
+				<inparam name="outDate" real="outDate" type="String" check="0" source="param" />
+				<inparam name="otherOutStore" type="LIST" classname="com.OtherOutStore" source="param">
+					<inparam name="materialClass" type="String" check="0" source="param" />
+					<inparam name="materialGroup" type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialDetail" type="String" check="0" source="param" />
+					<inparam name="unity" type="String" check="0" source="param" />
+					<inparam name="materialNum" real="storeNum" type="String" check="0" source="param" />
+				</inparam>
+			</inparams>
+		</method>
+	</package>
+</root>

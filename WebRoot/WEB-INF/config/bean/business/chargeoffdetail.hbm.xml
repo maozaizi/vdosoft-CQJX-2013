@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.ChargeoffDetail" table="chargeoff_detail">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="materialClass" type="java.lang.String">
+            <column name="material_class" length="80"/>
+        </property>
+        <property name="receiptDate" type="java.sql.Date">
+            <column name="receipt_date"/>
+        </property>
+       	<property name="receiptCode" type="java.lang.String">
+            <column name="receipt_code" length="80"/>
+        </property>
+       	<property name="deptGet" type="java.lang.String">
+            <column name="dept_get" length="80"/>
+        </property>
+       	<property name="deptAccount" type="java.lang.String">
+            <column name="dept_account" length="80"/>
+        </property>
+       	<property name="accountDetail" type="java.lang.String">
+            <column name="account_detail" length="100"/>
+        </property>
+       	<property name="materialGroup" type="java.lang.String">
+            <column name="material_group" length="80"/>
+        </property>
+       	<property name="materialDetail" type="java.lang.String">
+            <column name="material_detail" length="80" />
+        </property>
+       	<property name="materialCode" type="java.lang.String">
+            <column name="material_code" length="80" />
+        </property>
+       	<property name="measureUnit" type="java.lang.String">
+            <column name="measure_unit" length="20"/>
+        </property>
+        <property name="num" type="java.lang.Double">
+            <column name="num"/>
+        </property>
+       	<property name="unitPrice" type="java.lang.Double">
+            <column name="unit_price"/>
+        </property>
+       	<property name="amount" type="java.lang.Double">
+            <column name="amount"/>
+        </property>
+        <property name="goodsCode" type="java.lang.String">
+            <column name="goods_code" length="40">
+            </column>	            
+        </property>
+        <property name="batch" type="java.lang.String">
+            <column name="batch" length="40">
+            </column>	            
+        </property>
+        <property name="applicationNo" type="java.lang.String">
+            <column name="application_no" length="40">
+            </column>	            
+        </property>
+        <property name="transMode" type="java.lang.String">
+            <column name="trans_mode" length="80">
+            </column>	            
+        </property>
+        <property name="carriage" type="java.lang.String">
+            <column name="carriage" length="80">
+            </column>	            
+        </property>
+        <property name="maker" type="java.lang.String">
+            <column name="maker" length="40">
+            </column>	            
+        </property>
+        <property name="indexNo" type="java.lang.String">
+            <column name="index_no" length="40">
+            </column>	            
+        </property>
+        <property name="remark" type="java.lang.String">
+            <column name="remark" length="300">
+            </column>	            
+        </property>
+        <property name="attId" type="java.lang.String">
+            <column name="att_id" length="40">
+            </column>	            
+        </property>
+        <property name="createDate" type="java.sql.Date">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40" />
+        </property>
+        <property name="modifyDate" type="java.sql.Date">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40" />
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="4">
+            	<comment>0有效 1无效</comment>
+            </column>	            
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.WfProcessStep" table="WF_PROCESS_STEP">
+        <id name="processStepId" type="java.lang.String">
+            <column name="PROCESS_STEP_ID" length="40" />
+            <generator class="assigned" />
+        </id>
+          <property name="processId" type="java.lang.Long">
+            <column name="PROCESS_ID" precision="22" scale="0" />
+        </property>
+        <property name="stepId" type="java.lang.Long">
+            <column name="STEP_ID" precision="22" scale="0" />
+        </property>
+        <property name="stepName" type="java.lang.String">
+            <column name="STEP_NAME" length="200" />
+        </property>
+        <property name="applicationScope" type="java.lang.String">
+            <column name="APPLICATION_SCOPE" length="1" />
+        </property>
+        <property name="stepType" type="java.lang.String">
+            <column name="STEP_TYPE" length="1" />
+        </property>
+         <property name="editUrl" type="java.lang.String">
+            <column name="edit_url" length="200" />
+        </property>
+         <property name="viewUrl" type="java.lang.String">
+            <column name="view_url" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="mywork">
+	<!-- 根据用户获取我的工作台 -->
+		<method name="getMyWorkUserList" realclass="com.u2a.business.MyWorkService" methodname="getMyWorkUserList" dbName="brickDao" trans=""  source="a" dest="jsp/workflow/mywork_list.jsp" error="" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" source="session" />
+				<inparam name="sort" type="String"  source="value" default="1"/>
+			</inparams>
+			<outparams>
+				<outparam name="waitingBizStepList" type="LOGIC" source="attr" />
+				<outparam name="alreadyBizStepList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>	
+		<!-- 修改步骤状态-->
+		<method name="updateState" realclass="com.u2a.business.MyWorkService" methodname="updateState" dbName="brickDao" trans=""  source="a" dest="" error="" type="1">
+			<inparams>
+				<inparam name="nodeId"  type="String" check="0" source="param" />
+				<inparam name="bsuId"   type="String" check="0" source="param" />
+				<inparam name="strurl"  type="String" check="0" source="param"/>
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>	
+		<!-- 跳转至执行流程步骤页面-->
+		<method name="goExec" realclass="com.u2a.business.MyWorkService" methodname="goExec" dbName="brickDao" trans=""  source="a" dest="" error="" type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" source="session" />
+				<inparam name="processId"  type="String" check="0" source="param" />
+				<inparam name="instanceId"  type="String" check="0" source="param" />
+				<inparam name="objId"  type="String" check="0" source="param"/>
+				<inparam name="nodeId"  type="String" check="0" source="param"/>
+				<inparam name="stepId"  type="String" check="0" source="param"/>
+				<inparam name="tableName"  type="String" check="0" source="param"/>
+				<inparam name="contTitle"  type="String" check="0" source="param"/>
+				<inparam name="url"  type="String" check="0" source="param"/>
+				<inparam name="processType"  type="String" check="0" source="param"/>
+				<inparam name="stepName"  type="String" check="0" source="param"/>
+			</inparams>
+			<outparams>
+				<outparam name="instanceId"  type="Long" source="attr"/>
+				<outparam name="objId"  type="String" source="attr"/>
+				<outparam name="nodeId"  type="Long" source="attr"/>
+				<outparam name="stepId"  type="Integer" source="attr"/>
+				<outparam name="tableName"  type="String" source="attr"/>
+				<outparam name="contTitle"  type="String" source="attr"/>
+				<outparam name="url"  type="String" source="attr"/>
+				<outparam name="processType"  type="Integer" source="attr"/>
+				<outparam name="stepName"  type="String" source="attr"/>
+			</outparams>
+		</method>	
+			<!--获取流程历史步骤信息 -->
+		<method name="getPHStep" realclass="com.u2a.business.MyWorkService" dbName="brickDao" trans="" 	methodname="getPHStep" source="aa" dest="jsp/workflow/history_step_list.jsp" error="" type="1">
+			<inparams>
+			<inparam name="userMap" real="userMap" type="ENTITY" source="session" />
+			<inparam name="id"  type="String" check="0" source="attr"/>
+			<inparam name="tablename"  type="String" check="0" source="attr"/>
+			</inparams> 
+			<outparams>
+			<outparam name="list" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+			<!-- 根据用户获取我的工作台 -->
+		<method name="getMyWorkAllList" realclass="com.u2a.business.MyWorkService" methodname="getMyWorkUserList" dbName="brickDao" trans="" limit="" source="a" dest="" error=""  type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" source="session" />
+			</inparams>
+			<outparams>
+				<outparam name="alreadyBizStepList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>	
+			<!--获取流程步骤备注信息 -->
+		<method name="getRemarkList" realclass="com.u2a.business.MyWorkService" dbName="brickDao" trans="" 	methodname="getRemarkList" source="aa" dest="jsp/workflow/remark_info.jsp" error="" type="1">
+			<inparams>
+				<inparam name="instanceId"  type="String" check="1" source="param" />
+				<inparam name="nodeId"  type="String" check="1" source="param"/>
+				<inparam name="stepId"  type="String" check="1" source="param"/>
+				<inparam name="id"  type="String" check="1" source="param"/>
+			</inparams> 
+			<outparams>
+			<outparam name="remarkList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 根据用户获取我已完成的所有工作 -->
+		<method name="getAllCompleteWorkFlow" methodname="getAllCompleteWorkFlow" realclass="com.u2a.business.MyWorkService" dbName="brickDao" trans="" limit="" error="" type="1" source="aa" dest="jsp/workflow/mycompletework_list.jsp">
+			<inparams>
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+			    <inparam name="currentPageNO" type="Integer" source="param" check="0" default="1" errmsg="跳转页请输入数字"/>
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+			</inparams>
+			<outparams>
+				<outparam name="page" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		<!-- 根据用户获取我已完成的工作 -->
+		<method name="getCompleteWorkFlow" realclass="com.u2a.business.MyWorkService" methodname="getMyWorkUserList" dbName="brickDao" trans="" limit="" source="a" dest="" error=""  type="1">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" source="session" />
+			</inparams>
+			<outparams>
+				<outparam name="completeBizStepList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+	</package>
+</root>

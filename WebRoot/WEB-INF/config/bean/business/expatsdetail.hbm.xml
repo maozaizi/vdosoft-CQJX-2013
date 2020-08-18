@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.expatsDetail" table="expats_detail">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="expatsId" type="java.lang.String">
+            <column name="expats_id" length="40"/>
+        </property>
+       	<property name="expatsPerson" type="java.lang.String">
+            <column name="expats_person" length="40" />
+        </property>
+        <property name="expatsNum" type="java.lang.Integer">
+            <column name="expats_num" length="40" />
+        </property>
+        <property name="equipmentName" type="java.lang.String">
+            <column name="equipment_name" length="40"/>
+        </property>
+        <property name="equipmentModel" type="java.lang.String">
+            <column name="equipment_model" length="40"/>
+        </property>
+        <property name="equipmentValue" type="java.lang.String">
+            <column name="equipment_value" length="40"/>
+        </property>
+        <property name="deptName" type="java.lang.String">
+            <column name="dept_name" length="40"/>
+        </property>
+        <property name="orgCode" type="java.lang.String">
+            <column name="org_code" length="40"/>
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="4" />
+        </property>
+        <property name="isComplete" type="java.lang.String">
+            <column name="is_complete" length="4" />
+        </property>
+        <property name="createDate" type="java.sql.Date">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40" />
+        </property>
+        <property name="modifyDate" type="java.sql.Date">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40" />
+        </property>
+    </class>
+</hibernate-mapping>

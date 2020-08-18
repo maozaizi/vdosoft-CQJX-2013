@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-mapping>
+    <class name="com.osWorkflowdefs" table="OS_WORKFLOWDEFS">
+    	<id name="wfName" type="java.lang.String">
+            <column name="wf_name" length="100" />
+            <generator class="assigned" />
+       	</id>
+        <property name="wfDefinition" type="java.lang.String">
+			<column name="WF_DEFINITION" length="100000000" />
+        </property>
+    </class>
+</hibernate-mapping>
+

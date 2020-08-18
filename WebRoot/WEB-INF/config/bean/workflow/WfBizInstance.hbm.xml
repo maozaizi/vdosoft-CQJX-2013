@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.WfBizInstance" table="WF_BIZ_INSTANCE" >
+        <id name="id" type="java.lang.Long">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="processId" type="java.lang.String">
+            <column name="PROCESS_ID" length="40" />
+        </property>
+        <property name="objId" type="java.lang.String">
+            <column name="OBJ_ID" length="40" />
+        </property>
+        <property name="tableName" type="java.lang.String">
+            <column name="TABLE_NAME" length="100" />
+        </property>
+        <property name="contTitle" type="java.lang.String">
+            <column name="CONT_TITLE" length="400" />
+        </property>
+        <property name="url" type="java.lang.String">
+            <column name="URL" length="400" />
+        </property>
+        <property name="processType" type="java.lang.Long">
+            <column name="PROCESS_TYPE" precision="22" scale="0" />
+        </property>
+        <property name="state" type="java.lang.String">
+            <column name="STATE" length="1" />
+        </property>
+        <property name="organizationId" type="java.lang.String">
+            <column name="ORGANIZATION_ID" length="40" />
+        </property>
+        <property name="caller" type="java.lang.String">
+            <column name="CALLER" length="80" />
+        </property>
+        <property name="sort" type="java.lang.String">
+            <column name="SORT" length="1" />
+        </property>
+        <property name="modifyDate" type="java.util.Date">
+            <column name="MODIFY_DATE" length="7" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="MODIFY_USER" length="80" />
+        </property>
+        <property name="createDate" type="java.util.Date">
+            <column name="CREATE_DATE" length="7" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="CREATE_USER" length="80" />
+        </property>
+    </class>
+</hibernate-mapping>

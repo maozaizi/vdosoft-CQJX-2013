@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hibernate-mapping>
+    <class name="com.treatstore" table="treat_store">
+        <id name="id" type="java.lang.String">
+            <column name="ID" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" length="50"/>
+        </property>
+        <property name="unity" type="java.lang.String">
+            <column name="unity" length="50"/>
+        </property>
+        <property name="mtnum" type="java.lang.Integer">
+            <column name="mtnum" length="50"/>
+        </property>
+         <property name="orgId" type="java.lang.String">
+            <column name="org_id" length="50"/>
+        </property>
+       <property name="modifyDate" type="java.sql.Date">
+            <column name="modify_date" length="19"/>
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40"/>
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40"/>
+        </property>
+        <property name="createDate" type="java.sql.Date">
+            <column name="create_date" length="19"/>
+        </property>
+    </class>
+</hibernate-mapping>

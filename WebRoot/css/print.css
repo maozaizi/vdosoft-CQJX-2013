@@ -1,0 +1,42 @@
+﻿
+body {
+	margin: 0px;
+	color:black;
+}
+div.section {
+	width:170mm;
+	height:225mm;
+	margin:22mm auto;
+	margin-bottom:0px;
+	padding-left:10mm;
+}
+div.section p {
+	margin:0;
+	line-height:170%;
+	font-size:16.0pt;
+	text-indent:36.4pt;
+	font-family:FangSong_GB2312;
+	text-align: justify;
+}
+div.section p.h1 {
+	text-align:center;
+	line-height:120%;
+}
+div.section p.h2 {
+	text-align:center;
+	font-size:18.0pt;
+	font-family:SimHei;
+	line-height:120%;
+}
+div.section p.h3 {
+	text-align:right;
+	line-height:120%;
+}
+div.section p.left {
+	text-indent:0pt;
+}
+div.section p.right {
+	text-align:right;
+}
+div.section p span.underline {
+}

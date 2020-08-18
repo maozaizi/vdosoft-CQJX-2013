@@ -1,0 +1,7 @@
+<osworkflow>
+    <persistence class=" com.opensymphony.workflow.spi.jdbc.JDBCWorkflowStoreJDBCWorkflowStore"/>
+
+    <factory class="com.opensymphony.workflow.loader.JDBCWorkflowFactory">
+        <property key="resource" value="workflows.xml" />
+    </factory>
+</osworkflow>

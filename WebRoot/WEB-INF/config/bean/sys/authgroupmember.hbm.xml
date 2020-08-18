@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.AuthGroupMember" table="auth_group_member">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="20" />
+            <generator class="assigned" />
+        </id>
+           <property name="authGroupId" type="java.lang.String">
+            <column name="auth_group_id" length="20" not-null="true" />
+        </property>
+           <property name="authId" type="java.lang.String">
+            <column name="auth_id" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

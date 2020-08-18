@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	inparam 
+	source 1 参数中获得 request.getParameter();
+	source 2 请求中获得  request.getAttribute()
+	source 3 session中获得 session.getAttribute()
+	source 4 context中获得 getServletContext().getAttribute()
+	source 5 CONTEXT 获得serlvetContext
+	source 6 REQUEST 获得request
+	source 7 SESSION 获得session
+	source 8 RESPONSE 获得response
+	
+	outparam
+	source 2 把数据存进 request.setAttribute()
+	source 3 把数据存进 session.setAttribute()
+	source 4 把数据存进 ServletContext.setAttribute()
+	
+	type=1 Integer
+	type=2 String
+	type=3 Date
+	type=4 Double 
+	type=5 boolean
+	type=7 LOGIC
+	type=8 ENTITY
+	type=9 Context 系统参数
+	
+	method
+	type=1 普通请求
+	type=2 ajax请求
+	
+	check=1 验证
+	check=0 不验证
+-->
+
+<root>
+	<!--package 包，相当于模块，包名.方法名 识别一个唯一调用  -->
+	<package name="login">
+		<method name="toback"
+			realclass="com.u2a.framework.service.SysService" dbName="" trans=""
+			limit="" methodname="toPage" source="" dest="jsp/main.jsp"
+			type="1">
+			<outparams></outparams>
+		</method>
+
+		<!--获取权限树节点 -->
+		<method name="getauthtreedata"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="getAuthTreeData">
+			<inparams>
+				<inparam name="authGroup" type="LOGIC"
+					classname="com.AuthGroup" source="param">
+				</inparam>
+				<inparam name="auth" type="LOGIC"
+					classname="com.AuthInfo" source="param">
+				</inparam>
+				<inparam name="request" real="request" type="Context"
+					check="0" source="App.Request" />
+				<inparam name="userName" real="userName" type="String"
+					check="1" source="param" remark="用户名" />
+				<inparam name="userPwd" real="userPwd" type="String"
+					check="1" source="param" remark="密码" />
+				<inparam name="verifyState" real="verifyState"
+					type="String" check="0" source="param" default="1" remark="审核状态" />
+				<inparam name="serlvetContext" real="serlvetContext"
+					type="Context" check="0" source="App.Context" />
+				<inparam name="request" real="request" type="Context"
+					check="0" source="App.Request" />
+			</inparams>
+			<!-- outparams 输出参数 -->
+			<outparams>
+				<outparam name="msg" type="String" source="attr" />
+				<outparam name="userMap" type="LOGIC" source="session" />
+				<outparam name="userGroupList" type="LOGIC"
+					source="session" />
+				<outparam name="userQuickList" type="LOGIC"
+					source="session" />
+				<outparam name="authList" type="LOGIC" source="session" />
+				<outparam name="orangaizationName" type="String"
+					source="session" />
+				<outparam name="orangaizationNameId" type="String"
+					source="session" />
+				<outparam name="sort" type="String" source="session" />
+			</outparams>
+		</method>
+
+		<!-- method 方法，name=方法名 realclass真实类 methodname 类的方法  DBName=数据源 Trans=是否开启事务，0不开启，1开启；limit=权限id source=来源页 dest=目的页 error=错误页 -->
+		<method name="login"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="login"
+			source="api/login/tologin" dest="/main.jsp" type="1">
+			<inparams>
+				<inparam name="authGroup" type="LOGIC"
+					classname="com.AuthGroup" source="param">
+				</inparam>
+				<inparam name="auth" type="LOGIC"
+					classname="com.AuthInfo" source="param">
+				</inparam>
+				
+				<inparam name="url" type="String" check="0"
+					 source="param" />
+
+				<inparam name="request" real="request" type="Context"
+					check="0" source="App.Request" />
+				<inparam name="userName" real="userName" type="String"
+					check="1" source="param" remark="用户名" />
+				<inparam name="userPwd" real="userPwd" type="String"
+					check="1" source="param" remark="密码" />
+				<inparam name="number" real="number" type="String"
+					check="0" source="param" remark="验证码" />
+				<inparam name="rand01" real="rand01" type="String"
+					check="0" source="session" remark="session验证码" />
+				<inparam name="verifyState" real="verifyState"
+					type="String" check="0" source="param" default="1" remark="审核状态" />
+				<inparam name="serlvetContext" real="serlvetContext"
+					type="Context" check="0" source="App.Context" />
+				<inparam name="request" real="request" type="Context"
+					check="0" source="App.Request" />
+			</inparams>
+			<!-- outparams 输出参数 -->
+			<outparams>
+				<outparam name="msg" type="String" source="attr" />
+				<outparam name="userMap" type="LOGIC" source="session" />
+				<outparam name="userGroupList" type="LOGIC"
+					source="session" />
+				<outparam name="userQuickList" type="LOGIC"
+					source="session" />
+				<outparam name="authList" type="LOGIC" source="session" />
+				<outparam name="orangaizationName" type="String"
+					source="session" />
+				<outparam name="orangaizationNameId" type="String"
+					source="session" />
+				<outparam name="sort" type="String" source="session" />
+			</outparams>
+		</method>
+		
+		<!-- 消防局注销 -->
+		<method name="loginOut"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="loginOut"
+			source="" dest="" type="1">
+			<inparams>
+				<inparam name="serlvetContext" real="serlvetContext"
+					type="Context" check="0" source="5" />
+				<inparam name="session" real="session" type="Context"
+					check="0" source="App.Session" />
+				<inparam name="userMap" type="ENTITY"
+					source="session" />
+
+				<inparam name="response" real="response" type="Context"
+					check="0" source="App.Response" />
+				<inparam name="request" real="request" type="Context"
+					check="0" source="App.Request" />
+
+				<inparam name="url" type="String" check="0"
+					 source="param" />	
+			</inparams>
+		</method>
+		
+		<!-- method 方法，name=方法名 realclass真实类 methodname 类的方法  DBName=数据源 Trans=是否开启事务，0不开启，1开启；limit=权限id source=来源页 dest=目的页 error=错误页 -->
+
+		<method name="destory"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="destory"
+			source="api/login/tologin" dest="/index.html" type="1">
+			<inparams>
+				<inparam name="serlvetContext" real="serlvetContext"
+					type="Context" check="0" source="5" />
+				<inparam name="session" real="session" type="Context"
+					check="0" source="App.Session" />
+				<inparam name="userMap" real="userMap" type="ENTITY"
+					source="session" />
+
+				<inparam name="response" real="response" type="Context"
+					check="0" source="App.Response" />
+				<inparam name="request" real="request" type="Context"
+					check="0" source="App.Request" />
+				<inparam name="url" real="url" type="string"
+					source="param" />
+			</inparams>
+
+			<outparams>
+				<outparam name="userMap" type="ENTITY" source="session" />
+				<outparam name="url" type="string" source="attr" />
+			</outparams>
+		</method>
+
+		<method name="reg"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="reg"
+			source="jsp/sys/login/reg.jsp" dest="" type="1">
+			<inparams>
+				<inparam name="user" type="LOGIC"
+					classname="com.UserInfo" source="param">
+					<inparam name="userName" real="userName"
+						type="String" check="1" source="param" />
+					<inparam name="userPwd" real="userPwd" type="String"
+						check="1" source="param" />
+					<inparam name="email" real="email" type="String"
+						check="1" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0"
+					source="param" />
+			</inparams>
+		</method>
+
+
+		<method name="updatePwd"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit=""
+			methodname="updatePwd" source="" dest="jsp/sys/user/user_pwd.jsp"
+			type="1">
+			<inparams>
+				<inparam name="user" type="LOGIC"
+					classname="com.UserInfo" source="param">
+					<inparam name="userPwd" real="userPwd" type="String"
+						check="1" source="param" />
+				</inparam>
+				<inparam name="newPwd" real="newPwd" type="String"
+					check="1" source="param" />
+				<inparam name="userMap" real="userMap" type="ENTITY"
+					check="0" source="session" />
+			</inparams>
+			<outparams>
+				<outparam name="flag" type="String" source="attr" />
+			</outparams>
+		</method>
+
+
+		<method name="userCheckList"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="userCheckList"
+			source="jsp/main.jsp" dest="jsp/sys/user/user_check_list.jsp"
+			type="1">
+			<inparams>
+				<inparam name="verifyState" real="verifyState"
+					type="String" check="0" source="param" default="0" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+
+				<inparam name="userName" real="userName" type="String"
+					check="0" source="param" />
+				<inparam name="email" real="email" type="String"
+					check="0" source="param" />
+				<inparam name="starttime" real="starttime" type="String"
+					check="0" source="param" />
+				<inparam name="endtime" real="endtime" type="String"
+					check="0" source="param" />
+			</inparams>
+			<!-- outparams 输出参数 -->
+			<outparams>
+				<outparam name="usersMap" type="ENTITY" source="attr" />
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+
+		<method name="userCheck"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit=""
+			methodname="userCheck" source="jsp/sys/user/user_check_list.jsp"
+			dest="" type="1">
+			<inparams>
+				<inparam name="userId" real="userId" type="String"
+					check="1" source="param" />
+				<inparam name="url" real="url" type="String" check="1"
+					source="param" />
+			</inparams>
+		</method>
+
+
+
+		<method name="userList"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="userList"
+			source="jsp/main.jsp" dest="jsp/sys/user/user_list.jsp" type="1">
+			<inparams>
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+
+				<inparam name="userName" real="userName" type="String"
+					check="0" source="param" />
+				<inparam name="email" real="email" type="String"
+					check="0" source="param" />
+				<inparam name="starttime" real="starttime" type="Date"
+					check="0" source="param" />
+				<inparam name="endtime" real="endtime" type="Date"
+					check="0" source="param" />
+				<inparam name="verifyState" type="String" check="0"
+					source="param" />
+			</inparams>
+			<!-- outparams 输出参数 -->
+			<outparams>
+				<outparam name="usersMap" type="ENTITY" source="attr" />
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+
+		<method name="toAddUser"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="toAddUser"
+			source="jsp/sys/user/user_add.jsp" dest="jsp/sys/user/user_add.jsp"
+			type="1">
+			<outparams>
+				<outparam name="usertypes" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+
+		<method name="addUser"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="addUser"
+			source="jsp/sys/user/user_add.jsp" dest="" type="1">
+			<inparams>
+				<inparam name="user" type="LOGIC"
+					classname="com.UserInfo" source="param">
+					<inparam name="userName" real="userName"
+						type="String" check="1" source="param" />
+					<inparam name="userPwd" real="userPwd" type="String"
+						check="1" source="param" />
+					<inparam name="email" real="email" type="String"
+						check="1" source="param" />
+					<inparam name="userTypeId" real="userTypeId"
+						type="String" check="1" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0"
+					source="param" />
+			</inparams>
+		</method>
+
+		<method name="toUpdateUser"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="toUpdateUser"
+			source="jsp/sys/user/user_update.jsp"
+			dest="jsp/sys/user/user_update.jsp" type="1">
+			<inparams>
+				<inparam name="userId" real="userId" type="String"
+					check="1" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="usersMap" type="ENTITY" source="attr" />
+				<outparam name="usertypes" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+
+		<method name="updateUser"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit=""
+			methodname="updateUser" source="jsp/sys/user/user_update.jsp" dest=""
+			type="1">
+			<inparams>
+				<inparam name="user" type="LOGIC"
+					classname="com.UserInfo" source="param">
+					<inparam name="email" real="email" type="String"
+						check="1" source="param" />
+					<inparam name="userTypeId" real="userTypeId"
+						type="String" check="1" source="param" />
+					<inparam name="verifyState" real="verifyState"
+						type="String" check="1" source="param" />
+					<inparam name="userId" real="userId" type="String"
+						check="1" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="1"
+					source="param" />
+			</inparams>
+		</method>
+
+
+		<method name="delUser"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="delUser"
+			source="jsp/sys/user/user_list.jsp" dest="" type="1">
+			<inparams>
+				<inparam name="user" type="LOGIC"
+					classname="com.UserInfo" source="param">
+					<inparam name="userId" real="userId" type="String"
+						check="1" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="1"
+					source="param" />
+			</inparams>
+		</method>
+
+		<!-- ajax rePwd-->
+		<method name="rePwd"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="rePwd"
+			source="jsp/sys/user/user_list.jsp" dest="jsp/sys/user/user_list.jsp"
+			type="2">
+			<inparams>
+				<inparam name="userId" real="userId" type="String"
+					check="1" source="param" />
+			</inparams>
+			<outparams>
+				<outparam name="str" type="String" source="attr" />
+			</outparams>
+		</method>
+
+
+
+
+		<method name="usertypeList"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="usertypeList"
+			source="jsp/right.jsp" dest="jsp/sys/usertype/usertype_list.jsp"
+			type="1">
+			<inparams>
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams>
+			<!-- outparams 输出参数 -->
+			<outparams>
+				<outparam name="usertypes" type="ENTITY" source="attr" />
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+
+		<method name="toAddUsertype"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="toAddUsertype"
+			source="" dest="jsp/sys/usertype/usertype_add.jsp" type="1">
+		</method>
+
+		<method name="addUsertype"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit=""
+			methodname="addUsertype" source="api/login/toAddUser" dest=""
+			type="1">
+			<inparams>
+				<inparam name="userTypeName" real="userTypeName"
+					type="String" check="1" source="param" />
+				<inparam name="userTypeRemark" real="userTypeRemark"
+					type="String" check="0" source="param" />
+				<inparam name="userTypeCode" real="userTypeCode"
+					type="String" check="1" source="param" />
+				<inparam name="url" real="url" type="String" check="1"
+					source="param" />
+				<inparam name="userMap" real="userMap" type="ENTITY"
+					check="0" source="session" />
+			</inparams>
+		</method>
+
+		<method name="toUpdateUsertype"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="toUpdateUsertype"
+			source="jsp/right.jsp" dest="jsp/sys/usertype/usertype_update.jsp"
+			type="1">
+			<inparams>
+				<inparam name="id" real="userTypeId" type="String"
+					check="1" source="param" />
+			</inparams>
+			<!-- outparams 输出参数 -->
+			<outparams>
+				<outparam name="usertype" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+
+		<method name="updateUsertype"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit=""
+			methodname="updateUsertype"
+			source="jsp/sys/usertype/usertype_update.jsp" dest="" type="1">
+			<inparams>
+				<inparam name="id" real="userTypeId" type="String"
+					check="1" source="param" />
+				<inparam name="userTypeName" real="userTypeName"
+					type="String" check="1" source="param" />
+				<inparam name="userTypeCode" real="userTypeCode"
+					type="String" check="1" source="param" />
+				<inparam name="userTypeRemark" real="userTypeRemark"
+					type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="1"
+					source="param" />
+			</inparams>
+		</method>
+
+		<method name="delUsertype"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit=""
+			methodname="delUsertype" source="jsp/right.jsp" dest="" type="1">
+			<inparams>
+				<inparam name="id" real="userTypeId" type="String"
+					check="1" source="param" />
+				<inparam name="url" real="url" type="String" check="1"
+					source="param" />
+			</inparams>
+		</method>
+		<method name="tologin"
+			realclass="com.u2a.framework.service.SysService" dbName="" trans=""
+			limit="" methodname="toPage" source="jsp/sys/login/login.jsp"
+			dest="jsp/sys/login/login.jsp" type="1">
+			<outparams></outparams>
+		</method>
+		<method name="toupdatePwd"
+			realclass="com.u2a.framework.service.sys.UserInfoService"
+			dbName="brickDao" trans="" limit="" methodname="toupdatePwd"
+			source="" dest="jsp/sys/user/user_pwd.jsp" type="1">
+			<inparams>
+			</inparams>
+			<outparams>
+				<outparam name="flag" type="String" source="attr" />
+			</outparams>
+		</method>
+	</package>
+</root>

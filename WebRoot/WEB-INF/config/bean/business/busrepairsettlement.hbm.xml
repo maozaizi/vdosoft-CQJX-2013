@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.BusRepairSettlement" table="bus_repair_settlement">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="settlementMoney" type="java.lang.Double">
+            <column name="settlement_money" length="40"/>
+        </property>
+       	<property name="departmentMoney" type="java.lang.Double">
+            <column name="department_money"/>
+        </property>
+        <property name="companyMoney" type="java.lang.Double">
+            <column name="company_money" length="100"/>
+        </property>
+        <property name="groupMoney" type="java.lang.Double">
+            <column name="group_money" length="100"/>
+        </property>
+        <property name="workCard" type="java.lang.String">
+            <column name="work_card" length="50"/>
+        </property>
+        <property name="mainCard" type="java.lang.String">
+            <column name="main_card" length="30"/>
+        </property>
+        <property name="assistCard" type="java.lang.String">
+            <column name="assist_card" length="30"/>
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="4" />
+        </property>
+        <property name="createDate" type="java.sql.Date">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40" />
+        </property>
+        <property name="modifyDate" type="java.sql.Date">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40" />
+        </property>
+    </class>
+</hibernate-mapping>

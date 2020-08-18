@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="auth">
+		<method name="list" realclass="com.u2a.framework.service.sys.AuthService" dbName="brickDao" trans="" limit=""	methodname="getListAll" source="aa" dest="jsp/sys/auth/auth_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="expandId" type="String" source="param" />
+				<inparam name="auth" type="LOGIC" classname="com.AuthInfo" source="param"></inparam>
+			</inparams>
+			<outparams>
+				<outparam name="expandId" type="String" source="attr" />
+				<outparam name="authList" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		
+		<method name="allAuth" realclass="com.u2a.framework.service.sys.AuthService" dbName="brickDao" trans="" limit=""	methodname="getAllAuth" source="aa" dest="" error="" type="1">
+			<inparams>
+				<inparam name="auth" type="LOGIC" classname="com.AuthInfo" source="param">
+				</inparam>
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+		
+		<method name="authTree" realclass="com.u2a.framework.service.sys.AuthService" dbName="brickDao" trans="" limit=""	methodname="getAuthTree" source="aa" dest="" error="" type="1">
+			<inparams>
+				<inparam name="auth" type="LOGIC" classname="com.AuthInfo" source="param">
+				</inparam>
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+		
+		<method name="gotoAdd" realclass="com.u2a.framework.service.sys.AuthService" dbName="brickDao" trans="" limit=""	methodname="goAddAuthPage" source="aa" dest="jsp/sys/auth/auth_add.jsp" error="" type="1">
+			<inparams>
+				<inparam name="parentAuthId"  type="String" check="0" source="param" remark="当前权限ID"/>
+				<inparam name="authGrade"  type="String" check="0" source="param" remark="当前权限级别"/>
+				<inparam name="rootAuthId"  type="String" check="0" source="param" remark="一级权限ID"/>
+			</inparams>
+			<outparams>
+				<outparam name="parentAuthId"  type="String" source="attr" />
+				<outparam name="authGrade"  type="String" source="attr" />
+				<outparam name="rootAuthId"  type="String" source="attr" />
+			</outparams>
+		</method>
+		
+		<method name="add" realclass="com.u2a.framework.service.sys.AuthService" dbName="brickDao" trans="" limit=""	methodname="saveAuth" source="aa" dest="" error="" type="1">
+			<inparams>
+				<inparam name="auth" type="LOGIC" classname="com.AuthInfo" source="param">
+					<inparam name="authName"  type="String" check="1" source="param" />
+					<inparam name="authRemark"  type="String" check="0" source="param" />
+					<inparam name="url"  type="String" check="0" source="param" />
+					<inparam name="authType"  type="String" check="1" source="param" />
+					<inparam name="authOrder"  type="Integer" check="0" source="param" />
+					<inparam name="parentAuthId"  type="String" check="0" source="param" />
+					<inparam name="rootAuthId"  type="String" check="0" source="param" />
+					<inparam name="authGrade"  type="String" check="0" source="param" />
+					<inparam name="authCode"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="actionUrl"  type="String" check="0" source="param" />
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+		
+		<method name="detail" realclass="com.u2a.framework.service.sys.AuthService" dbName="brickDao" trans="" limit=""	methodname="goModifyAuth" source="aa" dest="jsp/sys/auth/auth_modify.jsp" error="" type="1">
+			<inparams>
+				<inparam name="auth" type="LOGIC" classname="com.AuthInfo" source="param">
+					<inparam name="authId"  type="String" check="0" source="param" remark="当前权限ID"/>
+				</inparam>
+			</inparams>
+			<outparams>
+				<outparam name="auth" type="LOGIC" source="attr" />
+			</outparams>
+		</method>
+		
+		<method name="modify" realclass="com.u2a.framework.service.sys.AuthService" dbName="brickDao" trans="" limit=""	methodname="modifyAuth" source="aa" dest="" error="" type="1">
+			<inparams>
+				<inparam name="auth" type="LOGIC" classname="com.AuthInfo" source="param">
+					<inparam name="authId"  type="String" check="1" source="param" />
+					<inparam name="authName"  type="String" check="1" source="param" />
+					<inparam name="authRemark"  type="String" check="0" source="param" />
+					<inparam name="url"  type="String" check="0"  source="param" />
+					<inparam name="authType"  type="String" check="0" source="param" />
+					<inparam name="authOrder"  type="Integer" check="0" source="param" />
+					<inparam name="parentAuthId"  type="String" check="0" source="param" />
+					<inparam name="authGrade"  type="String" check="0" source="param" />
+					<inparam name="authCode"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="actionUrl"  type="String" check="0" source="param" />
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+		
+		<method name="delete" realclass="com.u2a.framework.service.sys.AuthService" dbName="brickDao" trans="" limit=""	methodname="deleteAuth" source="aa" dest="" error="" type="1">
+			<inparams>
+				<inparam name="auth" type="LOGIC" classname="com.AuthInfo" source="param">
+					<inparam name="authId"  type="String" check="1" source="param" remark="当前权限ID"/>
+				</inparam>
+				<inparam name="actionUrl"  type="String" check="0" source="param" />
+				<inparam name="request" real="request" type="Context" check="0" source="App.Request"/>
+			</inparams>
+			<outparams>
+			</outparams>
+		</method>
+		
+	</package>
+	
+	
+</root>

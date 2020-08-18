@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping>
+    <class name="com.mechdept" table="mech_dept">
+        <id name="id" type="java.lang.String">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="equipmentName" type="java.lang.String">
+            <column name="equipment_name" length="50"/>
+        </property>
+        <property name="equipmentCode" type="java.lang.String">
+            <column name="equipment_code" length="50"/>
+        </property>
+       	<property name="repairType" type="java.lang.String">
+            <column name="repair_type" length="50"/>
+        </property>
+        <property name="planNum" type="java.lang.Double">
+            <column name="plan_num" length="50"/>
+        </property>
+        <property name="deptfrom" type="java.lang.String">
+            <column name="dept_from" length="50" />
+        </property>
+        <property name="deptfromname" type="java.lang.String">
+            <column name="dept_fromname" length="50" />
+        </property>
+        <property name="isappoint" type="java.lang.String">
+            <column name="is_appoint" length="50" />
+        </property>
+        <property name="workCard" type="java.lang.String">
+            <column name="work_card" length="40" />
+        </property>
+          <property name="mainCard" type="java.lang.String">
+            <column name="main_card" length="30"/>
+        </property>
+        <property name="assistCard" type="java.lang.String">
+            <column name="assist_card" length="30"/>
+        </property>
+        <property name="proDept" type="java.lang.String">
+            <column name="pro_dept" length="30"/>
+        </property>
+        <property name="orgid" type="java.lang.String">
+            <column name="org_id" length="30"/>
+        </property>
+        <property name="busid" type="java.lang.String">
+            <column name="bus_id" length="30"/>
+        </property>
+        <property name="isValid" type="java.lang.String">
+            <column name="is_valid" length="4" />
+        </property>
+        <property name="createDate" type="java.sql.Date">
+            <column name="create_date" length="19" />
+        </property>
+        <property name="createUser" type="java.lang.String">
+            <column name="create_user" length="40" />
+        </property>
+        <property name="modifyDate" type="java.sql.Date">
+            <column name="modify_date" length="19" />
+        </property>
+        <property name="modifyUser" type="java.lang.String">
+            <column name="modify_user" length="40" />
+        </property>
+    </class>
+</hibernate-mapping>

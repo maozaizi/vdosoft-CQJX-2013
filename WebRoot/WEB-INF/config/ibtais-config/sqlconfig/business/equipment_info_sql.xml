@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<select id="queryEquipmentInfoList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from equipment_info where IS_VALID='1'
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="equipmentName">
+				equipment_name like '%$equipmentName$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="equipmentModel">
+				equipment_model like '%$equipmentModel$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="equipmentCode">
+				equipment_code like '%$equipmentCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="machineCode">
+				machine_code like '%$machineCode$%'
+			</isNotEmpty>
+		</dynamic>
+		order by  CONVERT(INT,equipment_model)
+	</select>
+	<select id="queryEquipmentInfoListBytype" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select t.* from equipment_info t where t.IS_VALID='1'
+		and  t.parent_id in ((
+		select id from equipment_info where IS_VALID='1' and equipment_code = '21')
+		)
+	</select>
+	<select id="queryBusPlanInfoWfList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from bus_plan_info_wf where IS_VALID='1'
+		<dynamic prepend="and">
+			<isNotEmpty prepend="and" property="planCode">
+				plan_code like '%$planCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgId">
+				org_id like '$orgId$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="auditState">
+				audit_state = '$auditState$'
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<select id="equipmentChildList" parameterClass="com.brick.data.IMap"
+		resultClass="java.util.HashMap">
+		select * from equipment_info where IS_VALID='1'
+			<isNotEmpty prepend="and" property="id">
+				parent_id = '$id$'
+			</isNotEmpty>
+	</select>
+
+</sqlMap>

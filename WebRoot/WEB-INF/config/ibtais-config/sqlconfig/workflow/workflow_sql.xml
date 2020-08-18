@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<!-- 获取用户Id-->
+	<select id="getUserID" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select c.user_id as aut_id from wf_process_step_auth a,user_info b,bs_post_user c where a.strtype='2' 
+		and a.aut_id=b.user_id  and c.user_id=a.aut_id and b.is_valid='1' and c.is_valid='1'
+		and  b.org_id=#orgid# and PROCESS_STEP_ID=#processStepId# and authorized_type=#authorizedType#
+	</select>
+	<!--获取岗位ID -->
+	<select id="getPostID" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select c.user_id as aut_id from wf_process_step_auth a,bs_post_info b,bs_post_user c where a.strtype='1' 
+		and a.aut_id=b.post_id  and c.user_id=a.aut_id  and b.is_valid='1' and c.is_valid='1'
+		and  b.org_id=#orgid# and PROCESS_STEP_ID=#processStepId# and authorized_type=#authorizedType#
+	</select>
+	<!-- 获取字典岗位ID-->
+	<select id="getDictPostID" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select b.post_id as aut_id from wf_process_step_auth a,bs_post_info b,bs_post_user c where a.strtype='3' 
+		and a.aut_id=b.post_code  and c.user_id=a.aut_id  and b.is_valid='1' and c.is_valid='1'
+		and  b.org_id=#orgid# and PROCESS_STEP_ID=#processStepId# and authorized_type=#authorizedType#
+	</select>
+	<!-- 获取字典岗位ID转换真实岗位-->
+	<select id="getRealDictPostID" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select b.post_id as aut_id  form bs_post_info b,bs_post_user c where b.post_id=c.post_id and b.org_id=#orgid# 
+		and b.is_valid='1' and c.is_valid='1' and  post_code in
+		<iterate  property="postCodeList" conjunction="," open="(" close=")" >  
+            #postCodeList[]#
+     	</iterate>
+	</select>
+		<!-- 根据用户获取我的工作台-->
+	<select id="getWorkUserInfo" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+			select a.id as instanceId,a.obj_id as objId,a.table_name as tableName,a.cont_title as contTitle,a.url,a.process_type as processType,a.process_id as processId,
+			b.id as nodeId,b.step_id as stepId,b.cont_title as stepName, 
+			c.id as bsuId,a.create_date as createdate
+			from wf_Biz_Instance a,wf_Biz_Step b,wf_Biz_Step_User c
+			where a.id=b.insid and b.id=c.stepid 
+			and b.state='$state$' and c.userid='$userId$' and a.state=1 and b.state=c.stepstate
+		 order by a.create_date desc
+	</select>
+		<!-- 工作台 已完成项目-->
+	<select id="getcompleteBizStepList" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+	    select * from (select distinct a.obj_id as objId,a.cont_title as contTitle,a.url
+	  from (select * from wf_Biz_Instance where state = 4 ) a
+	  left join wf_Biz_Step b
+	    on a.id = b.insid
+	  left join wf_Biz_Step_User c
+	    on b.id = c.stepid
+	   where c.userid ='$userId$'
+	  ) aa
+	</select>
+	<!-- 修改实例任务表状态-->
+	<update id="updateBizStepState" parameterClass="com.brick.data.IMap">
+		update wf_Biz_Step set state='$state$' where id='$id$' and state='0'
+	</update>
+	<!-- 实例任务用户状态-->
+	<update id="updateBizStepUserState" parameterClass="com.brick.data.IMap">
+		update wf_Biz_Step_User set stepstate='$stepstate$' where id='$id$' and stepstate ='0'
+	</update>
+	<!-- 获取流程实例信息 -->
+	<select id="bizInstanceList" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+	select a.process_id,a.strname,a.process_code,a.is_valid,a.process_pictures_url,a.process_page_url,
+	b.id,b.obj_id,b.table_name,b.cont_title,b.state,b.caller,b.create_date 
+	from wf_process_def a,wf_Biz_Instance b
+	where a.process_id = b.process_id and a.flag=1
+		<isNotEmpty prepend="and" property="processCode">
+			a.process_code like '%$processCode$%'
+		</isNotEmpty>	
+		<isNotEmpty prepend="and" property="strname">
+			a.strname like '%$strname$%'
+		</isNotEmpty>	
+		<isNotEmpty prepend="and" property="state">
+			b.state = '$state$'
+		</isNotEmpty>	
+		<isNotEmpty prepend="and" property="contTitle">
+			b.cont_title like '%$contTitle$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="insid">
+			b.id like '%$insid$%'
+		</isNotEmpty>	
+		<isNotEmpty prepend="and" property="objId">
+			b.obj_id like '%$objId$%'
+		</isNotEmpty>
+	</select>
+	<!-- 获取流程历史步骤信息-->
+	<select id="getProcHistoryStep" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+		select b.cont_title as stepName,
+		a.id,a.ENTRY_ID as insId,a.STEP_ID as stepId,a.START_DATE as startDate,a.FINISH_DATE as finishDate,a.STATUS
+		,c.id as prevId,p.process_pictures_url as processPicturesUrl,p.process_page_url as processPageUrl,i.process_id as processId,s.view_url as phurl
+		 from OS_HISTORYSTEP  a inner join  wf_Biz_Step  b on a.id=b.id
+     	inner join  wf_Biz_Instance  i on i.id=b.insid
+     	 inner join  wf_process_def  p on p.process_id=i.process_id
+     	 inner join  wf_process_step  s on s.process_id=p.process_id and s.step_id = a.STEP_ID
+		 left join OS_HISTORYSTEP_PREV  c on c.PREVIOUS_ID = a.id
+		where  i.obj_id ='$objId$' and i.table_name='$tableName$'
+		order by a.id
+	</select>
+	<select id="getStepSequence" parameterClass="com.brick.data.IMap" resultClass="java.util.HashMap">
+	SELECT max(ID)+1 as id  FROM OS_CURRENTSTEP
+	</select>
+</sqlMap>

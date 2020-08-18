@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<package name="busplanwf">
+	    <method name="toRegister"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/mechtreatment/register.jsp"
+			type="1">
+		</method>
+		<method name="toMaterialPlan" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="toMaterialPlan" source="a" dest="jsp/business/busplanwf/material_plan.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="nodeId" type="String" check="0" source="param" />
+				<inparam name="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+			</inparams> 
+			<outparams>
+				<outparam name="logRecordsList" type="LIST" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="planCode" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="logRecordsList" type="LIST" source="attr" />
+				<outparam name="busMaterialPlanWfList" type="LIST" source="attr" />
+				<outparam name="busPlanInfoWfMap" type="ENTITY" source="attr" />
+				<outparam name="orgCode" type="String" source="attr" />
+				<outparam name="serialnum" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 选择材料信息IFrame -->
+		<method name="toChooseMaterialInfo"
+			realclass="com.u2a.framework.service.SysService"
+			dbName="brickDao" trans="" limit="" methodname="toPage"
+			source="" dest="jsp/business/busplanwf/materialinfo_frame.jsp"
+			type="1">
+		</method>
+		<!-- 选择材料信息列表 -->
+		<method name="chooseMaterialInfo" realclass="com.u2a.business.MaterialInfoService" dbName="brickDao" trans="" limit=""	methodname="getList" source="a" dest="jsp/busplanwf/materialinfo_choose.jsp" error="" type="2">
+			<inparams>
+				<inparam name="materialInfo" type="LOGIC"
+					classname="com.MaterialInfo" source="param">
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialCode" type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="flag"  type="String" check="0" source="param" />
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="currentPageNO" real="currentPageNO"
+					type="String" check="0" source="param" default="1" />
+				<inparam name="perCount" real="perCount" type="String"
+					check="0" source="param" default="10" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!-- 添加物料计划 -->
+		<method name="saveBusMaterialPlanWf" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="saveBusMaterialPlanWf" source="a" dest="jsp/business/mywork/mywork.jsp" error="" type="2">
+			<inparams>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="busMaterialPlanWf" type="LIST"
+					classname="com.BusMaterialPlanWf" source="param">
+					<inparam name="materialCode"  type="String" check="0" source="param" />
+					<inparam name="materialClass"  type="String" check="0" source="param" />
+					<inparam name="materialGroup"  type="String" check="0" source="param" />
+					<inparam name="materialDetail"  type="String" check="0" source="param" />
+					<inparam name="unity"  type="String" check="0" source="param" />
+					<inparam name="materialNum" type="String" check="0" source="param" />
+					<inparam name="estimatePrice"  type="String" check="0" source="param" />
+					<inparam name="totalPrice"  type="String" check="0" source="param" />
+					<inparam name="type"  type="String" check="0" source="param" />
+					<inparam name="remark"  type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="planRemark" real="planRemark" type="String" check="0" source="param"/>
+				<inparam name="planCode" real="planCode" type="String" check="0" source="param"/>
+				<inparam name="serialnum" real="serialnum" type="String" check="0" source="param"/>
+				<inparam name="orgCode" real="orgCode" type="String" check="0" source="param"/>
+			</inparams> 
+			<outparams>
+			</outparams>
+		</method>
+		<!--导向主任审批页面-->
+		<method name="toZrAuditPage" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="getBusPlanInfoWfDetails" source="a" dest="jsp/business/busplanwf/audit_zr.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busPlanInfoWfMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanWfList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--导向长材料员审批页面-->
+		<method name="toCclAuditPage" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="getBusPlanInfoWfDetails" source="a" dest="jsp/business/busplanwf/audit_ccl.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busPlanInfoWfMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanWfList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--保存厂材料员审批页面-->
+		<method name="savecclAudit" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit="" methodname="updateLeaderShipAudit" source="a" dest="" type="1">
+			<inparams>
+			    <inparam name="type" real="type" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="busPlanInfoWf" type="LOGIC" classname="com.BusPlanInfoWf" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="cclResult" real="cclResult" type="String" check="0" source="param" />
+				  <inparam name="cclRemark" real="cclRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+					<inparam name="totalPrice" real="totalPrice" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--主任审批-->
+		<method name="toZrAudit" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit="" methodname="updateLeaderShipAudit" source="a" dest="" type="1">
+			<inparams>
+			    <inparam name="type" real="type" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="busPlanInfoWf" type="LOGIC" classname="com.BusPlanInfoWf" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="zrResult" real="zrResult" type="String" check="0" source="param" />
+				  <inparam name="zrRemark" real="zrRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+					<inparam name="totalPrice" real="totalPrice" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向厂区领导审批页面-->
+		<method name="toCqAuditPage" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="getBusPlanInfoWfDetails" source="a" dest="jsp/business/busplanwf/audit_cq.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busPlanInfoWfMap" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanWfList" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+				<outparam name="cq" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--厂区领导审批-->
+		<method name="toCqAudit" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="updateLeaderShipAudit" source="a" dest="" type="1">
+			<inparams>
+			    <inparam name="type" real="type" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="busPlanInfoWf" type="LOGIC" classname="com.BusPlanInfoWf" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="cqResult" real="cqResult" type="String" check="0" source="param" />
+				  <inparam name="cqRemark" real="cqRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+					<inparam name="totalPrice" real="totalPrice" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="cq" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向生产主管审批页面-->
+		<method name="toScAuditPage" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="getBusPlanInfoWfDetails" source="a" dest="jsp/business/busplanwf/audit_sc.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busPlanInfoWfMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanWfList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--生产主管审批-->
+		<method name="toScAudit" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="updateLeaderShipAudit" source="a" dest=""  type="1">
+			<inparams>
+			    <inparam name="type" real="type" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="busPlanInfoWf" type="LOGIC" classname="com.BusPlanInfoWf" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="scResult" real="scResult" type="String" check="0" source="param" />
+				  <inparam name="scRemark" real="scRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+					<inparam name="totalPrice" real="totalPrice" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向经营主管审批页面-->
+		<method name="toJyAuditPage" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="getBusPlanInfoWfDetails" source="a" dest="jsp/business/busplanwf/audit_jy.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busPlanInfoWfMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanWfList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--经营主管审批-->
+		<method name="toJyAudit" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="updateLeaderShipAudit" source="a" dest=""  type="1">
+			<inparams>
+			    <inparam name="type" real="type" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="busPlanInfoWf" type="LOGIC" classname="com.BusPlanInfoWf" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="jyResult" real="jyResult" type="String" check="0" source="param" />
+				  <inparam name="jyRemark" real="jyRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+					<inparam name="totalPrice" real="totalPrice" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向经理审批页面-->
+		<method name="toJlAuditPage" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="getBusPlanInfoWfDetails" source="a" dest="jsp/business/busplanwf/audit_jl.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busPlanInfoWfMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanWfList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="sk" type="String" source="attr"/>
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--经理审批-->
+		<method name="toJlAudit" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="updateLeaderShipAudit" source="a" dest=""  type="1">
+			<inparams>
+				<inparam name="busPlanInfoWf" type="LOGIC" classname="com.BusPlanInfoWf" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="jlResult" real="jlResult" type="String" check="0" source="param" />
+				  <inparam name="jlRemark" real="jlRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="userMap" real="userMap" type="ENTITY" check="0" source="session" />
+				<inparam name="type" real="type" type="String" check="0" source="param" />
+				 <inparam name="attachmentInfo" type="LOGIC"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="docUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+					<inparam name="totalPrice" real="totalPrice" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+				<inparam name="sk" real="sk" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--导向总公司主管审批页面-->
+		<method name="toZgsAuditPage" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="getBusPlanInfoWfDetails" source="a" dest="jsp/business/busplanwf/audit_zgs.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busPlanInfoWfMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanWfList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--总公司主管审批-->
+		<method name="toZgsAudit" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="updateLeaderShipAudit" source="a" dest=""  type="1">
+			<inparams>
+			    <inparam name="type" real="type" type="String" check="0" source="param" />
+			    <inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="busPlanInfoWf" type="LOGIC" classname="com.BusPlanInfoWf" source="param">
+				  <inparam name="id" real="id" type="String" check="0" source="param" />
+				  <inparam name="zgsResult" real="zgsResult" type="String" check="0" source="param" />
+				  <inparam name="zgsRemark" real="zgsRemark" type="String" check="0" source="param" remark="审批意见"/>
+				</inparam>
+				<inparam name="busMaterialPlan" type="LIST"
+					classname="com.BusMaterialPlan" source="param">
+					<inparam name="materialId"  real="id" type="String" check="0" source="param" />
+					<inparam name="ratifyNum" real="ratifyNum" type="String" check="0" source="param" />
+					<inparam name="totalPrice" real="totalPrice" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="attachmentInfo" type="LIST"
+					classname="com.AttachmentInfo" source="param">
+					<inparam name="docName" real="docName" type="String" check="0" source="param" />
+					<inparam name="docSize" real="docSize" type="String" check="0" source="param" />
+					<inparam name="docType" real="docType" type="String" check="0" source="param" />
+					<inparam name="docUrl" real="docUrl" type="String" check="0" source="param" />
+				</inparam>
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!-- 跳转器材库确认 -->
+		<method name="toBusPlanInfoWfConfirm" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="getBusPlanInfoWfDetails" source="a" dest="jsp/business/busplanwf/busplaninfowf_confirm.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busPlanInfoWfMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanWfList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!-- 跳转到车间材料员确认页面 -->
+		<method name="toMaterialConfirm" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="getBusPlanInfoWfDetails" source="a" dest="jsp/business/busplanwf/busplaninfowf_confirm.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busMaterialPlanWfList" type="LIST" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="busId" type="String" source="attr" />
+				<outparam name="orgCode" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="busPlanInfoWfMap" type="ENTITY" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+			</outparams>
+		</method>
+		<!--车间材料员确认 -->
+		<method name="saveMaterialConfirm" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="saveMaterialConfirm" source="a" dest="jsp/business/mywork/mywork.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		
+		<!--器材库确认 -->
+		<method name="saveBusPlanInfoWfConfirm" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="saveBusPlanInfoWfConfirm" source="a" dest="jsp/business/mywork/mywork.jsp" error="" type="2">
+			<inparams>
+				<inparam name="id" real="id" type="String" check="0" source="param" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+				<inparam name="url" real="url" type="String" check="0" source="param" />
+			</inparams> 
+		</method>
+		<!--列表 -->
+		<method name="getBusPlanInfoWfList" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="getBusPlanInfoWfList" source="a" dest="jsp/business/busplanwf/busplaninfowf_list.jsp" error="" type="2">
+			<inparams>
+				<inparam name="request" type="Context" check="0" source="App.Request" />
+				<inparam name="userMap" real="userMap"   type="ENTITY" check="0" source="session" />
+				<inparam name="planCode" real="planCode" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="page" type="ENTITY" source="attr" />
+			</outparams>
+		</method>
+		<!--详细信息页面-->
+		<method name="toBusPlanInfoWfDetailPage" realclass="com.u2a.business.BusMaterialPlanWfService" dbName="brickDao" trans="" limit=""	methodname="getBusPlanInfoWfDetails" source="a" dest="jsp/business/busplanwf/busplaninfowf_detail.jsp" error="" type="2">
+			<inparams>
+				<inparam name="objId" real="id" type="String" check="0" source="param" />
+				<inparam name="stepId" real="stepId" type="String" check="0" source="param" />
+				<inparam name="instanceId" real="instanceId" type="String" check="0" source="param" />
+				<inparam name="nodeId" real="nodeId" type="String" check="0" source="param" />
+			</inparams> 
+			<outparams>
+				<outparam name="busPlanInfoWfMap" type="ENTITY" source="attr" />
+				<outparam name="busMaterialPlanWfList" type="ENTITY" source="attr" />
+				<outparam name="busPlanInfoMap" type="ENTITY" source="attr" />
+				<outparam name="logRecordsList" type="ENTITY" source="attr" />
+				<outparam name="fileList" type="ENTITY" source="attr" />
+				<outparam name="stepId" type="String" source="attr" />
+				<outparam name="instanceId" type="String" source="attr" />
+				<outparam name="nodeId" type="String" source="attr" />
+				<outparam name="companyName" type="String" source="attr" />
+				<outparam name="groupName" type="String" source="attr" />
+			</outparams>
+		</method>
+	</package>	
+</root>

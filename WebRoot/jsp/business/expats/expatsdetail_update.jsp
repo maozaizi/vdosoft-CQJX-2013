@@ -1,0 +1,188 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@include file="/jsp/config/taglib.jsp"%>
+<%@include file="/jsp/public/limit_top.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>上井服务编辑</title>
+		<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.1.7.2.min.js"></script> 
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/public.js"></script>
+		<script src="${pageContext.request.contextPath}/js/webcalendar.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			function goBack(){
+				window.location.href = "${pageContext.request.contextPath}/api/expats/getExpatsList";
+			}
+			function openeq(name,code){
+				window.open("${pageContext.request.contextPath}/api/busmechanic/toUserInfoChoose?receiveName="+name+"&receiveCode="+code,"","width=600,height=400");
+			}
+			function saveExpats(){
+				document.myform.action="${pageContext.request.contextPath}/api/expats/saveExpats";
+				if(checkForm()){
+					document.myform.submit();
+				}
+			}
+			function openMaterial(){
+				window.open("${pageContext.request.contextPath}/api/expats/toChooseMaterialInfo","","width=1250,height=700,scrollbars=yes");
+			}
+			function checkForm(){
+				var storeNums = document.getElementsByName("storeNum");
+				var flag = true;
+				var re =/^[0-9]*$/;
+				for(var i=0;i<storeNums.length;i++){
+					if(storeNums[i].value==""){
+						storeNums[i].style["borderColor"]="red";
+						flag=false;
+					}else{
+						if(!re.test(storeNums[i].value)){
+							storeNums[i].style["borderColor"]="#C09853";
+							flag=false;
+						}else{
+							storeNums[i].style["borderColor"]="";
+						}
+					}
+				}
+				if(document.getElementById("expatsPerson").value==""){
+					document.getElementById("expatsPerson").style["borderColor"]="red";
+					flag = false;
+				}else{
+					document.getElementById("expatsPerson").style["borderColor"]="";
+				}
+				if(!flag){
+					document.getElementById("errorMessage").style="display:block;";
+				}
+				return flag;
+			}
+       </script>
+	</head>
+	<body>
+	<div class="container-fluid">
+	   <div class="row-fluid">
+		    <div class="span9">
+				<div class="page-header">
+		        	<h3>上井服务编辑</h3>
+		        </div>
+		         <div class="page-header">
+		        	<h4>基本信息</h4>
+		            <div class="row-fluid">
+		            	<div class="span5">
+		            		 <dl class="dl-horizontal">
+		                        <dt>任务编号：</dt>
+		                        <dd>${expatsInfo.taskCode}
+		                        </dd>
+		                    </dl>
+		                </div>
+		                <div class="span5">
+		                    <dl class="dl-horizontal">
+		                        <dt>井队：</dt>
+		                        <dd>
+		                        <c:forEach var="lev" items='${web:getDataItem("pro_dept")}'>
+									<c:if test='${fn:contains(expatsMap.projectDept,lev.dataItemValue)}'>${lev.dataItemName}-</c:if>
+								</c:forEach>${expatsInfo.expatsTo}
+		                        </dd>
+		                    </dl>
+		                </div>
+		                <div class="row-fluid">
+			                <div class="span9">
+			                    <dl class="dl-horizontal">
+			                        <dt>任务描述：</dt>
+			                        <dd>${expatsInfo.taskDetail}</dd>
+			                    </dl>
+			                </div>
+		                </div>
+		            </div> 
+		        </div>
+		        <form name="myform" action="">
+		        	<input id="url" name="url" type="hidden" value="${pageContext.request.contextPath}/api/expats/getExpatsList"/>
+		        	<input id="id" name="id" type="hidden" value="${expatsdeatail.id}"/>
+		        	<input type="hidden" id="expatsPersonCode" name="expatsPersonCode"/>
+		            <div class="page-header">
+			            <div id="accordion2" class="accordion">
+					        <div class="accordion-group">
+					          <div class="accordion-body in collapse" id="collapse${expatsdeatail.id}">
+					            <div class="accordion-inner">
+					              <div class="row-fluid">
+					                <div class="span5">
+					                  <dl class="dl-horizontal">
+					                    <dt>车间：</dt>
+					                    <dd>
+					                    	<input value="${expatsdeatail.deptName}" class="input-medium" type="text" readonly="readonly"/>
+					                    </dd>
+					                  </dl>
+					                </div>
+					                <div class="span6">
+					                  <dl class="dl-horizontal">
+					                    <dt>施工人员：</dt>
+					                    <dd>
+					                    	<div class="input-append">
+					                      		<input id="expatsPerson" name="expatsPerson" class="input-medium" type="text" onclick="openeq('expatsPerson','expatsPersonCode');" readonly="readonly" />
+					                    	</div>
+					                    </dd>
+					                  </dl>
+					                </div>
+					              </div>
+					            </div>
+					          </div>
+					        </div>
+					    </div>
+			        </div>
+			        <div class="page-header">
+					<h4>领用材料</h4>
+					 <div class="row-fluid">
+					 	<div style="margin:5px 0 5px 5px;"><a class="btn btn-medium" onclick="openMaterial();" href="#"><i class="icon-plus"></i>选择材料</a></div>
+			            	<table class="table table-striped table-bordered" id="materialPlanTable">
+		            			<tbody>
+									<tr>
+									  <th>物料描述</th>
+						              <th>物料组</th>
+						              <th>物料编码</th>
+									  <th>数量</th>
+									  <th>操作</th>
+									</tr>
+									<c:if test="${empty busMaterialPlanList}">
+			                            <tr>
+			                            	<td colspan="5" style="text-align: center;color:red;">暂无数据！</td>
+			                            </tr>   
+			                        </c:if>
+			                        
+			                        <c:if test="${not empty busMaterialPlanList}">
+			                            <c:forEach items="${busMaterialPlanList}" var="busMaterialPlan" varStatus="i">
+			                                <tr id="materialPlanTr_${i.index+1}">
+			                                    <td>${busMaterialPlan.materialDetail}<input type="hidden" name="materialDetail" value="${busMaterialPlan.materialDetail}"></td>
+			                                    <td>${busMaterialPlan.materialGroup}<input type="hidden" name="materialGroup" value="${busMaterialPlan.materialGroup}"></td>
+			                                    <td>${busMaterialPlan.materialCode}<input type="hidden" name="materialCode" value="${busMaterialPlan.materialCode}"></td>
+			                                    <td>${busMaterialPlan.unity}<input type="hidden" name="unity" value="${busMaterialPlan.unity}"></td>
+			                                    <td>${busMaterialPlan.estimatePrice}<input type="hidden" name="estimatePrice" value="${busMaterialPlan.estimatePrice}"></td>
+			                                    <td>
+				                                    <select class="input-small" name="type">
+					                                    <option value="1" <c:if test="${busMaterialPlan.type==1}">selected</c:if>>领用</option>
+					                                    <option value="4" <c:if test="${busMaterialPlan.type==4}">selected</c:if>>计划加领用</option>
+					                                    <option value="2" <c:if test="${busMaterialPlan.type==2}">selected</c:if>>加工</option>
+					                                    <option value="3" <c:if test="${busMaterialPlan.type==3}">selected</c:if>>修理</option>
+				                                    </select>
+			                                    </td>
+			                                    <td><input id="remark" name="remark" class="input-mini" type="text" value="${busMaterialPlan.remark}"/></td>
+			                                    <td><a href="javascript:void(0);" onclick="delRow(${i.index+1})">删除</a></td>
+			                                </tr>
+			                            </c:forEach>
+			                        </c:if>
+			            	</table>
+			            </div>
+			             <div id="errorMessage" style="display: none;"><font color="red">红色标识：必填项；黄色标识：请填写数字；</font></div>	
+	            	</div>
+		        </form>
+		        <div class="form-actions">
+					<p>
+						<a href="javascript:void(0);" onclick="goBack();" class="btn">取  消</a>
+						<c:if test="${expatsdeatail.isComplete ==0}">
+							<a href="javaScript:void(0);" onclick="saveExpats();" class="btn btn-primary">确  认</a>
+						</c:if>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
